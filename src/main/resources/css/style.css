@@ -1,0 +1,211 @@
+/* 主题颜色 */
+/*:root {*/
+/*    -fx-primary-color: #4CAF50;*/
+/*    -fx-secondary-color: #2196F3;*/
+/*    -fx-accent-color: #FF9800;*/
+/*    -fx-text-color: #333333;*/
+/*    -fx-background-color: #f5f5f5;*/
+/*}*/
+
+/* 通用样式 */
+.root {
+    -fx-font-family: "Segoe UI", "Comic Sans MS", sans-serif;
+    -fx-background-color: white;
+}
+
+/* 侧边栏 */
+.sidebar {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+
+}
+
+/* 卡片样式 */
+.financial-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 10px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 2, 1, 0, 2);
+
+}
+
+.text-financial-card {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 16px;
+    -fx-font-weight: Normal;
+}
+
+.chart-box, .advice-box, .calendar-widget {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 2, 1, 0, 2);
+
+}
+
+.text-advice {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 16px;
+    -fx-font-weight: Normal;
+    -fx-padding: 5 0 0 10;
+}
+
+
+.search-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 10px;
+    -fx-padding: 8px 15px 8px 15px;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 2, 1, 0, 2);
+}
+/* 按钮样式 */
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-accent-color;
+    -fx-cursor: hand;
+}
+
+.add-button {
+    -fx-background-color: #FFD700;
+    -fx-background-radius: 50%;
+    -fx-shape: "Circle";
+    -fx-cursor: hand;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-font-size: 24px;
+}
+
+
+
+.transaction-button {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 15px;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+/* 标题样式 */
+.title {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 36px;
+    -fx-font-weight: Normal;
+}
+
+.ledger-type {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 21px;
+    -fx-font-weight: Normal;
+    -fx-text-fill: #9E4900;
+}
+
+.back-link {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 21px;
+    -fx-font-weight: Normal;
+    -fx-text-fill: #9E4900;
+    -fx-cursor: hand;
+}
+
+.chart-title {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.advice-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.label-left {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #808080;
+}
+
+.user-name {
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-text-fill: black;
+}
+
+/* 进度条样式 */
+.item-pie {
+    -fx-pref-height: 20px; /* 进度条高度 */
+    -fx-pref-width: 250px; /* 进度条宽度（变长） */
+    -fx-background-color: #e0e0e0; /* 进度条背景颜色（浅灰色） */
+    -fx-background-radius: 10px; /* 进度条圆角 */
+    -fx-border-radius: 10px; /* 进度条边框圆角 */
+    -fx-border-color: #d0d0d0; /* 进度条边框颜色 */
+    -fx-border-width: 1px; /* 进度条边框宽度 */
+}
+.text-pie{
+
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 16px;
+    -fx-font-weight: Normal;
+}
+/* 进度条填充部分（已加载进度） */
+item-pie .track {
+    -fx-background-color: linear-gradient(to right, #f0f0f0, #d9d9d9); /* 灰色渐变背景 */
+    -fx-background-radius: 10px;
+}
+
+/* 进度条未加载部分 */
+item-pie .bar {
+    -fx-background-color: linear-gradient(to right, #4facfe, #00f2fe); /* 渐变蓝色进度条 */
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2); /* 阴影效果 */
+}
+
+
+/* 内容区域背景 */
+
+/* 顶部栏 */
+.top-bar {
+    -fx-background-color: white;
+    /*-fx-padding: 10px 20px;*/
+    -fx-padding: 10px 50px 10px 20px;
+    /*-fx-border-color: red;*/
+    /*-fx-border-bottom: 1px solid #ddd;*/
+}
+
+
+.text-search-card{
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 15px;
+    -fx-font-weight: Normal;
+    -fx-text-fill: black;
+    -fx-opacity: 0.5;
+}
+
+.active-icon{
+    -fx-background-color: #F7F7F7;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px; /* 根据需要调整 */
+}
+
+
+
+
+
+
+
+/*////////////////////////////*/
+
