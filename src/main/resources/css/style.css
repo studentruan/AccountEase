@@ -207,5 +207,132 @@ item-pie .bar {
 
 
 
-/*////////////////////////////*/
+/*//////////////////日历//////////*/
 
+
+/* 日历整体样式 */
+/*.calendar-widget {*/
+/*    -fx-background-color: white;*/
+/*    -fx-background-radius: 15;*/
+/*    -fx-padding: 15;*/
+/*    -fx-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/* 月份标题区域 */
+.calendar-header {
+    -fx-padding: 10;
+    -fx-background-color: #E3F2FD;
+    -fx-background-radius: 10;
+}
+
+.calendar-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1565C0;
+}
+
+.calendar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1565C0;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);
+}
+
+.calendar-button:hover {
+    -fx-text-fill: #0D47A1;
+}
+
+/* 星期标题 */
+.calendar-week-header {
+    -fx-padding: 5;
+    -fx-background-color: #E3F2FD;
+    -fx-background-radius: 5;
+}
+
+.week-day {
+    -fx-font-size: 12px;
+    -fx-text-fill: #1565C0;
+    -fx-padding: 5;
+    -fx-alignment: CENTER;
+}
+
+/* 日期网格 */
+.calendar-grid {
+    -fx-alignment: CENTER;
+    -fx-hgap: 2;
+    -fx-vgap: 2;
+}
+
+/* 日期单元格 */
+.calendar-grid > .day-cell {
+    -fx-background-color: white;
+    -fx-border-color: #E3F2FD;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+    -fx-alignment: CENTER;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 0);
+}
+
+.calendar-grid > .day-cell:hover {
+    -fx-background-color: #E3F2FD;
+}
+
+/* 标记样式 */
+.calendar-grid > .day-cell.has-marker {
+    -fx-text-fill: #FF5722;
+    -fx-font-weight: bold;
+}
+
+.calendar-grid > .day-cell.other-month {
+    -fx-text-fill: #999999;
+    -fx-opacity: 0.7;
+}
+
+/* 选中日期的样式 */
+.selected-day {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+/* 日期详细信息区域 */
+.date-details-container {
+    -fx-padding: 15;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.date-details-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.expense-item {
+    -fx-padding: 10;
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 8;
+    -fx-spacing: 10;
+}
+
+.expense-item-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #FF5722;
+}
+
+.income-item {
+    -fx-padding: 10;
+    -fx-background-color: #e8f5e9;
+    -fx-background-radius: 8;
+    -fx-spacing: 10;
+}
+
+.income-item-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4CAF50;
+}
