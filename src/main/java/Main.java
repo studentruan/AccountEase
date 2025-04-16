@@ -3,7 +3,7 @@ import java.math.RoundingMode;
 
 public class Main {
     public static void main(String[] args) {
-        TransactionAnalyzer analyzer = new TransactionAnalyzer("C:/Users/ASUS/Desktop/CSVXML/transactions.xml");
+        TransactionAnalyzer analyzer = new TransactionAnalyzer("src/main/resources/transactions.xml");
         //每日净收支
         analyzer.getDailySummary().forEach((date, amount) ->
                 System.out.println(date + ": " + amount));
