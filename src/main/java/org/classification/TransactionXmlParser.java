@@ -32,7 +32,8 @@ public class TransactionXmlParser {
         NodeList nodes = document.getElementsByTagName("transaction");
         for (int i = 0; i < nodes.getLength(); i++) {
             Element element = (Element) nodes.item(i);
-            String id = element.getAttribute("id");
+            String id = element.getElementsByTagName("id").item(0).getTextContent();
+
             String counterparty = element.getElementsByTagName("counterparty").item(0).getTextContent();
             String product = element.getElementsByTagName("product").item(0).getTextContent();
             transactions.add(new Transaction(id, counterparty, product));
