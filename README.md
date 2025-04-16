@@ -1,13 +1,16 @@
+明白了，以下是完整的英文翻译，保持了你原来的 Markdown 格式：
+
 # AICount
 
-## AI端功能实现：交易分类 + 支出预测
+## AI-side Function Implementation: Transaction Classification + Expense Forecasting
 
-更改日期：4.15   
-版本：2.1
+Date Modified: 16 April
 
-### 交易分类
+Version: 2.1
 
-输入为xml文件，结构为一系列`<transaction>`标签的交易记录，其中具体的构成结构为：
+### Transaction Classification
+
+The input is an XML file, structured as a series of `<transaction>` tags, where each transaction has the following format:
 
 ```xml
 <transaction>
@@ -19,55 +22,53 @@
 </transaction>
 ```
 
-使用预训练Bert文本分类模型及java的xml解析工具，可以实现对交易描述文本的自动化25种交易类型分类。
+Using a pre-trained Bert text classification model along with Java XML parsing tools, automatic classification into 25 transaction types can be achieved based on the transaction description text.
 
-调用方式如下：
+Usage is as follows:
+#### 1.	Batch Classification (used for classifying batch transaction data from an XML file)
 
-1）批量分类（用于对xml文件中的批量交易数据分类）
 ```java
-// 1. 初始化分类器
-Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // 模型Tokenizer的路径
-String modelPath = "src/main/resources/bert_transaction_categorization.onnx"; // 模型路径
+// 1. Initialize classifier
+Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // Path to the model's tokenizer
+String modelPath = "src/main/resources/bert_transaction_categorization.onnx"; // Path to the model
 TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath);
 
-// 2. 解析 XML 文件
-String xmlFilePath = "src/main/resources/transactions.xml"; //交易记录文件路径
+// 2. Parse XML file
+String xmlFilePath = "src/main/resources/transactions.xml"; // Path to transaction record file
 List<Transaction> transactions = TransactionXmlParser.parse(xmlFilePath);
 
-// 3. 批量分类
+// 3. Batch classification
 Map<Transaction, String> categorized = classifier.classifyBatch(transactions);
 ```
 
-最终使用字典保存每个交易的分类结果。
+The final result is stored in a dictionary with each transaction and its classified type.
 
-2）单个交易描述的分类（用于手动输入交易数据时的分类）
+#### 2.	Classification of a Single Transaction Description (used when inputting a transaction manually)
+
 ```java
-//单个分类（比如手动输入数据）
+// Single classification (e.g., for manually entered data)
 String transaction = "";
 String category = classifier.classify(transaction);
 ```
 
-下一步实现功能：xml结构添加一个<id>作为交易记录的唯一标识，将分类结果结合之前的xml数据，写入到一个新的xml文件中。
+Next step: Add an <id> field in the XML structure to serve as a unique identifier for each transaction. Combine the classification result with the original XML data and write it into a new XML file. (Implemented)
 
-### 支出预测
-输入为一个double类型的数组，长度任意，但为了预测性能应当进行截断。 其代表一段时间的每日支出。
+### Expense Forecasting
 
-使用ARIMA模型，对支出数据进行预测，调用方式如下：
+The input is an array of doubles with arbitrary length, but truncation is recommended for better prediction performance. It represents daily expenses over a period.
+
+An ARIMA model is used to predict expense data. Usage is as follows:
 
 ```java
-// ARIMAModel(inputData, period(若数据有周期性因素),p,q)
+// ARIMAModel(inputData, period (if data has cyclic patterns), p, q)
 ARIMAModel model = new ARIMAModel(testData, 7, 4, 5);
 
-// 预测未来任意天
+// Predict expenses for any number of future days
 int steps = 20;
 int[] forecasts = model.predict(steps);
 ```
 
-返回预测结果数组，长度=steps。
+The prediction result is an array of length = steps.
 
-下一步实现功能：后处理预测结果，对偏移太多的进行截断处理（已实现）
-
-
-
-
+Next step: Post-process the prediction results to trim any values that deviate too much. (Implemented)
 
