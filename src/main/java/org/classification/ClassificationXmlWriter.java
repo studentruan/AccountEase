@@ -9,31 +9,30 @@ import java.io.File;
 import java.util.Map;
 
 public class ClassificationXmlWriter {
-    public static void writeClassifications(String xmlFilePath, Map<Transaction, String> categorizedTransactions) throws Exception {
-        // Parse the XML file
+    public static void writeClassifications(
+            String inputXmlFilePath,
+            String outputXmlFilePath,
+            Map<Transaction, String> categorizedTransactions
+    ) throws Exception {
+        // 解析输入 XML 文件
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(new File(xmlFilePath));
+        Document doc = builder.parse(new File(inputXmlFilePath));
 
-        // Get all transaction elements
         NodeList transactionNodes = doc.getElementsByTagName("transaction");
 
-        // Iterate through transactions and add classification
+        // 遍历并更新分类
         for (int i = 0; i < transactionNodes.getLength(); i++) {
             Element transactionElement = (Element) transactionNodes.item(i);
 
-            // Find matching transaction in the map
+            // 查找匹配的交易
             Transaction tx = findTransaction(transactionElement, categorizedTransactions);
             if (tx != null) {
                 String category = categorizedTransactions.get(tx);
-
-                // Create or update classification element
                 NodeList classNodes = transactionElement.getElementsByTagName("class");
                 if (classNodes.getLength() > 0) {
-                    // Update existing class node
                     classNodes.item(0).setTextContent(category);
                 } else {
-                    // Add new class node
                     Element classElement = doc.createElement("class");
                     classElement.setTextContent(category);
                     transactionElement.appendChild(classElement);
@@ -41,19 +40,17 @@ public class ClassificationXmlWriter {
             }
         }
 
-        // Write the modified document back to file
+        // 4. 写入新的 XML 文件（而不是覆盖原文件）
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");  // 格式化输出
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new File(xmlFilePath));
+        StreamResult result = new StreamResult(new File(outputXmlFilePath));  // 写入新文件
         transformer.transform(source, result);
     }
 
     private static Transaction findTransaction(Element transactionElement, Map<Transaction, String> categorizedTransactions) {
-        String id = transactionElement.getAttribute("id");
-        String description = transactionElement.getElementsByTagName("description").item(0).getTextContent();
-        String amount = transactionElement.getElementsByTagName("amount").item(0).getTextContent();
+        String id = transactionElement.getElementsByTagName("id").item(0).getTextContent();
 
         for (Transaction tx : categorizedTransactions.keySet()) {
             if (tx.getId().equals(id)) {

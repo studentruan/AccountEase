@@ -2,6 +2,9 @@
 
 ## AI端功能实现：交易分类 + 支出预测
 
+更改日期：4.15   
+版本：2.1
+
 ### 交易分类
 
 输入为xml文件，结构为一系列`<transaction>`标签的交易记录，其中具体的构成结构为：
@@ -20,6 +23,7 @@
 
 调用方式如下：
 
+1）批量分类（用于对xml文件中的批量交易数据分类）
 ```java
 // 1. 初始化分类器
 Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // 模型Tokenizer的路径
@@ -35,6 +39,13 @@ Map<Transaction, String> categorized = classifier.classifyBatch(transactions);
 ```
 
 最终使用字典保存每个交易的分类结果。
+
+2）单个交易描述的分类（用于手动输入交易数据时的分类）
+```java
+//单个分类（比如手动输入数据）
+String transaction = "";
+String category = classifier.classify(transaction);
+```
 
 下一步实现功能：xml结构添加一个<id>作为交易记录的唯一标识，将分类结果结合之前的xml数据，写入到一个新的xml文件中。
 
@@ -54,7 +65,7 @@ int[] forecasts = model.predict(steps);
 
 返回预测结果数组，长度=steps。
 
-下一步实现功能：后处理预测结果，对偏移太多的进行截断处理
+下一步实现功能：后处理预测结果，对偏移太多的进行截断处理（已实现）
 
 
 

@@ -31,8 +31,6 @@ public class Transaction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return id.equals(that.id) &&
-                description.equals(that.description) &&
-                amount.equals(that.amount);
+        return id.equals(that.id) ;
     }
 }
