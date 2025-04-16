@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <transactions>
     <transaction>
+        <id>250301001</id>
         <date>2025/03/01</date>
         <counterparty>Freelance</counterparty>
         <product>Project Fee</product>
@@ -8,6 +9,7 @@
         <amount>5204.03</amount>
     </transaction>
     <transaction>
+        <id>250301002</id>
         <date>2025/03/01</date>
         <counterparty>Salary</counterparty>
         <product>Monthly Salary</product>
@@ -15,6 +17,7 @@
         <amount>9090.3</amount>
     </transaction>
     <transaction>
+        <id>250301003</id>
         <date>2025/03/01</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -22,6 +25,7 @@
         <amount>181.24</amount>
     </transaction>
     <transaction>
+        <id>250302001</id>
         <date>2025/03/02</date>
         <counterparty>Salary</counterparty>
         <product>Monthly Salary</product>
@@ -29,6 +33,7 @@
         <amount>5093.95</amount>
     </transaction>
     <transaction>
+        <id>250303001</id>
         <date>2025/03/03</date>
         <counterparty>Salary</counterparty>
         <product>Monthly Salary</product>
@@ -36,6 +41,7 @@
         <amount>9444.18</amount>
     </transaction>
     <transaction>
+        <id>250303002</id>
         <date>2025/03/03</date>
         <counterparty>Gym</counterparty>
         <product>Membership</product>
@@ -43,6 +49,7 @@
         <amount>73.93</amount>
     </transaction>
     <transaction>
+        <id>250303003</id>
         <date>2025/03/03</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -50,6 +57,7 @@
         <amount>230.05</amount>
     </transaction>
     <transaction>
+        <id>250304001</id>
         <date>2025/03/04</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -57,6 +65,7 @@
         <amount>90.58</amount>
     </transaction>
     <transaction>
+        <id>250305001</id>
         <date>2025/03/05</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -64,6 +73,7 @@
         <amount>39.64</amount>
     </transaction>
     <transaction>
+        <id>250306001</id>
         <date>2025/03/06</date>
         <counterparty>Freelance</counterparty>
         <product>Project Fee</product>
@@ -71,6 +81,7 @@
         <amount>8433.53</amount>
     </transaction>
     <transaction>
+        <id>250306002</id>
         <date>2025/03/06</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -78,6 +89,7 @@
         <amount>143.23</amount>
     </transaction>
     <transaction>
+        <id>250307001</id>
         <date>2025/03/07</date>
         <counterparty>Gym</counterparty>
         <product>Membership</product>
@@ -85,6 +97,7 @@
         <amount>32.85</amount>
     </transaction>
     <transaction>
+        <id>250308001</id>
         <date>2025/03/08</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -92,6 +105,7 @@
         <amount>266.78</amount>
     </transaction>
     <transaction>
+        <id>250308002</id>
         <date>2025/03/08</date>
         <counterparty>Amazon</counterparty>
         <product>Books</product>
@@ -99,6 +113,7 @@
         <amount>214.33</amount>
     </transaction>
     <transaction>
+        <id>250309001</id>
         <date>2025/03/09</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -106,6 +121,7 @@
         <amount>295.71</amount>
     </transaction>
     <transaction>
+        <id>250310001</id>
         <date>2025/03/10</date>
         <counterparty>Gym</counterparty>
         <product>Membership</product>
@@ -113,6 +129,7 @@
         <amount>90.61</amount>
     </transaction>
     <transaction>
+        <id>250311001</id>
         <date>2025/03/11</date>
         <counterparty>Amazon</counterparty>
         <product>Books</product>
@@ -120,6 +137,7 @@
         <amount>117.35</amount>
     </transaction>
     <transaction>
+        <id>250311002</id>
         <date>2025/03/11</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -127,6 +145,7 @@
         <amount>213.53</amount>
     </transaction>
     <transaction>
+        <id>250311003</id>
         <date>2025/03/11</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -134,6 +153,7 @@
         <amount>186.65</amount>
     </transaction>
     <transaction>
+        <id>250312001</id>
         <date>2025/03/12</date>
         <counterparty>Amazon</counterparty>
         <product>Books</product>
@@ -141,6 +161,7 @@
         <amount>57.39</amount>
     </transaction>
     <transaction>
+        <id>250313001</id>
         <date>2025/03/13</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -148,6 +169,7 @@
         <amount>209.57</amount>
     </transaction>
     <transaction>
+        <id>250313002</id>
         <date>2025/03/13</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -155,6 +177,7 @@
         <amount>254.43</amount>
     </transaction>
     <transaction>
+        <id>250314001</id>
         <date>2025/03/14</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -162,6 +185,7 @@
         <amount>243.46</amount>
     </transaction>
     <transaction>
+        <id>250315001</id>
         <date>2025/03/15</date>
         <counterparty>Amazon</counterparty>
         <product>Books</product>
@@ -169,6 +193,7 @@
         <amount>274.81</amount>
     </transaction>
     <transaction>
+        <id>250315002</id>
         <date>2025/03/15</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -176,6 +201,7 @@
         <amount>101.26</amount>
     </transaction>
     <transaction>
+        <id>250316001</id>
         <date>2025/03/16</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -183,6 +209,7 @@
         <amount>143.07</amount>
     </transaction>
     <transaction>
+        <id>250316002</id>
         <date>2025/03/16</date>
         <counterparty>Amazon</counterparty>
         <product>Books</product>
@@ -190,6 +217,7 @@
         <amount>226.05</amount>
     </transaction>
     <transaction>
+        <id>250316003</id>
         <date>2025/03/16</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -197,20 +225,7 @@
         <amount>179.53</amount>
     </transaction>
     <transaction>
-        <date>2025/03/17</date>
-        <counterparty>Amazon</counterparty>
-        <product>Books</product>
-        <type>Expense</type>
-        <amount>299.22</amount>
-    </transaction>
-    <transaction>
-        <date>2025/03/17</date>
-        <counterparty>Freelance</counterparty>
-        <product>Project Fee</product>
-        <type>Income</type>
-        <amount>3818.18</amount>
-    </transaction>
-    <transaction>
+        <id>250317001</id>
         <date>2025/03/17</date>
         <counterparty>Salary</counterparty>
         <product>Monthly Salary</product>
@@ -218,6 +233,23 @@
         <amount>4375.57</amount>
     </transaction>
     <transaction>
+        <id>250317002</id>
+        <date>2025/03/17</date>
+        <counterparty>Amazon</counterparty>
+        <product>Books</product>
+        <type>Expense</type>
+        <amount>299.22</amount>
+    </transaction>
+    <transaction>
+        <id>250317003</id>
+        <date>2025/03/17</date>
+        <counterparty>Freelance</counterparty>
+        <product>Project Fee</product>
+        <type>Income</type>
+        <amount>3818.18</amount>
+    </transaction>
+    <transaction>
+        <id>250318001</id>
         <date>2025/03/18</date>
         <counterparty>Gym</counterparty>
         <product>Membership</product>
@@ -225,6 +257,7 @@
         <amount>182.96</amount>
     </transaction>
     <transaction>
+        <id>250319001</id>
         <date>2025/03/19</date>
         <counterparty>Gym</counterparty>
         <product>Membership</product>
@@ -232,6 +265,7 @@
         <amount>163.44</amount>
     </transaction>
     <transaction>
+        <id>250319002</id>
         <date>2025/03/19</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -239,6 +273,7 @@
         <amount>207.28</amount>
     </transaction>
     <transaction>
+        <id>250320001</id>
         <date>2025/03/20</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -246,6 +281,7 @@
         <amount>227.75</amount>
     </transaction>
     <transaction>
+        <id>250321001</id>
         <date>2025/03/21</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -253,6 +289,7 @@
         <amount>136.08</amount>
     </transaction>
     <transaction>
+        <id>250321002</id>
         <date>2025/03/21</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -260,6 +297,7 @@
         <amount>264.0</amount>
     </transaction>
     <transaction>
+        <id>250321003</id>
         <date>2025/03/21</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -267,6 +305,7 @@
         <amount>230.97</amount>
     </transaction>
     <transaction>
+        <id>250322001</id>
         <date>2025/03/22</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -274,6 +313,7 @@
         <amount>96.55</amount>
     </transaction>
     <transaction>
+        <id>250322002</id>
         <date>2025/03/22</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -281,6 +321,7 @@
         <amount>67.68</amount>
     </transaction>
     <transaction>
+        <id>250322003</id>
         <date>2025/03/22</date>
         <counterparty>Amazon</counterparty>
         <product>Books</product>
@@ -288,20 +329,7 @@
         <amount>166.42</amount>
     </transaction>
     <transaction>
-        <date>2025/03/23</date>
-        <counterparty>Restaurant</counterparty>
-        <product>Dinner</product>
-        <type>Expense</type>
-        <amount>104.01</amount>
-    </transaction>
-    <transaction>
-        <date>2025/03/23</date>
-        <counterparty>Freelance</counterparty>
-        <product>Project Fee</product>
-        <type>Income</type>
-        <amount>10908.5</amount>
-    </transaction>
-    <transaction>
+        <id>250323001</id>
         <date>2025/03/23</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -309,6 +337,23 @@
         <amount>79.44</amount>
     </transaction>
     <transaction>
+        <id>250323002</id>
+        <date>2025/03/23</date>
+        <counterparty>Freelance</counterparty>
+        <product>Project Fee</product>
+        <type>Income</type>
+        <amount>10908.5</amount>
+    </transaction>
+    <transaction>
+        <id>250323003</id>
+        <date>2025/03/23</date>
+        <counterparty>Restaurant</counterparty>
+        <product>Dinner</product>
+        <type>Expense</type>
+        <amount>104.01</amount>
+    </transaction>
+    <transaction>
+        <id>250324001</id>
         <date>2025/03/24</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -316,6 +361,7 @@
         <amount>34.84</amount>
     </transaction>
     <transaction>
+        <id>250325001</id>
         <date>2025/03/25</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -323,6 +369,7 @@
         <amount>232.09</amount>
     </transaction>
     <transaction>
+        <id>250325002</id>
         <date>2025/03/25</date>
         <counterparty>Freelance</counterparty>
         <product>Project Fee</product>
@@ -330,6 +377,7 @@
         <amount>11521.64</amount>
     </transaction>
     <transaction>
+        <id>250326001</id>
         <date>2025/03/26</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -337,6 +385,7 @@
         <amount>132.71</amount>
     </transaction>
     <transaction>
+        <id>250327001</id>
         <date>2025/03/27</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -344,6 +393,7 @@
         <amount>210.06</amount>
     </transaction>
     <transaction>
+        <id>250328001</id>
         <date>2025/03/28</date>
         <counterparty>Utility</counterparty>
         <product>Electricity Bill</product>
@@ -351,6 +401,7 @@
         <amount>198.46</amount>
     </transaction>
     <transaction>
+        <id>250328002</id>
         <date>2025/03/28</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -358,6 +409,7 @@
         <amount>140.93</amount>
     </transaction>
     <transaction>
+        <id>250328003</id>
         <date>2025/03/28</date>
         <counterparty>Starbucks</counterparty>
         <product>Coffee</product>
@@ -365,6 +417,7 @@
         <amount>108.04</amount>
     </transaction>
     <transaction>
+        <id>250329001</id>
         <date>2025/03/29</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
@@ -372,6 +425,7 @@
         <amount>73.86</amount>
     </transaction>
     <transaction>
+        <id>250329002</id>
         <date>2025/03/29</date>
         <counterparty>Salary</counterparty>
         <product>Monthly Salary</product>
@@ -379,6 +433,7 @@
         <amount>5060.48</amount>
     </transaction>
     <transaction>
+        <id>250329003</id>
         <date>2025/03/29</date>
         <counterparty>Supermarket</counterparty>
         <product>Groceries</product>
@@ -386,6 +441,7 @@
         <amount>30.55</amount>
     </transaction>
     <transaction>
+        <id>250330001</id>
         <date>2025/03/30</date>
         <counterparty>Gym</counterparty>
         <product>Membership</product>
@@ -393,6 +449,7 @@
         <amount>72.13</amount>
     </transaction>
     <transaction>
+        <id>250331001</id>
         <date>2025/03/31</date>
         <counterparty>Restaurant</counterparty>
         <product>Dinner</product>
