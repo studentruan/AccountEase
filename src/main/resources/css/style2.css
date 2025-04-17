@@ -1,0 +1,41 @@
+.header-bar {
+    -fx-padding: 10 20;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 0 1 0;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-family: "Comic Sans MS";
+}
+
+.add-button {
+    -fx-font-size: 18px;
+    -fx-background-color: #eeeeee;
+    -fx-border-radius: 10px;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.ledger-card {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 10px;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.ledger-card:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.bottom-nav {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1 0 0 0;
+}

@@ -1,25 +1,31 @@
 package detectorTools;
+import java.time.LocalTime;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class PureJavaKDEAnomalyDetector {
     private final List<Transaction> transactions;
     private final List<Double> data;
     private final double bandwidth;
 
-    public PureJavaKDEAnomalyDetector(List<Transaction> transactions, List<Double> data) {
-        this.transactions = transactions;
-        this.data = data;
+    public PureJavaKDEAnomalyDetector(List<?> inputData) {
+        if (inputData.isEmpty()) throw new IllegalArgumentException("Input data is empty");
+
+        if (inputData.get(0) instanceof Transaction) {
+            this.transactions = (List<Transaction>) inputData;
+            this.data = transactions.stream()
+                    .map(Transaction::getAmount)
+                    .collect(Collectors.toList());
+        } else {
+            this.data = (List<Double>) inputData;
+            this.transactions = Collections.emptyList();
+        }
         this.bandwidth = BandwidthCalculator.calculateBandwidth(data);
     }
 
-    public PureJavaKDEAnomalyDetector(List<Transaction> transactions, List<Double> data, double bandwidth) {
-        this.transactions = transactions;  // 确保传入数据不为null
-        this.data = data;
-        this.bandwidth = bandwidth;
-    }
 
 
     // KDE密度估计（网页3算法Java重写）
@@ -65,15 +71,14 @@ public class PureJavaKDEAnomalyDetector {
     }
 }
 
-class Transaction {
-    private LocalDateTime timestamp;
-    private double amount;
+class TimeSensitiveAdjuster {
+    public static double adjustThreshold(double threshold, LocalDateTime timestamp) {
+        boolean isNonWorkday = timestamp.getDayOfWeek().getValue() >= 6;
+        boolean isNight = timestamp.toLocalTime().isAfter(LocalTime.of(22, 0))
+                || timestamp.toLocalTime().isBefore(LocalTime.of(6, 0));
 
-    public Transaction(LocalDateTime timestamp, double amount) {
-        this.timestamp = timestamp;
-        this.amount = amount;
+        if (isNonWorkday) return threshold * 0.8;
+        if (isNight) return threshold * 0.9;
+        return threshold;
     }
-
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public double getAmount() { return amount; }
 }

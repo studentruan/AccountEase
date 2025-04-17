@@ -4,7 +4,68 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="" />
+    <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CheckFXML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/DeepaccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/style2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/NewLedgerDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/deepaccount.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledgermanager.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/sidebar.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/AI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/assets.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/belowlian.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/budget.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/cat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/expense.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/ledger.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/pending.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/profile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/question.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/refresh.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/settings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/uplian.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/CheckFXML.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/DeepaccountController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SettingsController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/myapp/model/FinanceData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/fxml/deepaccount.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/fxml/main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/fxml/sidebar.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/images/Icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CsvToXmlConverter.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/monthly_statement_custom_id.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/monthly_statement_custom_id.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/transactions.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,11 +99,12 @@
     "Application.OnnxBertClassifier.executor": "Run",
     "Application.OnnxInference.executor": "Run",
     "Application.Test.executor": "Run",
+    "Application.Unnamed.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.AIend.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dev-ruan",
+    "git-widget-placeholder": "Merging main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/ruanyu/Desktop/gitProject/AIend",
     "project.structure.last.edited": "Libraries",
@@ -63,6 +125,16 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.myapp.Main" />
+      <module name="AIend" />
+      <option name="VM_PARAMETERS" value="--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-21.0.7/lib --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
