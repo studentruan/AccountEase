@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Button?>
+
+<VBox fx:id="sidebar"  spacing="20" alignment="CENTER" styleClass="sidebar"  xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.myapp.controller.SidebarController">
+
+    <children>
+        <ImageView fx:id="Icon" fitHeight="60" fitWidth="60" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="Profile" fitHeight="60" fitWidth="60" pickOnBounds="true" preserveRatio="true" />
+        <Label text="SWNA_SS" styleClass="user-name"/>
+
+        <VBox spacing="20" alignment="CENTER" style="-fx-padding: 30 0 0 0;">
+            <ImageView fx:id="ledgerImage" fitWidth="35" fitHeight="35" pickOnBounds="true" preserveRatio="true"
+                       onMouseClicked="#handleLedgerClick" style="-fx-cursor: hand;" translateY="15"/>
+            <Label text="Ledger" styleClass="label-left"/>
+
+            <ImageView fx:id="deepAccountImage" fitWidth="35" fitHeight="35" pickOnBounds="true" preserveRatio="true"
+                       onMouseClicked="#handleDeepAccountClick" style="-fx-cursor: hand;" translateY="15"/>
+            <Label text="DeepAccount" styleClass="label-left"/>
+
+            <ImageView fx:id="settingsImage" fitWidth="35" fitHeight="35" pickOnBounds="true" preserveRatio="true"
+                       onMouseClicked="#handleSettingsClick" style="-fx-cursor: hand;" translateY="15"/>
+            <Label text="Settings" styleClass="label-left"/>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS" />
+        <ImageView fx:id="refreshImage" fitWidth="20" fitHeight="20" pickOnBounds="true" preserveRatio="true"
+                   onMouseClicked="#handlerefresh" style="-fx-cursor: hand;" translateY="-25"/>
+        <ImageView fx:id="questionImage" fitWidth="20" fitHeight="20" pickOnBounds="true" preserveRatio="true"
+                   onMouseClicked="#handlequestion" style="-fx-cursor: hand;" translateY="-15"/>
+
+    </children>
+</VBox>
