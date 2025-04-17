@@ -1,5 +1,3 @@
-明白了，以下是完整的英文翻译，保持了你原来的 Markdown 格式：
-
 # AICount
 
 ## AI-side Function Implementation: Transaction Classification + Expense Forecasting
