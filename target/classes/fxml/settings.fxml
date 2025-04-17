@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="400">
+    <center>
+        <Label text="Settings Page"
+               style="-fx-font-size: 24px; -fx-text-fill: #336699;" />
+    </center>
+</BorderPane>
