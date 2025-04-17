@@ -18,7 +18,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.image.Image?>
 
-<BorderPane  stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myapp.controller.LedgerController">
+<?import javafx.scene.layout.GridPane?>
+<BorderPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myapp.controller.LedgerController">
     <!-- 顶部栏 -->
 
     <top>
@@ -41,8 +42,7 @@
     </top>
     <!-- 中部内容区域 -->
     <center>
-        <AnchorPane style="-fx-background-color: #f5f5f5;
-">
+        <AnchorPane style="-fx-background-color: #F5F5F5">
 
             <HBox spacing="27" AnchorPane.topAnchor="25" AnchorPane.leftAnchor="35" AnchorPane.rightAnchor="35" AnchorPane.bottomAnchor="25">
                     <children>
@@ -174,6 +174,7 @@
                             </HBox>
                         </VBox>
                         <!-- 右侧区域：搜索框和日历 -->
+
                         <VBox spacing="20">
                             <children>
                                 <!-- 搜索框区域 -->
@@ -190,22 +191,68 @@
                                     </children>
                                 </VBox>
                                 <!-- 日历区域 -->
-                                <VBox spacing="10" alignment="CENTER" prefWidth="300" prefHeight="325" styleClass="calendar-widget">
+                                <VBox spacing="10" alignment="CENTER" prefWidth="400" prefHeight="350" styleClass="calendar-widget">
                                     <children>
-                                        <DatePicker fx:id="datePicker" />
-                                        <Label text="March 8, 2025" />
-                                        <HBox spacing="20" alignment="CENTER">
+                                        <!-- 月份标题区域 -->
+                                        <HBox spacing="20" alignment="CENTER" styleClass="calendar-header">
                                             <children>
-                                                <Label text="Expense: $200" />
-                                                <Label text="Income: $160" />
+                                                <!-- 左箭头按钮 -->
+                                                <Button fx:id="prevMonthButton" text="←" styleClass="calendar-button" onAction="#handlePrevMonth" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <!-- 月份标题 -->
+                                                <Label fx:id="monthTitle" text="Mar, 2025" styleClass="calendar-title" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <!-- 右箭头按钮 -->
+                                                <Button fx:id="nextMonthButton" text="→" styleClass="calendar-button" onAction="#handleNextMonth" />
                                             </children>
                                         </HBox>
-                                        <Button text="Travel" styleClass="transaction-button" />
-                                        <Button text="Wage" styleClass="transaction-button" />
+
+                                        <!-- 星期标题 -->
+                                        <HBox spacing="4" alignment="CENTER" styleClass="calendar-week-header">
+                                            <children>
+                                                <Label text="Sun" styleClass="week-day" />
+                                                <Label text="Mon" styleClass="week-day" />
+                                                <Label text="Tue" styleClass="week-day" />
+                                                <Label text="Wed" styleClass="week-day" />
+                                                <Label text="Thu" styleClass="week-day" />
+                                                <Label text="Fri" styleClass="week-day" />
+                                                <Label text="Sat" styleClass="week-day" />
+                                            </children>
+                                        </HBox>
+                                        <HBox spacing="4" alignment="CENTER" styleClass="calendar-week-header">
+                                            <children>
+                                                <ImageView fitWidth="40" fitHeight="225">
+                                                    <image>
+                                                        <Image url="@/images/belowlian.jpg" />
+                                                    </image>
+                                                </ImageView>
+                                                <GridPane fx:id="calendarGrid" styleClass="calendar-grid">
+                                                    <!-- 日期单元格会通过代码动态生成 -->
+                                                </GridPane>
+                                                <ImageView fitWidth="40" fitHeight="225">
+                                                    <image>
+                                                        <Image url="@/images/uplian.jpg" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+
+                                        </HBox>
+                                        <!-- 日期网格 -->
+
+                                    </children>
+                                </VBox>
+
+                                <VBox fx:id="dateDetailsContainer" spacing="10" alignment="CENTER" styleClass="date-details-container">
+                                    <children>
+                                        <Label fx:id="selectedDateLabel" text="Select a date to view details" styleClass="date-details-title" />
+                                        <VBox fx:id="expenseItemsContainer" spacing="5" alignment="CENTER" styleClass="expense-items-container">
+                                            <!-- 收支项目会通过代码动态生成 -->
+                                        </VBox>
                                     </children>
                                 </VBox>
                             </children>
                         </VBox>
+
                     </children>
                 </HBox>
 
