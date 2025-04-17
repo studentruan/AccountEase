@@ -5,15 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/classification/ClassificationXmlWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prediction/ARIMAModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prediction/ARMAMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prediction/ARMAModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prediction/ARModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prediction/MAModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/prediction/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/transactions.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CsvToXmlConverter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CsvToXmlConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TransactionAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/detector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/detectorTools/KernelUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/monthly_statement_custom_id.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/CsvToXmlConverter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/TransactionAnalyzer$Transaction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/TransactionAnalyzer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/detector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/monthly_statement_custom_id.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/transactions.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/transactions.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,9 +68,9 @@
     "Maven.AIend.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "Merging dev-ruan",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ruanyu/Desktop/Soft-Engineer/code/AIend/src/main/resources",
+    "last_opened_file_path": "/Users/ruanyu/Desktop/gitProject/AIend",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",

@@ -9,13 +9,16 @@ public class PureJavaKDEAnomalyDetector {
     private final List<Double> data;
     private final double bandwidth;
 
-    public PureJavaKDEAnomalyDetector(List<Double> data) {
+    public PureJavaKDEAnomalyDetector(List<Transaction> transactions, List<Double> data) {
+        this.transactions = transactions;
         this.data = data;
         this.bandwidth = BandwidthCalculator.calculateBandwidth(data);
     }
 
-    public PureJavaKDEAnomalyDetector(List<Transaction> transactions) {
+    public PureJavaKDEAnomalyDetector(List<Transaction> transactions, List<Double> data, double bandwidth) {
         this.transactions = transactions;  // 确保传入数据不为null
+        this.data = data;
+        this.bandwidth = bandwidth;
     }
 
 
