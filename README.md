@@ -1,5 +1,5 @@
 # AICount
-
+This README is not complete
 ## AI-side Function Implementation: Transaction Classification + Expense Forecasting
 
 Date Modified: 16 April
