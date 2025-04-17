@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/Transaction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,27 +41,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DeepSeekONNXInference.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.OnnxBertClassifier.executor": "Run",
-    "Application.OnnxInference.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.AIend.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ruanyu/Desktop/gitProject/AIend",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DeepSeekONNXInference.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OnnxBertClassifier.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OnnxInference.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AIend.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ruanyu/Desktop/gitProject/AIend&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
