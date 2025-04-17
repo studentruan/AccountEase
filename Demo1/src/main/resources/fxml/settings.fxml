@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<BorderPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" prefWidth="600" prefHeight="400" fx:controller="com.myapp.controller.SettingsController">
+
+    <top>
+        <HBox spacing="5" styleClass="top-bar" alignment="CENTER" HBox.hgrow="ALWAYS" >
+            <children>
+                <Button fx:id="BackButton" style="-fx-background-color: transparent; -fx-cursor: hand;" onAction="#back_to_main">
+                    <graphic>
+                        <ImageView fx:id="image_Back_to_main" fitWidth="30" fitHeight="30"/>
+                    </graphic>
+                </Button>
+                <Label fx:id="image_Back_to_main_text" styleClass="back-link" text="Back to main page" onMouseClicked="#back_to_main"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label styleClass="title" text="my daily routine" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label styleClass="ledger-type" text="Ledger type: Default ledger" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <GridPane>
+            <!-- 定义列约束，第一列占1/3，第二列占2/3 -->
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="66.66"/>
+            </columnConstraints>
+
+            <!-- 左侧设置分类 (第0列) -->
+            <VBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 20;">
+                <Label text="Basic"
+                       style="-fx-font-size: 24px; -fx-text-fill: #336699; -fx-padding: 0 0 10 0;"/>
+
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="General" styleClass="settings-category-btn"
+                            onAction="#handleGeneralSettings"/>
+                    <Button text="Language" styleClass="settings-category-btn"
+                            onAction="#handleLanguageSettings"/>
+                    <Button text="Appearance" styleClass="settings-category-btn"
+                            onAction="#handleAppearanceSettings"/>
+                    <Button text="Function" styleClass="settings-category-btn"
+                            onAction="#handleFunctionSettings"/>
+                </VBox>
+
+                <Label text="Advanced"
+                       style="-fx-font-size: 24px; -fx-text-fill: #336699; -fx-padding: 20 0 10 0;"/>
+
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Bill input" styleClass="settings-category-btn"
+                            onAction="#handleInputSettings"/>
+                    <Button text="Bill export" styleClass="settings-category-btn"
+                            onAction="#handleExportSettings"/>
+                    <Button text="Currency and Exchange rate" styleClass="settings-category-btn"
+                            onAction="#handleCurrencySettings"/>
+                    <Button text="Backup and Recovery" styleClass="settings-category-btn"
+                            onAction="#handleBackupSettings"/>
+                </VBox>
+            </VBox>
+
+<!--            &lt;!&ndash; 右侧分隔线 (第0列) &ndash;&gt;-->
+<!--            <Line startY="0" endY="300" stroke="#dddddd" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>-->
+
+            <!-- 右侧设置内容区域 (第1列) -->
+            <StackPane fx:id="settingsContentPane" style="-fx-padding: 20;" GridPane.columnIndex="1">
+                <Label text="请从左侧选择设置类别"
+                       style="-fx-font-size: 16px; -fx-text-fill: #666666;"/>
+            </StackPane>
+        </GridPane>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane  stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myapp.controller.LedgerController">
+    <!-- 顶部栏 -->
+
+    <top>
+
+        <HBox spacing="5" styleClass="top-bar" alignment="CENTER" HBox.hgrow="ALWAYS" >
+                <children>
+                    <Button fx:id="BackButton" style="-fx-background-color: transparent; -fx-cursor: hand;" onAction="#back_to_main">
+                        <graphic>
+                            <ImageView fx:id="image_Back_to_main" fitWidth="30" fitHeight="30"/>
+                        </graphic>
+                    </Button>
+                    <Label fx:id="image_Back_to_main_text" styleClass="back-link" text="Back to main page" onMouseClicked="#back_to_main"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label styleClass="title" text="my daily routine" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label styleClass="ledger-type" text="Ledger type: Default ledger" />
+                </children>
+        </HBox>
+
+    </top>
+    <!-- 中部内容区域 -->
+    <center>
+        <AnchorPane style="-fx-background-color: #f5f5f5;
+">
+
+            <HBox spacing="27" AnchorPane.topAnchor="25" AnchorPane.leftAnchor="35" AnchorPane.rightAnchor="35" AnchorPane.bottomAnchor="25">
+                    <children>
+                        <!-- 左侧区域：财务卡片和图表 -->
+                        <VBox spacing="20">
+                            <!-- 第一行：4个财务信息卡片 -->
+                            <HBox spacing="25">
+                                <children>
+                                    <!-- 卡片1 -->
+                                    <VBox spacing="5"  styleClass="financial-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                                <ImageView fitWidth="25" fitHeight="25">
+                                                    <image>
+                                                        <Image url="@/images/expense.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="expenseLabel" text="Expense $540" styleClass="text-financial-card"/>
+                                            </HBox>
+                                            <Label fx:id="incomeLabel" text="Income $640" styleClass="text-financial-card"/>
+                                            <Label fx:id="balanceLabel" text="Balance $100" styleClass="text-financial-card"/>
+                                        </children>
+                                    </VBox>
+                                    <!-- 卡片2 -->
+                                    <VBox spacing="5"  styleClass="financial-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                                <ImageView fitWidth="25" fitHeight="25">
+                                                    <image>
+                                                        <Image url="@/images/budget.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="budgetLabel" text="Budget $1000" styleClass="text-financial-card"/>
+                                            </HBox>
+                                            <Label fx:id="remainLabel" text="Remain $460" styleClass="text-financial-card"/>
+                                            <Label fx:id="spentLabel" text="Spent $540" styleClass="text-financial-card"/>
+                                        </children>
+                                    </VBox>
+                                    <!-- 卡片3 -->
+                                    <VBox spacing="5" styleClass="financial-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                                <ImageView fitWidth="25" fitHeight="25">
+                                                    <image>
+                                                        <Image url="@/images/pending.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="pendingLabel" text="Pending $1900" styleClass="text-financial-card"/>
+                                            </HBox>
+                                            <Label fx:id="claimedLabel" text="Claimed $1000" styleClass="text-financial-card"/>
+                                            <Label fx:id="reimburLabel" text="Reimbur $900" styleClass="text-financial-card"/>
+                                        </children>
+                                    </VBox>
+                                    <!-- 卡片4 -->
+                                    <VBox spacing="5"  styleClass="financial-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                                <ImageView fitWidth="25" fitHeight="25">
+                                                    <image>
+                                                        <Image url="@/images/assets.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="netAssetsLabel" text="Net $0" styleClass="text-financial-card"/>
+                                            </HBox>
+                                            <Label fx:id="totalsLabel" text="Total $900" styleClass="text-financial-card"/>
+                                            <Label fx:id="debtsLabel" text="Debts $900" styleClass="text-financial-card"/>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <!-- 第二行：图表区域 -->
+                            <HBox spacing="25">
+                                <children>
+                                    <!-- 左侧列：统计图和AI建议 -->
+                                    <VBox spacing="20">
+                                        <children>
+                                            <!-- 统计图区域 -->
+                                            <VBox prefWidth="425" prefHeight="275" styleClass="chart-box" >
+                                                <children>
+                                                    <Label styleClass="chart-title" text="Expense Statistics" />
+                                                    <LineChart fx:id="lineChart">
+                                                        <xAxis>
+                                                            <CategoryAxis fx:id="xAxis" />
+                                                        </xAxis>
+                                                        <yAxis>
+                                                            <NumberAxis fx:id="yAxis" />
+                                                        </yAxis>
+                                                    </LineChart>
+                                                </children>
+                                            </VBox>
+                                            <!-- AI 建议区域 -->
+                                            <VBox fx:id="adviceBox" prefWidth="425" prefHeight="245" styleClass="advice-box">
+                                                <children>
+                                                    <Label styleClass="advice-title" text="Advice From AI" />
+                                                    <!-- 后续动态添加 Label -->
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                    <!-- 右侧：饼状图区域 -->
+                                    <VBox prefWidth="425" prefHeight="470" styleClass="chart-box">
+                                        <children>
+                                            <Label styleClass="chart-title" text="Expense Categories" />
+                                            <PieChart fx:id="expenseCategoriesChart" />
+                                            <HBox spacing="10" alignment="CENTER">
+                                                <Label text="Shop" styleClass="text-pie" />
+                                                <ProgressBar progress="0.71" styleClass="item-pie" />
+                                                <Label text="71%, 370$" styleClass="text-pie" />
+                                            </HBox>
+                                            <HBox spacing="10" alignment="CENTER">
+                                                <Label text="car" styleClass="text-pie" />
+                                                <ProgressBar progress="0.14" styleClass="item-pie" />
+                                                <Label text="14%, 85$" styleClass="text-pie" />
+                                            </HBox>
+                                            <HBox spacing="10" alignment="CENTER">
+                                                <Label text="dress" styleClass="text-pie" />
+                                                <ProgressBar progress="0.1" styleClass="item-pie" />
+                                                <Label text="10%, 700$" styleClass="text-pie" />
+                                            </HBox>
+
+                                            <HBox spacing="10" alignment="CENTER">
+                                                <Label text="Pet" styleClass="text-pie" />
+                                                <ProgressBar progress="0.05" styleClass="item-pie" />
+                                                <Label text="5%, 35$" styleClass="text-pie" />
+                                            </HBox>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                        </VBox>
+                        <!-- 右侧区域：搜索框和日历 -->
+                        <VBox spacing="20">
+                            <children>
+                                <!-- 搜索框区域 -->
+                                <VBox alignment="CENTER" prefWidth="400" prefHeight="15" styleClass="search-box">
+                                    <children>
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image>
+                                                    <Image url="@/images/search.png" />
+                                                </image>
+                                            </ImageView>
+                                            <Label fx:id="searchLabel" text="search" styleClass="text-search-card"/>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <!-- 日历区域 -->
+                                <VBox spacing="10" alignment="CENTER" prefWidth="300" prefHeight="325" styleClass="calendar-widget">
+                                    <children>
+                                        <DatePicker fx:id="datePicker" />
+                                        <Label text="March 8, 2025" />
+                                        <HBox spacing="20" alignment="CENTER">
+                                            <children>
+                                                <Label text="Expense: $200" />
+                                                <Label text="Income: $160" />
+                                            </children>
+                                        </HBox>
+                                        <Button text="Travel" styleClass="transaction-button" />
+                                        <Button text="Wage" styleClass="transaction-button" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+            <!-- 使用 HBox 分为左侧和右侧 -->
+
+        </AnchorPane>
+    </center>
+
+
+</BorderPane>
