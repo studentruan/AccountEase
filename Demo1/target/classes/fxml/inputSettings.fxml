@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.myapp.controller.InputSettingsController"
+      spacing="15"
+      style="-fx-padding: 20;">
+
+    <Label text="文件路径配置" styleClass="settings-title"/>
+
+    <VBox spacing="10">
+        <!-- 文件路径输入行 -->
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="文件路径:" styleClass="input-label"/>
+            <TextField fx:id="filePathField"
+                       styleClass="file-path-input"
+                       promptText="请选择Excel/CSV文件"
+                       editable="false"/>
+            <Button text="浏览..."
+                    styleClass="browse-btn"
+                    onAction="#handleBrowseFile"/>
+        </HBox>
+
+        <!-- 保存按钮 -->
+        <Button text="保存路径"
+                styleClass="save-btn"
+                onAction="#saveFilePath"/>
+    </VBox>
+
+</VBox>
