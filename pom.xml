@@ -16,12 +16,11 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.girod</groupId>-->
-<!--            <artifactId>SVGImageLoader</artifactId>-->
-<!--            <version>1.2</version>-->
-<!--        </dependency>-->
-
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.2</version> <!-- 检查最新版本 -->
+        </dependency>
 
         <dependency>
             <groupId>org.openjfx</groupId>
