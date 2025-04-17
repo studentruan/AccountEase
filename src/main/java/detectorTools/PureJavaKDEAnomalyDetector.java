@@ -1,4 +1,5 @@
 package detectorTools;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.time.LocalDateTime;
@@ -72,14 +73,10 @@ public class PureJavaKDEAnomalyDetector {
 }
 
 class TimeSensitiveAdjuster {
+    // 未来用于处理节假日以及周末
+    // TimeSensitiveAdjuster类中
     public static double adjustThreshold(double threshold, LocalDateTime timestamp) {
-        boolean isNonWorkday = timestamp.getDayOfWeek().getValue() >= 6;
-        boolean isNight = timestamp.toLocalTime().isAfter(LocalTime.of(22, 0))
-                || timestamp.toLocalTime().isBefore(LocalTime.of(6, 0));
-
-        if (isNonWorkday) return threshold * 0.8;
-        if (isNight) return threshold * 0.9;
-        return threshold;
+        return threshold;  // 时间参数无实际作用，仅保持方法签名兼容
     }
 }
 

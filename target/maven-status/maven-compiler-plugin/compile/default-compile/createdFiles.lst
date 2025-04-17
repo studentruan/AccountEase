@@ -1,5 +1,12 @@
-CsvToXmlConverter.class
+detectorTools\PureJavaKDEAnomalyDetector.class
+detectorTools\OutlierDetector.class
+detectorTools\TimeSensitiveAdjuster.class
+detectorTools\StatisticalThresholdCalculator.class
+detectorTools\Transaction.class
+TransectionAnalyzer\CsvToXmlConverter.class
+detectorTools\AdvancedAnomalyDetector.class
 Main.class
-detector.class
-TransactionAnalyzer.class
-TransactionAnalyzer$Transaction.class
+detectorTools\BandwidthCalculator.class
+detectorTools\KernelUtils.class
+TransactionAnalyzer\TransactionAnalyzer$Transaction.class
+TransactionAnalyzer\TransactionAnalyzer.class

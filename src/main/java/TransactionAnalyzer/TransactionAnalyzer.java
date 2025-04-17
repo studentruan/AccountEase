@@ -1,4 +1,4 @@
-package TransectionAnalyzer;
+package TransactionAnalyzer;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
@@ -65,6 +65,16 @@ public class TransactionAnalyzer {
                 .collect(Collectors.groupingBy(t -> t.date.getYear(),
                         TreeMap::new,
                         Collectors.reducing(BigDecimal.ZERO, t -> t.amount, BigDecimal::add)));
+    }
+    //每天总支出
+    public Map<LocalDate, BigDecimal> getExpenseDailySummary() {
+        return transactions.stream()
+                .filter(t -> t.amount.compareTo(BigDecimal.ZERO) < 0)
+                .collect(Collectors.groupingBy(t -> t.date,
+                        TreeMap::new,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                t -> t.amount.abs(),
+                                BigDecimal::add)));
     }
 
     private static class Transaction {

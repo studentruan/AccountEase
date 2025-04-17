@@ -34,13 +34,23 @@ public class AdvancedAnomalyDetector {
         // 基础阈值：Q3 + 1.5*IQR（网页1统计方法）
 
         transactions.forEach(tx -> {
+            double amount = tx.getAmount();
+
+            // 新增：KDE密度估计与置信度计算（网页6带宽优化 + 网页7置信度判断）
+            double kdeDensity = kdeDetector.estimateDensity(amount);
+            double kdeConfidence = kdeDensity > 0.05 ? 1.0 : 0.3; // 密度<0.05时降权
+
+            // 新增：混合阈值计算（网页8置信区间加权思想）
+            double hybridThreshold = baseThreshold * 0.7 + kdeDensity * 0.3;
+
+            // 时间敏感调整（网页9时间API整合）
             double dynamicThreshold = thresholdAdjuster.adjustThreshold(
-                    Math.min(baseThreshold, kdeDetector.estimateDensity(tx.getAmount())),
+                    hybridThreshold,  // 替换原min()方法
                     tx.getTimestamp()
             );
 
-            if (tx.getAmount() > dynamicThreshold) {
-                anomalies.add(tx.getAmount());
+            if (amount > dynamicThreshold) {
+                anomalies.add(amount);
             }
         });
         return anomalies;
