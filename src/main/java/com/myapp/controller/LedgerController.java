@@ -4,18 +4,27 @@ import com.myapp.model.FinanceData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
+import javafx.scene.layout.GridPane;
+
+
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 public class LedgerController implements Initializable {
 
@@ -56,11 +65,35 @@ public class LedgerController implements Initializable {
 
     // 建议和日历
     @FXML private VBox adviceBox;
-    @FXML private Label searchLabel;
-    @FXML private DatePicker datePicker;
-    @FXML private Label calendarLabel;
-    @FXML private Label dailyExpenseLabel;
-    @FXML private Label dailyIncomeLabel;
+    @FXML
+    private VBox calendarWidget;
+
+    @FXML
+    private Button prevMonthButton;
+
+    @FXML
+    private Button nextMonthButton;
+
+    @FXML
+    private Label monthTitle;
+
+
+    @FXML
+    private GridPane calendarGrid;
+
+    private YearMonth currentMonth = YearMonth.now();
+    private Map<LocalDate, String> dateMarkers = new HashMap<>();
+    private Map<LocalDate, List<Transaction>> dateTransactions = new HashMap<>();
+    private LocalDate selectedDate = null;
+
+
+    @FXML
+    private Label selectedDateLabel;
+
+    @FXML
+    private VBox expenseItemsContainer;
+
+
 
     @FXML
     private FinanceData financeData = new FinanceData();
@@ -70,10 +103,23 @@ public class LedgerController implements Initializable {
         // 初始化数据
         updateDashboard();
 
-        // 设置日历监听器
-        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-            updateDashboard();
-        });
+
+
+        List<Transaction> march6Transactions = new ArrayList<>();
+        march6Transactions.add(new Transaction("Travel", -200.0));
+        march6Transactions.add(new Transaction("Wage", 160.0));
+
+        List<Transaction> march8Transactions = new ArrayList<>();
+        march8Transactions.add(new Transaction("Other", -2.0));
+
+        dateTransactions.put(LocalDate.of(2025, 3, 6), march6Transactions);
+        dateTransactions.put(LocalDate.of(2025, 3, 8), march8Transactions);
+
+        dateMarkers.put(LocalDate.of(2025, 3, 6), "-200\n+160");
+        dateMarkers.put(LocalDate.of(2025, 3, 8), "+0");
+        updateCalendar();
+        LocalDate today = LocalDate.now();
+        showDateDetails(today);
 
         // 初始化图表
         initializeCharts();
@@ -180,41 +226,219 @@ public class LedgerController implements Initializable {
 
 
 
+//日历
+
+
+    @FXML
+    private void handlePrevMonth() {
+        currentMonth = currentMonth.minusMonths(1);
+        updateCalendar();
+    }
+
+    @FXML
+    private void handleNextMonth() {
+        currentMonth = currentMonth.plusMonths(1);
+        updateCalendar();
+    }
 
 
 
-//    private void loadPage(String fxmlPath) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-//            Parent page = loader.load();
-//            mainPane.setCenter(page);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//
-//    private void clearIconEffects() {
-//        ledgerImage.setEffect(null);
-//        deepAccountImage.setEffect(null);
-//        settingsImage.setEffect(null);
-//    }
-//
-//    private void applyBlueEffect(ImageView imageView) {
-//        ColorAdjust colorAdjust = new ColorAdjust();
-//        colorAdjust.setHue(-0.5); // 调整 hue 值使图标变蓝
-//        imageView.setEffect(colorAdjust);
-//    }
-//
-//    private void setActiveIcon(ImageView activeIcon) {
-//        // 先清除所有图标的激活效果
-//        clearIconEffects();
-//
-//        // 方式1：通过 CSS 类（需要在 style.css 中定义 .active-icon）
-//        activeIcon.getStyleClass().add("active-icon");
-//        applyBlueEffect(activeIcon);
+
+    private void updateCalendar() {
+        // 更新月份标题
+        monthTitle.setText(currentMonth.format(DateTimeFormatter.ofPattern("MMM, yyyy")));
+
+        // 清空网格
+        calendarGrid.getChildren().clear();
+
+        // 获取当前月份的天数
+        int daysInMonth = currentMonth.lengthOfMonth();
+
+        // 获取当前月份第一天是星期几（0=星期日，1=星期一，...）
+        int firstDayOfWeek = currentMonth.atDay(1).getDayOfWeek().getValue() % 7;
+
+        // 填充上个月的剩余天数
+        YearMonth previousMonth = currentMonth.minusMonths(1);
+        int daysInPreviousMonth = previousMonth.lengthOfMonth();
+        for (int i = 0; i < firstDayOfWeek; i++) {
+            int day = daysInPreviousMonth - firstDayOfWeek + i + 1;
+            Label dayLabel = createDayLabel(day, previousMonth, false);
+            dayLabel.setStyle("-fx-text-fill: #999999;");
+            calendarGrid.add(dayLabel, i, 0);
+        }
+
+        // 填充当前月份的天数
+        int row = 0;
+        for (int day = 1; day <= daysInMonth; day++) {
+            int col = (day + firstDayOfWeek - 1) % 7;
+            Label dayLabel = createDayLabel(day, currentMonth, true);
+
+            // 添加标记
+            LocalDate date = currentMonth.atDay(day);
+            if (dateMarkers.containsKey(date)) {
+                StringBuilder markerText = new StringBuilder();
+                for (Transaction transaction : dateTransactions.get(date)) {
+                    markerText.append(transaction.getAmount() > 0 ? "+" : "")
+                            .append(transaction.getAmount())
+                            .append("$\n");
+                }
+                dayLabel.setText(day + "\n" + markerText.toString().trim());
+                dayLabel.setStyle("-fx-text-fill: #FF5722;"); // 标记文字颜色
+            }
+
+            // 添加点击事件
+            dayLabel.setOnMouseClicked(event -> {
+                // 移除之前选中日期的特效
+                if (selectedDate != null) {
+                    Label previousLabel = findDayLabel(selectedDate);
+                    if (previousLabel != null) {
+                        previousLabel.getStyleClass().remove("selected-day");
+                    }
+                }
+
+                // 应用选中日期的特效
+                dayLabel.getStyleClass().add("selected-day");
+                selectedDate = date;
+
+                // 显示选中日期的详细信息
+                showDateDetails(date);
+            });
+
+            calendarGrid.add(dayLabel, col, row);
+            if (col == 6) row++; // 换行
+        }
+
+        // 填充下个月的前几天
+        YearMonth nextMonth = currentMonth.plusMonths(1);
+        int totalCells = 42; // 6行7列
+        int filledCells = firstDayOfWeek + daysInMonth;
+        for (int i = filledCells; i < totalCells; i++) {
+            int col = i % 7;
+            int day = i - filledCells + 1;
+            Label dayLabel = createDayLabel(day, nextMonth, false);
+            dayLabel.setStyle("-fx-text-fill: #999999;");
+            calendarGrid.add(dayLabel, col, row);
+            if (col == 6) row++;
+        }
+    }
+
+//    private Label createDayLabel(int day, YearMonth month) {
+//        Label label = new Label(String.valueOf(day));
+//        label.setAlignment(Pos.CENTER);
+//        label.setPrefSize(40, 40);
+//        label.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0;");
+//        return label;
 //    }
 
+    private Label createDayLabel(int day, YearMonth month, boolean isCurrentMonth) {
+        Label label = new Label(String.valueOf(day));
+        label.setAlignment(Pos.CENTER);
+        label.setPrefSize(40, 40);
+        label.getStyleClass().add("day-cell");
+
+        if (!isCurrentMonth) {
+            label.getStyleClass().add("other-month");
+        }
+
+        // 添加标记
+        LocalDate date = month.atDay(day);
+        if (dateMarkers.containsKey(date)) {
+            String marker = dateMarkers.get(date);
+            label.setText(day + "\n" + marker);
+            label.getStyleClass().add("has-marker");
+        }
+
+        return label;
+    }
+
+
+    private Label findDayLabel(LocalDate date) {
+        for (Node node : calendarGrid.getChildren()) {
+            if (node instanceof Label) {
+                Label label = (Label) node;
+                String text = label.getText();
+                if (text != null && !text.isEmpty()) {
+                    try {
+                        int day = Integer.parseInt(text.split("\n")[0]);
+                        YearMonth month = currentMonth;
+                        if (date.getMonthValue() != month.getMonthValue() || date.getYear() != month.getYear()) {
+                            continue;
+                        }
+                        if (day == date.getDayOfMonth()) {
+                            return label;
+                        }
+                    } catch (NumberFormatException e) {
+                        // 忽略非数字的文本
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private void showDateDetails(LocalDate date) {
+        // 更新选中日期的标签
+        selectedDateLabel.setText(date.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")));
+
+        // 清空之前的收支项目
+        expenseItemsContainer.getChildren().clear();
+
+        // 检查是否有标记
+        if (dateTransactions.containsKey(date)) {
+            // 添加收支项目
+            for (Transaction transaction : dateTransactions.get(date)) {
+                HBox itemBox = new HBox(10);
+                itemBox.setPadding(new Insets(10));
+                itemBox.setStyle(transaction.getAmount() > 0 ? "-fx-background-color: #e8f5e9;" : "-fx-background-color: #f5f5f5;");
+                itemBox.setPrefWidth(350);
+                itemBox.setPrefHeight(50);
+                itemBox.setStyle(transaction.getAmount() > 0
+                        ? "-fx-background-color: #e8f5e9; -fx-background-radius: 8;"
+                        : "-fx-background-color: #f5f5f5; -fx-background-radius: 8;");
+
+
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(24);
+                imageView.setFitHeight(24);
+                imageView.setImage(new Image(transaction.getAmount() > 0 ? "/images/income.png" : "/images/expense.png"));
+
+                Label itemName = new Label(transaction.getDescription());
+                itemName.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
+                itemName.setPrefWidth(200);
+
+                Label itemAmount = new Label(transaction.getAmount() > 0 ? "+" + transaction.getAmount() + "$" : "" + transaction.getAmount() + "$");
+                itemAmount.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
+                HBox.setHgrow(itemAmount, Priority.ALWAYS);
+
+                itemBox.getChildren().addAll(imageView, itemName, itemAmount);
+                expenseItemsContainer.getChildren().add(itemBox);
+            }
+        } else {
+            // 没有标记时显示提示信息
+            Label noDataLabel = new Label("No records for this date");
+            noDataLabel.setStyle("-fx-text-fill: #999999;");
+            expenseItemsContainer.getChildren().add(noDataLabel);
+        }
+    }
+
+    // 交易记录类
+    private static class Transaction {
+        private String description;
+        private double amount;
+
+        public Transaction(String description, double amount) {
+            this.description = description;
+            this.amount = amount;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public double getAmount() {
+            return amount;
+        }
+    }
 
 
 }

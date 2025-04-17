@@ -18,7 +18,7 @@
     </left>
 
     <center>
-        <AnchorPane style="-fx-background-color: #F5F5F5" AnchorPane.topAnchor="0"
+        <AnchorPane  AnchorPane.topAnchor="0"
                     AnchorPane.bottomAnchor="0"
                     AnchorPane.leftAnchor="0"
                     AnchorPane.rightAnchor="0" fx:id="contentArea">
