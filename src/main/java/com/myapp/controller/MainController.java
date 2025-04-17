@@ -45,23 +45,4 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-//public void loadPage(String fxmlFile) {
-//    try {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + fxmlFile));
-//        Parent page = loader.load();
-//
-//        // 锚点绑定，页面铺满 contentArea
-//        AnchorPane.setTopAnchor(page, 0.0);
-//        AnchorPane.setBottomAnchor(page, 0.0);
-//        AnchorPane.setLeftAnchor(page, 0.0);
-//        AnchorPane.setRightAnchor(page, 0.0);
-//
-//        contentArea.getChildren().setAll(page);
-//
-//        currentController = loader.getController();
-//
-//    } catch (Exception e) {
-//        e.printStackTrace();
-//    }
-//}
 }
