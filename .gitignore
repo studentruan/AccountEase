@@ -42,3 +42,4 @@ build/
 
 ### Mac OS ###
 .DS_Storesrc/main/resources/bert_transaction_categorization.onnx
+src/main/resources/bert_transaction_categorization.onnx
