@@ -105,6 +105,8 @@ public class LedgerController implements Initializable {
         // 初始化数据
         updateDashboard();
 
+
+
         List<Transaction> march6Transactions = new ArrayList<>();
         march6Transactions.add(new Transaction("Travel", -200.0));
         march6Transactions.add(new Transaction("Wage", 160.0));

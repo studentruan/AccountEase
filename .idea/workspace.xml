@@ -5,37 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/detailed_monthly_statement.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CsvToXmlConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TransactionAnalyzer/CsvToXmlConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/CsvToXmlConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TransactionAnalyzer/TransactionAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/AppearanceSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/BackupSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/CurrencySettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/ExportSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/FunctionSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/GeneralSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LanguageSettingsController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/OutlierDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/OutlierDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/classification/ClassificationXmlWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/classification/ClassificationXmlWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/classification/DeepSeekONNXInference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/classification/DeepSeekONNXInference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/classification/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/classification/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/classification/TransactionClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/classification/TransactionClassifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/classification/TransactionXmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/classification/TransactionXmlParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/prediction/ARIMAModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/prediction/ARIMAModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/prediction/ARMAMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/prediction/ARMAMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/prediction/ARMAModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/prediction/ARMAModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/prediction/ARModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/prediction/ARModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/prediction/MAModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/prediction/MAModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/prediction/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AIUtilities/prediction/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/output/classified_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/output/classified_transactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/transactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/classification/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AIUtilities/classification/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/CsvToXmlConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/detector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/transactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/前端每日数据处理/DailyTransactionProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/DailyTransactionProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数据转换/TransactionDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionDataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SettingsController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,29 +55,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CsvToXmlConverter.executor": "Run",
-    "Application.DailyTransactionProcessor.executor": "Run",
-    "Application.DeepSeekONNXInference.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.OnnxBertClassifier.executor": "Run",
-    "Application.OnnxInference.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.AIend.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ruanyu/Desktop/gitProject/AIend/src/main/resources",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CsvToXmlConverter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DailyTransactionProcessor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DeepSeekONNXInference.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OnnxBertClassifier.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OnnxInference.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AIend.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ruanyu/Desktop/gitProject/AIend/src/main/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />

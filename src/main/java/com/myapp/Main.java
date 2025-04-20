@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         instance = this;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-//        VBox root = loader.load();
+        //VBox root = loader.load();
         mainPane = loader.load();
 
         Scene scene = new Scene(mainPane, 1490, 900);
