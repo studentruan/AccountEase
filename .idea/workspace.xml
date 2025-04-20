@@ -62,7 +62,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/windy/IdeaProjects/SE_SS/src/main/resources/xml",
+    "last_opened_file_path": "/Users/windy/IdeaProjects/SE_SS/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -78,8 +78,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/xml" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/xml" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -126,6 +126,7 @@
       <workItem from="1744960231413" duration="797000" />
       <workItem from="1745041130467" duration="1616000" />
       <workItem from="1745079138274" duration="24333000" />
+      <workItem from="1745151016246" duration="3129000" />
     </task>
     <servers />
   </component>
