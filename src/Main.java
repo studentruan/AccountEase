@@ -23,5 +23,8 @@ public class Main {
         //每年净收支
         analyzer.getYearlySummary().forEach((year, amount) ->
                 System.out.println(year + ": " + amount));
+        //每日支出
+        analyzer.getExpenseDailySummary.forEach((date, amount) ->
+                System.out.println(date + ": " + amount));
     }
 }
