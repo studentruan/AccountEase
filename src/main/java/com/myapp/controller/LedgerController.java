@@ -2,8 +2,13 @@ package com.myapp.controller;
 
 import AIUtilities.prediction.ARIMAModel;
 import DataProcessor.DailyTransactionProcessor;
+import DataProcessor.TransactionAnalyzer;
 import com.myapp.model.FinanceData;
+import com.myapp.model.Ledger;
+import com.myapp.model.TransactionLoader;
+import com.myapp.model.Transactions;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -18,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.net.URL;
 import java.util.*;
 
@@ -28,45 +34,75 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
+import static detectorTools.OutlierDetector.detectAnomalies;
+import static detectorTools.OutlierDetector.outputOutliers;
+
 public class LedgerController implements Initializable {
 
-    @FXML private Label titleLabel;
-    @FXML private Label ledgerTypeLabel;
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Label ledgerTypeLabel;
 
     // 左侧导航栏
-    @FXML private Button BackButton;
-    @FXML private ImageView image_Back_to_main;
-    @FXML private Label image_Back_to_main_text;
+    @FXML
+    private Button BackButton;
+    @FXML
+    private ImageView image_Back_to_main;
+    @FXML
+    private Label image_Back_to_main_text;
 
     // 主要财务信息
-    @FXML private Label expenseLabel;
-    @FXML private Label incomeLabel;
-    @FXML private Label balanceLabel;
-    @FXML private Label budgetLabel;
-    @FXML private Label remainLabel;
-    @FXML private Label spentLabel;
-    @FXML private Label pendingLabel;
-    @FXML private Label claimedLabel;
-    @FXML private Label reimburLabel;
-    @FXML private Label netAssetsLabel;
-    @FXML private Label debtsLabel;
-    @FXML private Label totalsLabel;
+    @FXML
+    private Label expenseLabel;
+    @FXML
+    private Label incomeLabel;
+    @FXML
+    private Label balanceLabel;
+    @FXML
+    private Label budgetLabel;
+    @FXML
+    private Label remainLabel;
+    @FXML
+    private Label spentLabel;
+    @FXML
+    private Label pendingLabel;
+    @FXML
+    private Label claimedLabel;
+    @FXML
+    private Label reimburLabel;
+    @FXML
+    private Label netAssetsLabel;
+    @FXML
+    private Label debtsLabel;
+    @FXML
+    private Label totalsLabel;
 
     // 图表
-    @FXML private LineChart<String, Number> lineChart;
-    @FXML private CategoryAxis xAxis;
-    @FXML private NumberAxis yAxis;
-    @FXML private PieChart expenseCategoriesChart;
+    @FXML
+    private LineChart<String, Number> lineChart;
+    @FXML
+    private CategoryAxis xAxis;
+    @FXML
+    private NumberAxis yAxis;
+    @FXML
+    private PieChart expenseCategoriesChart;
 
     // 按钮
-    @FXML private Button expenseButton;
-    @FXML private Button incomeButton;
-    @FXML private Button balanceButton;
-    @FXML private Button expenseCategoryButton;
-    @FXML private Button incomeCategoryButton;
+    @FXML
+    private Button expenseButton;
+    @FXML
+    private Button incomeButton;
+    @FXML
+    private Button balanceButton;
+    @FXML
+    private Button expenseCategoryButton;
+    @FXML
+    private Button incomeCategoryButton;
 
     // 建议和日历
-    @FXML private VBox adviceBox;
+    @FXML
+    private VBox adviceBox;
     @FXML
     private VBox calendarWidget;
 
@@ -78,14 +114,16 @@ public class LedgerController implements Initializable {
 
     @FXML
     private Label monthTitle;
-
+    private Ledger ledger;
+    private FinanceData financeData;
 
     @FXML
     private GridPane calendarGrid;
 
     private YearMonth currentMonth = YearMonth.now();
     private Map<LocalDate, String> dateMarkers = new HashMap<>();
-    private Map<LocalDate, List<Transaction>> dateTransactions = new HashMap<>();
+    private Map<LocalDate, List<Transactions>> dateTransactions = new HashMap<>();
+
     private LocalDate selectedDate = null;
 
 
@@ -95,39 +133,58 @@ public class LedgerController implements Initializable {
     @FXML
     private VBox expenseItemsContainer;
 
+    List<String> adviceList = new ArrayList<>();
 
 
-    @FXML
-    private FinanceData financeData = new FinanceData();
+//    @FXML
+//    private FinanceData financeData = new FinanceData();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // 初始化数据
-        updateDashboard();
-
-
-
-        List<Transaction> march6Transactions = new ArrayList<>();
-        march6Transactions.add(new Transaction("Travel", -200.0));
-        march6Transactions.add(new Transaction("Wage", 160.0));
-
-        List<Transaction> march8Transactions = new ArrayList<>();
-        march8Transactions.add(new Transaction("Other", -2.0));
-
-        dateTransactions.put(LocalDate.of(2025, 3, 6), march6Transactions);
-        dateTransactions.put(LocalDate.of(2025, 3, 8), march8Transactions);
-
-        dateMarkers.put(LocalDate.of(2025, 3, 6), "-200\n+160");
-        dateMarkers.put(LocalDate.of(2025, 3, 8), "+0");
+        // 设置界面基础视图（不依赖账本数据）
         updateCalendar();
+
         LocalDate today = LocalDate.now();
         showDateDetails(today);
 
-        // 初始化图表
         initializeCharts();
         initializePictures();
+        loadAiAdvice(adviceList);
+        TransactionLoader loader = new TransactionLoader();
 
+        // 加载 XML 文件中的数据
+        loader.loadTransactionsFromXml("src/main/output/classified_transactions.xml");
+
+        // 获取数据
+        Map<String, Transactions> data = loader.getTransactionData();
+
+
+        for (Transactions t : data.values()) {
+            LocalDate date = t.getDate();
+            dateTransactions.computeIfAbsent(date, k -> new ArrayList<>()).add(t);
         }
+        // 不要在这里调用 updateDashboard()，因为 ledger 还未传入
+    }
+
+    public void loadLedger(Ledger ledger) {
+        this.ledger = ledger;
+
+        if (ledger != null) {
+            this.financeData = new FinanceData(ledger);  // 正确初始化
+            updateDashboard();  // 显示图表/数据
+        } else {
+            System.err.println("loadLedger received a null ledger.");
+        }
+
+
+
+        // 遍历输出
+//        for (Map.Entry<String, Transactions> entry : data.entrySet()) {
+//            System.out.println("ID: " + entry.getKey());
+//            System.out.println("交易信息: " + entry.getValue());
+//        }
+    }
+
     private void initializePictures() {
         Image image_Back = new Image(getClass().getResource("/images/home.png").toExternalForm());
         image_Back_to_main.setImage(image_Back);
@@ -136,6 +193,7 @@ public class LedgerController implements Initializable {
         BackButton.setOnAction(event -> back_to_main());
 
     }
+
     private void initializeCharts() {
         // 初始化折线图
         xAxis.setLabel("Time");
@@ -202,7 +260,7 @@ public class LedgerController implements Initializable {
                         "-fx-stroke-width: 2px;"
         );
 
-        // 初始化饼图
+        // 初始化饼图，所有比例都设置为0
         PieChart.Data slice1 = new PieChart.Data("Shop", 71);
         PieChart.Data slice2 = new PieChart.Data("Dress", 10);
         PieChart.Data slice3 = new PieChart.Data("Car", 14);
@@ -211,7 +269,9 @@ public class LedgerController implements Initializable {
         expenseCategoriesChart.getData().addAll(slice1, slice2, slice3, slice4);
     }
 
+
     public void updateDashboard() {
+
         // 更新支出
         expenseLabel.setText("Expense $" + financeData.getExpense());
 
@@ -236,7 +296,41 @@ public class LedgerController implements Initializable {
         totalsLabel.setText("Total $" + financeData.getTotals());
         debtsLabel.setText("Debts $" + financeData.getDebts());
 
-        loadAiAdvice(advice);
+        ObservableList<XYChart.Series<String, Number>> chartData = lineChart.getData();
+        loadAiAdvice(adviceList);
+
+// 确保 chartData 不为空并且包含至少一个 Series
+//        if (chartData != null && !chartData.isEmpty()) {
+//            XYChart.Series<String, Number> series = chartData.get(0);
+//
+//            // 只在 monthlyExpenses 不为空时清除并更新数据
+//            Map<String, Double> monthlyExpenses = financeData.getMonthlyExpenses();  // 例如：{"Jan": 1000, "Feb": 1200, ...}
+//            if (monthlyExpenses != null && !monthlyExpenses.isEmpty()) {
+//                series.getData().clear();  // 清除现有数据
+//                for (Map.Entry<String, Double> entry : monthlyExpenses.entrySet()) {
+//                    series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+//                }
+//            }
+//
+//            // 只在 expenseCategories 不为空时清除并更新数据
+//            ObservableList<PieChart.Data> pieChartData = expenseCategoriesChart.getData();
+//            Map<String, Double> expenseCategories = financeData.getExpenseCategories();  // 例如：{"Shop": 500, "Dress": 200, ...}
+//            if (expenseCategories != null && !expenseCategories.isEmpty()) {
+//                pieChartData.clear();  // 清除现有数据
+//                for (Map.Entry<String, Double> entry : expenseCategories.entrySet()) {
+//                    pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+//                }
+//            }
+//        } else {
+//            System.out.println("Line chart data is empty or not properly initialized.");
+//        }
+
+
+        // 刷新UI
+
+        // 可以在这里更新其他UI元素，例如建议框
+
+
     }
 
     @FXML
@@ -247,29 +341,69 @@ public class LedgerController implements Initializable {
 
     @FXML
     public void loadAiAdvice(List<String> adviceList) {
-        Platform.runLater(() -> {
-            adviceBox.getChildren().remove(1, adviceBox.getChildren().size());
-            int i = 1;
-            for (String advice : adviceList) {
-                Label label = new Label(i + ". " + advice);
-                label.getStyleClass().remove("label");  // 移除默认的 label 样式类
-                label.getStyleClass().add("text-advice");  // 添加自定义的样式类
-                adviceBox.getChildren().add(label);
-
-                // 打印控件的相关信息
-                System.out.println("Label added: " + label.getText());
-                System.out.println("Label style class: " + label.getStyleClass());
-                i++;
+        try {
+            // 检查文件是否存在
+            File file = new File("src/main/resources/xml/test.xml");
+            if (!file.exists()) {
+                // 文件不存在时，不打印异常
+                System.err.println("文件不存在: " + file.getAbsolutePath());
+                return;  // 如果文件不存在，则退出方法
             }
-        });
+
+            // 文件存在时，执行后续操作
+            // 使用 TransactionAnalyzer 来分析数据
+            TransactionAnalyzer analyzer = new TransactionAnalyzer("src/main/resources/xml/transactions1.xml");
+            Map<String, Double> anomalies = outputOutliers(detectAnomalies(analyzer), 1.5);
+
+            // 可选：输出异常的日期和金额
+            System.out.println("Abnormally high spending dates:");
+            anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
+
+            // 清空原始建议列表，避免重复
+            adviceList.clear();
+
+            // 将异常信息转换为 List<String> 格式
+            anomalies.forEach((date, amount) -> {
+                adviceList.add("Abnormal spending detected on " + date + " confidence coefficient: " + String.format("%.2f", amount));
+            });
+
+            // 确保 UI 更新发生在 JavaFX 应用线程上
+            Platform.runLater(() -> {
+                adviceBox.getChildren().clear(); // 清除现有内容
+
+                // 重新添加标题标签
+                Label titleLabel = new Label("Advice From AI");
+                titleLabel.getStyleClass().add("advice-title");
+                adviceBox.getChildren().add(titleLabel);
+
+                // 将新的 adviceList 内容加载到 UI
+                int i = 1;
+                for (String advice : adviceList) {
+                    Label label = new Label(i + ". " + advice);
+                    label.setWrapText(true);           // 启用自动换行
+                    label.setMaxWidth(400);            // 可选：设置最大宽度（根据需要调整）
+                    label.getStyleClass().remove("label");
+                    label.getStyleClass().add("text-advice");
+                    adviceBox.getChildren().add(label);
+
+                    System.out.println("Label added: " + label.getText());
+                    System.out.println("Label style class: " + label.getStyleClass());
+                    i++;
+                }
+            });
+        } catch (Exception e) {
+            // 捕获其他异常并打印
+            e.printStackTrace();
+            System.err.println("加载 AI 建议时发生错误");
+        }
     }
 
-    List<String> advice = Arrays.asList(
-            "Try to reduce dining out expenses.",
-            "Consider allocating more to savings.",
-            "Set a weekly budget goal."
-    );
 
+//    List<String> advice = Arrays.asList(
+//            "Try to reduce dining out expenses.",
+//            "Consider allocating more to savings.",
+//            "Set a weekly budget goal."
+//    );
 
 
 //日历
@@ -286,8 +420,6 @@ public class LedgerController implements Initializable {
         currentMonth = currentMonth.plusMonths(1);
         updateCalendar();
     }
-
-
 
 
     private void updateCalendar() {
@@ -323,7 +455,7 @@ public class LedgerController implements Initializable {
             LocalDate date = currentMonth.atDay(day);
             if (dateMarkers.containsKey(date)) {
                 StringBuilder markerText = new StringBuilder();
-                for (Transaction transaction : dateTransactions.get(date)) {
+                for (Transactions transaction : dateTransactions.get(date)) {
                     markerText.append(transaction.getAmount() > 0 ? "+" : "")
                             .append(transaction.getAmount())
                             .append("$\n");
@@ -432,7 +564,7 @@ public class LedgerController implements Initializable {
         // 检查是否有标记
         if (dateTransactions.containsKey(date)) {
             // 添加收支项目
-            for (Transaction transaction : dateTransactions.get(date)) {
+            for (Transactions transaction : dateTransactions.get(date)) {
                 HBox itemBox = new HBox(10);
                 itemBox.setPadding(new Insets(10));
                 itemBox.setStyle(transaction.getAmount() > 0 ? "-fx-background-color: #e8f5e9;" : "-fx-background-color: #f5f5f5;");
@@ -442,11 +574,12 @@ public class LedgerController implements Initializable {
                         ? "-fx-background-color: #e8f5e9; -fx-background-radius: 8;"
                         : "-fx-background-color: #f5f5f5; -fx-background-radius: 8;");
 
-
                 ImageView imageView = new ImageView();
                 imageView.setFitWidth(24);
                 imageView.setFitHeight(24);
-                imageView.setImage(new Image(transaction.getAmount() > 0 ? "/images/income.png" : "/images/expense.png"));
+                // 使用 getClass().getResource() 确保图像资源被正确加载
+                String imagePath = transaction.getAmount() > 0 ? "/images/expense.png" : "/images/expense.png";
+                imageView.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
 
                 Label itemName = new Label(transaction.getDescription());
                 itemName.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
@@ -466,27 +599,6 @@ public class LedgerController implements Initializable {
             expenseItemsContainer.getChildren().add(noDataLabel);
         }
     }
-
-    // 交易记录类
-    private static class Transaction {
-        private String description;
-        private double amount;
-
-        public Transaction(String description, double amount) {
-            this.description = description;
-            this.amount = amount;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public double getAmount() {
-            return amount;
-        }
-    }
-
-
 }
 
 

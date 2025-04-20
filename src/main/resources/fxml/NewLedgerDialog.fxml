@@ -56,6 +56,14 @@
 
                 <Label text="Storage Location:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                 <ComboBox fx:id="storageLocationComboBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <!-- 新增的 DatePicker 控件 -->
+                <Label text="Creation Date:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <DatePicker fx:id="creationDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <!-- 新增的 ComboBox 控件 -->
+                <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <ComboBox fx:id="categoryComboBox" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </GridPane>
 
             <HBox spacing="10" alignment="CENTER_RIGHT" styleClass="button-bar">

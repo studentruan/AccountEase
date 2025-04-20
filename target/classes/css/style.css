@@ -98,6 +98,11 @@
     -fx-cursor: hand;
     -fx-alignment: center-left;
 }
+.text-advice{
+    -fx-font-family: 'Comic Sans MS';
+    -fx-font-size: 16px;
+    -fx-font-weight: Normal;
+}
 
 /* 标题样式 */
 .title {
@@ -128,6 +133,7 @@
 }
 
 .advice-title {
+    -fx-font-family: 'Comic Sans MS';
     -fx-font-size: 18px;
     -fx-font-weight: bold;
 }

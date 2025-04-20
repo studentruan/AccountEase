@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class NewLedgerDialogController implements Initializable {
@@ -25,7 +26,11 @@ public class NewLedgerDialogController implements Initializable {
 
     @FXML
     private ComboBox<String> storageLocationComboBox;
+    @FXML
+    private DatePicker creationDatePicker;
 
+    @FXML
+    private ComboBox<String> categoryComboBox;
     private Stage dialogStage;
     private boolean confirmed = false;
     private File coverImage;
@@ -34,6 +39,14 @@ public class NewLedgerDialogController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+
+        if (creationDatePicker != null) {
+            creationDatePicker.setValue(LocalDate.now());
+        } else {
+            System.out.println("creationDatePicker is null");
+        }
+        categoryComboBox.getItems().addAll("生活", "工作", "旅行", "学习", "其他");
+        categoryComboBox.setValue("其他");
 
 
         // 初始化存储位置下拉框
@@ -88,9 +101,13 @@ public class NewLedgerDialogController implements Initializable {
         return new Ledger(
                 nameField.getText(),
                 descriptionArea.getText(),
-                coverImage
+                coverImage,
+                creationDatePicker.getValue(),           // 获取用户选择的日期
+                categoryComboBox.getValue()              // 获取用户选择的类别
+
         );
     }
+
 
     private boolean validateInput() {
         String name = nameField.getText().trim();

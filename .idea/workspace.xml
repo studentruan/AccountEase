@@ -6,16 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/AppearanceSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/BackupSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/CurrencySettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/ExportSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/FunctionSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/GeneralSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LanguageSettingsController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/NewLedgerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/NewLedgerDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/inputSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/inputSettings.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

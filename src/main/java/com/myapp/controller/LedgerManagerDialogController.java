@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class LedgerManagerDialogController implements Initializable {
@@ -22,22 +23,33 @@ public class LedgerManagerDialogController implements Initializable {
     @FXML
     private Label imagePathLabel;
 
+    @FXML
+    private DatePicker creationDatePicker;
+
+    @FXML
+    private ComboBox<String> categoryComboBox;
+
     private Stage dialogStage;
     private boolean confirmed = false;
-    private File coverImage;
+    private File coverImage; // 使用File类型来存储封面图片
     private Ledger currentLedger;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // 初始化逻辑
+        creationDatePicker.setValue(LocalDate.now());
+
+        // 设置类别选项和默认值
+        categoryComboBox.getItems().addAll("生活", "工作", "旅行", "学习", "其他");
+        categoryComboBox.setValue("其他");
     }
 
     public void setLedger(Ledger ledger) {
         this.currentLedger = ledger;
         nameField.setText(ledger.getName());
         descriptionArea.setText(ledger.getDescription());
-        imagePathLabel.setText(ledger.getCoverImage() != null ?
-                new File(ledger.getCoverImage()).getName() : "未选择图片");
+        // 更新封面图片路径显示
+        File coverFile = ledger.getCoverImage(); // 假设coverImage是File类型
+        imagePathLabel.setText(coverFile != null ? coverFile.getName() : "未选择图片");
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -65,8 +77,11 @@ public class LedgerManagerDialogController implements Initializable {
             currentLedger.setName(nameField.getText());
             currentLedger.setDescription(descriptionArea.getText());
             if (coverImage != null) {
-                currentLedger.setCoverImage(coverImage.getAbsolutePath());
+                // 设置封面图像为File类型
+                currentLedger.setCoverImage(coverImage);
             }
+            currentLedger.setCreationDate(creationDatePicker.getValue()); // 设置创建日期
+            currentLedger.setCategory(categoryComboBox.getValue()); // 设置类别
             confirmed = true;
             dialogStage.close();
         }

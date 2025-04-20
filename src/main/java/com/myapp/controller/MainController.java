@@ -1,9 +1,11 @@
 package com.myapp.controller;
 
+import com.myapp.model.Ledger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -28,6 +30,7 @@ public class MainController implements Initializable {
         instance = this;
         loadPage("ledger.fxml"); // 默认页面
 
+
     }
 
     public Object getCurrentController() {
@@ -45,6 +48,9 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+
 //public void loadPage(String fxmlFile) {
 //    try {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + fxmlFile));
