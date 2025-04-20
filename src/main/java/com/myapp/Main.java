@@ -1,11 +1,15 @@
 package com.myapp;
 
+import com.myapp.model.TransactionLoader;
+import com.myapp.model.Transactions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.Map;
 
 public class Main extends Application {
 
@@ -28,6 +32,8 @@ public class Main extends Application {
 
 
         primaryStage.show();
+
+
 
     }
 

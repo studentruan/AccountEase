@@ -5,20 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/LedgerManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Transaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/TransactionDataProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/TransactionLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Transactions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/xml/transactions1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/NewLedgerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/NewLedgerDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Transaction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/TransactionDataProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bert_transaction_categorization.onnx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bert_transaction_categorization.onnx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/inputSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/inputSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/InputSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/InputSettingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/model/FinanceData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/model/FinanceData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/inputSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/inputSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,13 +79,15 @@
     "Application.Test.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.AIend [clean].executor": "Run",
+    "Maven.AIend [compile].executor": "Run",
     "Maven.AIend.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ruanyu/Desktop/gitProject/AIend",
+    "last_opened_file_path": "/Users/windy/IdeaProjects/SE_SS/src/main/resources/xml",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -83,11 +97,13 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true",
+    "应用程序.Main.executor": "Run",
     "应用程序.SS.executor": "Run"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/xml" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -134,7 +150,7 @@
       <updated>1743058160194</updated>
       <workItem from="1744960231413" duration="797000" />
       <workItem from="1745041130467" duration="1616000" />
-      <workItem from="1745079138274" duration="8254000" />
+      <workItem from="1745079138274" duration="20990000" />
     </task>
     <servers />
   </component>

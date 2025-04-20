@@ -18,12 +18,12 @@
         <Label text="Cover Image:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <ImageView fx:id="coverImageView" fitWidth="100" fitHeight="100" />
-            <Button text="Browse..." onAction="#handleBrowseCover" />
+<!--            <Button text="Browse..." onAction="#handleBrowseCover" />-->
         </HBox>
         <Label text="Storage Location:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <TextField fx:id="storageLocationField" />
-            <Button text="Browse..." onAction="#handleBrowseStorage" />
+<!--            <Button text="Browse..." onAction="#handleBrowseStorage" />-->
         </HBox>
     </GridPane>
     <HBox spacing="10" alignment="CENTER_RIGHT">

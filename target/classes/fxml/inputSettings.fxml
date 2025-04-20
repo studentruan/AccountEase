@@ -9,23 +9,23 @@
       spacing="15"
       style="-fx-padding: 20;">
 
-    <Label text="文件路径配置" styleClass="settings-title"/>
+    <Label text="File Path Configuration" styleClass="settings-title"/>
 
     <VBox spacing="10">
-        <!-- 文件路径输入行 -->
+        <!-- File Path Input Row -->
         <HBox alignment="CENTER_LEFT" spacing="15">
-            <Label text="文件路径:" styleClass="input-label"/>
+            <Label text="File Path:" styleClass="input-label"/>
             <TextField fx:id="filePathField"
                        styleClass="file-path-input"
-                       promptText="请选择Excel/CSV文件"
+                       promptText="Please select an Excel/CSV file"
                        editable="false"/>
-            <Button text="浏览..."
+            <Button text="Browse..."
                     styleClass="browse-btn"
                     onAction="#handleBrowseFile"/>
         </HBox>
 
-        <!-- 保存按钮 -->
-        <Button text="保存路径"
+        <!-- Save Button -->
+        <Button text="Save Path"
                 styleClass="save-btn"
                 onAction="#saveFilePath"/>
     </VBox>

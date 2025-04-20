@@ -27,7 +27,7 @@ public class Main {
             TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath);
 
             // 2. 解析 XML 文件
-            String xmlFilePath = "src/main/resources/transactions.xml";
+            String xmlFilePath = "src/main/resources/xml/transactions1.xml";
             List<Transaction> transactions = TransactionXmlParser.parse(xmlFilePath);
 
             // 3.1 批量分类
@@ -45,7 +45,7 @@ public class Main {
             });
 
             // 5. 将分类结果写回XML文件
-            ClassificationXmlWriter.writeClassifications(xmlFilePath, "src/main/output/classified_transactions.xml" ,categorized);
+            ClassificationXmlWriter.writeClassifications(xmlFilePath, "src/main/output/classified_transactions1.xml" ,categorized);
 
             // 6. 关闭分类器
             classifier.close();
@@ -53,7 +53,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        TransactionAnalyzer analyzer = new TransactionAnalyzer("src/main/resources/transactions.xml");
+        TransactionAnalyzer analyzer = new TransactionAnalyzer("src/main/resources/xml/transactions1.xml");
         analyzer.getExpenseDailySummary().forEach((date, amount) ->
                 System.out.println(date + ": " + amount));
         Map<String, Double> anomalies =  outputOutliers(detectAnomalies(analyzer), 1.5);

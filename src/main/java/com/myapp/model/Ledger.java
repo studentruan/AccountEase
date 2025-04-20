@@ -13,7 +13,7 @@ public class Ledger {
     private String category;
 
     // 每一笔交易数据用 id 作为 key，值是 Transaction 对象
-    private Map<String, Transaction> transactionData = new HashMap<>();
+    private Map<String, Transactions> transactionData = new HashMap<>();
 
     public Ledger(String name, String description, File coverImage,
                   LocalDate creationDate, String category) {
@@ -45,7 +45,7 @@ public class Ledger {
         return category;
     }
 
-    public Map<String, Transaction> getTransactionData() {
+    public Map<String, Transactions> getTransactionData() {
         return transactionData;
     }
 
@@ -70,17 +70,17 @@ public class Ledger {
         this.category = category;
     }
 
-    public void setTransactionData(Map<String, Transaction> transactionData) {
+    public void setTransactionData(Map<String, Transactions> transactionData) {
         this.transactionData = transactionData;
     }
 
     // 添加一笔交易
-    public void addTransaction(Transaction transaction) {
+    public void addTransaction(Transactions transaction) {
         transactionData.put(transaction.getId(), transaction);
     }
 
     // 根据 ID 获取交易
-    public Transaction getTransactionById(String id) {
+    public Transactions getTransactionById(String id) {
         return transactionData.get(id);
     }
 
