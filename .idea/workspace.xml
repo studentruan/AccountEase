@@ -5,32 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/TransactionLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Transactions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xml/transactions1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Transaction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/TransactionDataProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bert_transaction_categorization.onnx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bert_transaction_categorization.onnx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/inputSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/inputSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/InputSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/InputSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/model/FinanceData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/model/FinanceData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/inputSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/inputSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +125,7 @@
       <updated>1743058160194</updated>
       <workItem from="1744960231413" duration="797000" />
       <workItem from="1745041130467" duration="1616000" />
-      <workItem from="1745079138274" duration="20990000" />
+      <workItem from="1745079138274" duration="22048000" />
     </task>
     <servers />
   </component>
