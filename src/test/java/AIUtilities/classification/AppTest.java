@@ -1,4 +1,4 @@
-package org.classification;
+package AIUtilities.classification;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,6 +1,5 @@
-package org.prediction;
+package AIUtilities.prediction;
 
-import java.io.IOException;
 import java.util.Arrays;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;

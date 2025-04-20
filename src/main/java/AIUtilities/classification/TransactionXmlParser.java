@@ -1,4 +1,4 @@
-package org.classification;
+package AIUtilities.classification;
 
 /**
  * A XML Parser used to extract transaction information

@@ -1,4 +1,4 @@
-package org.classification;
+package AIUtilities.classification;
 
 public class Transaction {
     private String id;
@@ -21,8 +21,8 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "\nCounterparty: " + counterparty +
-                "\nProduct: " + product;
+        return "\nIn " + counterparty +
+                "\nBuy/get the : " + product;
     }
 
     // Optional: equals() and hashCode() if you need to compare Transaction objects

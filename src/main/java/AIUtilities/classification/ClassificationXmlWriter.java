@@ -1,4 +1,4 @@
-package org.classification;
+package AIUtilities.classification;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;

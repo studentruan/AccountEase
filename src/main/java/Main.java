@@ -1,22 +1,16 @@
-import org.classification.ClassificationXmlWriter;
-import org.classification.Transaction;
-import org.classification.TransactionClassifier;
-import org.classification.TransactionXmlParser;
+import AIUtilities.classification.ClassificationXmlWriter;
+import AIUtilities.classification.Transaction;
+import AIUtilities.classification.TransactionClassifier;
+import AIUtilities.classification.TransactionXmlParser;
 
 import java.nio.file.*;
 import java.util.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import static detectorTools.OutlierDetector.detectAnomalies;
 import static detectorTools.OutlierDetector.outputOutliers;
-import TransactionAnalyzer.TransactionAnalyzer;
-import detectorTools.AdvancedAnomalyDetector;
+import DataProcessor.TransactionAnalyzer;
 
 import java.util.Map;
-
-import static detectorTools.OutlierDetector.detectAnomalies;
-import static detectorTools.OutlierDetector.outputOutliers;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package org.classification;
+package AIUtilities.classification;
 
 public class DeepSeekONNXInference {
     /**

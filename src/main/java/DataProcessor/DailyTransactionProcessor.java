@@ -1,3 +1,5 @@
+package DataProcessor;
+
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -6,7 +8,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class DailyTransactionProcessor {
-    private static final String FILE_NAME = "account.xml"; // XML文件名
+    private static final String FILE_NAME = "src/main/resources/transactions.xml"; // XML文件名
 
     /**
      * 方法1：根据给定日期获取当天所有交易记录，返回按收入（Income）和支出（Expense）分类的字典列表。

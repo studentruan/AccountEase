@@ -1,4 +1,4 @@
-package org.prediction;
+package AIUtilities.prediction;
 
 import org.apache.commons.math3.linear.*;
 

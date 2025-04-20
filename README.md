@@ -1,5 +1,65 @@
 # AICount
 This README is not complete
+
+## Overall Project Description
+JDK version: 21
+
+fxml version: 21.0.7
+
+We use Maven to build our project, so that other dependencies can be automatically downloaded
+
+### Project Structure:
+
+```text
+|-- src
+|   |-- main
+|   |   |-- java
+|   |   |   |-- CsvToXmlConverter.java
+|   |   |   |-- Main.java
+|   |   |   |-- DataProcessor
+|   |   |   |   |-- CsvToXmlConverter.java
+|   |   |   |   `-- DataProcessor.java
+|   |   |   |-- com
+|   |   |   |   `-- myapp
+|   |   |   |       |-- Main.java
+|   |   |   |       |-- controller
+|   |   |   |       |   |-- ...
+|   |   |   |       `-- model
+|   |   |   |           |-- FinanceData.java
+|   |   |   |           `-- Ledger.java
+|   |   |   |-- detector.java
+|   |   |   |-- detectorTools
+|   |   |   |   |-- AdvancedAnomalyDetector.java
+|   |   |   |   |-- ...
+|   |   |   `-- org
+|   |   |       |-- classification
+|   |   |       |   |-- ClassificationXmlWriter.java
+|   |   |       |   |-- DeepSeekONNXInference.java
+|   |   |       |   |-- Transaction.java
+|   |   |       |   |-- TransactionClassifier.java
+|   |   |       |   `-- TransactionXmlParser.java
+|   |   |       `-- prediction
+|   |   |           |-- ARIMAModel.java
+|   |   |           |-- ...
+|   |   |-- output
+|   |   |   `-- classified_transactions.xml
+|   |   `-- resources
+|   |       |-- Records.xml
+|   |       |-- Tokenizer
+|   |       |   |-- special_tokens_map.json
+|   |       |   |-- tokenizer.json
+|   |       |   |-- tokenizer_config.json
+|   |       |   `-- vocab.txt
+|   |       |-- bert_transaction_categorization.onnx
+|   |       |-- css
+|   |       |   `-- style.css
+|   |       |-- fxml -- ...
+|   |       |-- images -- ...
+|   |       |-- monthly_statement_custom_id.csv
+|   |       `-- transactions.xml
+
+```
+
 ## AI-side Function Implementation: Transaction Classification + Expense Forecasting
 
 Date Modified: 16 April

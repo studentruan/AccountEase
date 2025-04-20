@@ -1,5 +1,7 @@
 package com.myapp.controller;
 
+import AIUtilities.prediction.ARIMAModel;
+import DataProcessor.DailyTransactionProcessor;
 import com.myapp.model.FinanceData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -103,8 +105,6 @@ public class LedgerController implements Initializable {
         // 初始化数据
         updateDashboard();
 
-
-
         List<Transaction> march6Transactions = new ArrayList<>();
         march6Transactions.add(new Transaction("Travel", -200.0));
         march6Transactions.add(new Transaction("Wage", 160.0));
@@ -139,22 +139,66 @@ public class LedgerController implements Initializable {
         xAxis.setLabel("Time");
         yAxis.setLabel("Value");
 
+        //获取一段时间的每日交易数据
+        DailyTransactionProcessor processor = new DailyTransactionProcessor();
+
         XYChart.Series<String, Number> series = new XYChart.Series<>();
+
         series.setName("Expense Statistics");
-        series.getData().add(new XYChart.Data<>("Jan", 200));
-        series.getData().add(new XYChart.Data<>("Feb", 150));
-        series.getData().add(new XYChart.Data<>("Mar", 300));
-        series.getData().add(new XYChart.Data<>("Apr", 250));
-        series.getData().add(new XYChart.Data<>("May", 350));
-        series.getData().add(new XYChart.Data<>("Jun", 280));
-        series.getData().add(new XYChart.Data<>("Jul", 320));
-        series.getData().add(new XYChart.Data<>("Aug", 220));
-        series.getData().add(new XYChart.Data<>("Sep", 290));
-        series.getData().add(new XYChart.Data<>("Oct", 310));
-        series.getData().add(new XYChart.Data<>("Nov", 270));
-        series.getData().add(new XYChart.Data<>("Dec", 330));
+        LocalDate startDate = LocalDate.of(2025, 3, 23);
+        LocalDate endDate = LocalDate.of(2025, 3, 31);
+
+        double[] expense_history = new double[31-23+1];
+        int index = 0;
+
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
+            series.getData().add(new XYChart.Data<>(dateStr, processor.getTotalExpenses("2025/" + dateStr)));
+            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
+            index++;
+        }
+
+//        LocalDate initialDate = LocalDate.of(2025, 3, 1);
+//        index = 0;
+//        for (LocalDate date = initialDate; !date.isAfter(startDate); date = date.plusDays(1)) {
+//            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
+//            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
+//            index++;
+//        }
+
+        System.out.println(expense_history.length);
 
         lineChart.getData().add(series);
+
+        ARIMAModel model = new ARIMAModel(expense_history, 1, 4, 5);
+
+        // 3. 预测未来3天
+        int steps = 3;
+        int[] forecasts = model.predict(steps);
+
+        for(int i = 0;i<steps;i++){
+            System.out.println(forecasts[i]);
+        }
+
+        XYChart.Series<String, Number> forecastSeries = new XYChart.Series<>();
+        forecastSeries.setName("ARIMA Forecast (Next 3 Days)");
+
+        // 生成预测日期的标签
+        LocalDate lastHistoryDate = endDate;
+        for (int i = 0; i < steps; i++) {
+            lastHistoryDate = lastHistoryDate.plusDays(1);
+            String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd"));
+            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i],0)));
+        }
+
+        lineChart.getData().add(forecastSeries);
+
+        // 4. 设置预测系列的样式（红色虚线）
+        forecastSeries.getNode().setStyle(
+                "-fx-stroke: #ff0000; " +          // 红色线条
+                        "-fx-stroke-dash-array: 5 5; " +   // 虚线样式
+                        "-fx-stroke-width: 2px;"
+        );
 
         // 初始化饼图
         PieChart.Data slice1 = new PieChart.Data("Shop", 71);

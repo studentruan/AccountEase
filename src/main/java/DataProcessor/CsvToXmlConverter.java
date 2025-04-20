@@ -1,3 +1,5 @@
+package DataProcessor;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
@@ -10,8 +12,8 @@ import javax.xml.transform.stream.StreamResult;
 public class CsvToXmlConverter {
 
     public static void main(String[] args) {
-        String csvPath = "resources/monthly_statement_custom_id.csv";
-        String xmlPath = "resources/transactions.xml";
+        String csvPath = "src/main/resources/detailed_monthly_statement.csv";
+        String xmlPath = "src/main/resources/transactions.xml";
 
         try {
             List<String[]> csvData = loadCSV(csvPath);

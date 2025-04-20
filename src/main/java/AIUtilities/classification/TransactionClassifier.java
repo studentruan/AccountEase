@@ -1,4 +1,4 @@
-package org.classification;
+package AIUtilities.classification;
 
 /**
  * A classifier for transaction categories using Bert-ONNX model.

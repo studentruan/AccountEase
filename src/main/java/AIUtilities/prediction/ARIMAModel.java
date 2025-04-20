@@ -1,4 +1,4 @@
-package org.prediction;
+package AIUtilities.prediction;
 
 import java.util.Arrays;
 import java.util.Random;
