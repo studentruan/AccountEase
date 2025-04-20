@@ -43,28 +43,28 @@ public class TransactionAnalyzer {
             e.printStackTrace();
         }
     }
-
+       //每天净收支
     public Map<LocalDate, BigDecimal> getDailySummary() {
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> t.date,
                         TreeMap::new,
                         Collectors.reducing(BigDecimal.ZERO, t -> t.amount, BigDecimal::add)));
     }
-
+      //每月净收支
     public Map<String, BigDecimal> getMonthlySummary() {
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> t.date.getYear() + "-" + String.format("%02d", t.date.getMonthValue()),
                         TreeMap::new,
                         Collectors.reducing(BigDecimal.ZERO, t -> t.amount, BigDecimal::add)));
     }
-
+       //每年净收支
     public Map<Integer, BigDecimal> getYearlySummary() {
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> t.date.getYear(),
                         TreeMap::new,
                         Collectors.reducing(BigDecimal.ZERO, t -> t.amount, BigDecimal::add)));
     }
-    //每天总支出
+        //每日支出
     public Map<LocalDate, BigDecimal> getExpenseDailySummary() {
         return transactions.stream()
                 .filter(t -> t.amount.compareTo(BigDecimal.ZERO) < 0)
@@ -74,6 +74,62 @@ public class TransactionAnalyzer {
                                 t -> t.amount.abs(),
                                 BigDecimal::add)));
     }
+
+        // 每日收入
+    public Map<LocalDate, BigDecimal> getIncomeDailySummary() {
+        return transactions.stream()
+                .filter(t -> t.amount.compareTo(BigDecimal.ZERO) > 0)
+                .collect(Collectors.groupingBy(t -> t.date,
+                        TreeMap::new,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                t -> t.amount,
+                                BigDecimal::add)));
+    }
+
+    // 每月收入
+    public Map<String, BigDecimal> getMonthlyIncomeSummary() {
+        return transactions.stream()
+                .filter(t -> t.amount.compareTo(BigDecimal.ZERO) > 0)
+                .collect(Collectors.groupingBy(t -> t.date.getYear() + "-" + String.format("%02d", t.date.getMonthValue()),
+                        TreeMap::new,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                t -> t.amount,
+                                BigDecimal::add)));
+    }
+
+    // 每月支出
+    public Map<String, BigDecimal> getMonthlyExpenseSummary() {
+        return transactions.stream()
+                .filter(t -> t.amount.compareTo(BigDecimal.ZERO) < 0)
+                .collect(Collectors.groupingBy(t -> t.date.getYear() + "-" + String.format("%02d", t.date.getMonthValue()),
+                        TreeMap::new,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                t -> t.amount.abs(),
+                                BigDecimal::add)));
+    }
+
+    // 每年收入
+    public Map<Integer, BigDecimal> getYearlyIncomeSummary() {
+        return transactions.stream()
+                .filter(t -> t.amount.compareTo(BigDecimal.ZERO) > 0)
+                .collect(Collectors.groupingBy(t -> t.date.getYear(),
+                        TreeMap::new,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                t -> t.amount,
+                                BigDecimal::add)));
+    }
+
+    // 每年支出
+    public Map<Integer, BigDecimal> getYearlyExpenseSummary() {
+        return transactions.stream()
+                .filter(t -> t.amount.compareTo(BigDecimal.ZERO) < 0)
+                .collect(Collectors.groupingBy(t -> t.date.getYear(),
+                        TreeMap::new,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                t -> t.amount.abs(),
+                                BigDecimal::add)));
+    }
+
 
     private static class Transaction {
         LocalDate date;

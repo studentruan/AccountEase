@@ -11,20 +11,33 @@ public class Main {
         // 调用转换器
         CsvToXmlConverter.convert(csvPath, xmlPath);
 
-        TransactionAnalyzer analyzer = new TransactionAnalyzer("C:/Users/ASUS/Desktop/CSVXML/transactions.xml");
+        TransactionAnalyzer analyzer = new TransactionAnalyzer("C:/Users/ASUS/Desktop/CSVXML/transactions1.xml");
         //每日净收支
         analyzer.getDailySummary().forEach((date, amount) ->
                 System.out.println(date + ": " + amount));
-
         //每月净收支
         analyzer.getMonthlySummary().forEach((month, amount) ->
                 System.out.println(month + ": " + amount));
-
         //每年净收支
         analyzer.getYearlySummary().forEach((year, amount) ->
                 System.out.println(year + ": " + amount));
         //每日支出
         analyzer.getExpenseDailySummary.forEach((date, amount) ->
                 System.out.println(date + ": " + amount));
+        //每日收入
+        analyzer.getIncomeDailySummary().forEach((date, amount) ->
+                System.out.println(date + ": " + amount));
+        //每月支出
+        analyzer.getMonthlyIncomeSummary().forEach((month, amount) ->
+                System.out.println(month + ": " + amount));
+        //每月支出
+        analyzer.getMonthlyExpenseSummary().forEach((month, amount) ->
+                System.out.println(month + ": " + amount));
+        //每年收入
+        analyzer.getYearlyIncomeSummary().forEach((year, amount) ->
+                System.out.println(year + ": " + amount));
+        //每年支出
+        analyzer.getYearlyExpenseSummary().forEach((year, amount) ->
+                System.out.println(year + ": " + amount));
     }
 }
