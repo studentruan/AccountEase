@@ -12,13 +12,13 @@ public class StatisticalThresholdCalculator {
                 .collect(Collectors.toList());
     }
 
-    // 动态阈值计算（网页6 KDE + 网页8假设检验）
+    // 动态阈值计算
     public double calculateDynamicThreshold() {
         double q1 = calculateQuantile(0.25);
         double q3 = calculateQuantile(0.75);
         double iqr = q3 - q1;
 
-        // 异常边界（网页1边界值法）
+        // 异常边界
         return q3 + 1.5 * iqr;
     }
 

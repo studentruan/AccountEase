@@ -1,5 +1,3 @@
-package TransectionAnalyzer;
-
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
@@ -12,8 +10,8 @@ import javax.xml.transform.stream.StreamResult;
 public class CsvToXmlConverter {
 
     public static void main(String[] args) {
-        String csvPath = "resources/monthly_statement_custom_id.csv";
-        String xmlPath = "resources/transactions.xml";
+        String csvPath = "C:/Users/ASUS/Desktop/CSVXML/monthly_statement_custom_id.csv"; // 替换为你的CSV路径
+        String xmlPath = "C:/Users/ASUS/Desktop/CSVXML/transactions.xml";
 
         try {
             List<String[]> csvData = loadCSV(csvPath);

@@ -19,10 +19,10 @@ public class OutlierDetector {
     }
     private static Map<String, Double> convertToTargetMap(Map<LocalDate, BigDecimal> originalMap) {
         return originalMap.entrySet().stream()
-                .filter(entry -> entry.getKey() != null && entry.getValue() != null)  // 过滤空值（参考网页5空值处理）
+                .filter(entry -> entry.getKey() != null && entry.getValue() != null)  // 过滤空值
                 .collect(Collectors.toMap(
-                        entry -> entry.getKey().format(DateTimeFormatter.ISO_DATE),  // LocalDate→String（网页4日期格式化）
-                        entry -> entry.getValue().doubleValue()                       // BigDecimal→Double（网页10数值转换）
+                        entry -> entry.getKey().format(DateTimeFormatter.ISO_DATE),  // LocalDate→String
+                        entry -> entry.getValue().doubleValue()                       // BigDecimal→Double
                 ));
     }
     private static Map<String, Double> normalizeData(Map<String, Double> rawData) {
@@ -39,19 +39,19 @@ public class OutlierDetector {
 
 
 
-    // 静态方法直接处理外部数据（网页1静态类集成方案）
+    // 静态方法直接处理外部数据
     public static Map<String, Double> detectAnomalies(TransactionAnalyzer analyzer) {
         Map<String, Double> dailyData = convertToTargetMap(analyzer.getExpenseDailySummary());
         List<Double> amounts = new ArrayList<>(dailyData.values());
 
         dailyData = normalizeData(dailyData);
 
-        // 核心检测逻辑（网页7 KDE + 动态阈值）
+        // 核心检测逻辑
         StatisticalThresholdCalculator calculator = new StatisticalThresholdCalculator(amounts);
         PureJavaKDEAnomalyDetector kde = new PureJavaKDEAnomalyDetector(amounts);
         double baseThreshold = calculator.calculateDynamicThreshold();
 
-        // 时间敏感调整（网页9时间API整合）
+        // 时间敏感调整
         TimeSensitiveAdjuster adjuster = new TimeSensitiveAdjuster();
 
         return dailyData.entrySet().stream()
@@ -61,7 +61,7 @@ public class OutlierDetector {
 
 
 
-    // 异常判断逻辑（网页5自定义异常处理的精简版）
+    // 异常判断逻辑
     private static boolean isAnomaly(double amount, String date, double baseThreshold,
                                      PureJavaKDEAnomalyDetector kde, TimeSensitiveAdjuster adjuster) {
         LocalDateTime timestamp = LocalDate.parse(date).atStartOfDay();

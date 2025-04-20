@@ -24,7 +24,7 @@ public class Main {
                 System.out.println(date + ": " + amount));
         Map<String, Double> anomalies =  outputOutliers(detectAnomalies(analyzer), 1.5);
         System.out.println("异常高消费日期：");
-        anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
+        anomalies.forEach((date, cvalue) -> System.out.printf(date + ": %.2f%n", cvalue));
 
     }
 }
