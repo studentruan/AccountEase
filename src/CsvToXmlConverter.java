@@ -9,10 +9,8 @@ import javax.xml.transform.stream.StreamResult;
 
 public class CsvToXmlConverter {
 
-    public static void main(String[] args) {
-        String csvPath = "C:/Users/ASUS/Desktop/CSVXML/monthly_statement_custom_id.csv"; // 替换为你的CSV路径
-        String xmlPath = "C:/Users/ASUS/Desktop/CSVXML/transactions.xml";
-
+    // 新增的转换入口方法
+    public static void convert(String csvPath, String xmlPath) {
         try {
             List<String[]> csvData = loadCSV(csvPath);
             Document xmlDocument = buildXmlDocument(csvData);
@@ -23,7 +21,6 @@ public class CsvToXmlConverter {
         }
     }
 
-    // 读取CSV文件内容，返回数据列表（跳过第一行标题）
     private static List<String[]> loadCSV(String path) throws IOException {
         List<String[]> lines = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
@@ -32,7 +29,7 @@ public class CsvToXmlConverter {
             while ((row = reader.readLine()) != null) {
                 if (firstLine) {
                     firstLine = false;
-                    continue; // 跳过表头
+                    continue;
                 }
                 String[] items = row.split(",");
                 lines.add(items);
@@ -41,7 +38,6 @@ public class CsvToXmlConverter {
         return lines;
     }
 
-    // 将CSV数据转换为XML文档结构
     private static Document buildXmlDocument(List<String[]> entries) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -87,11 +83,10 @@ public class CsvToXmlConverter {
         return document;
     }
 
-    // 将生成的XML写入目标文件
     private static void saveXmlToFile(Document doc, String path) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes"); // 格式化输出
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new File(path));
         transformer.transform(source, result);
