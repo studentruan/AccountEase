@@ -1,1 +1,2 @@
 *.onnx filter=lfs diff=lfs merge=lfs -text
+src/main/resources/bert_transaction_categorization.onnx filter=lfs diff=lfs merge=lfs -text
