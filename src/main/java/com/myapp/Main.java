@@ -17,11 +17,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         instance = this;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-//        VBox root = loader.load();
-        mainPane = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ledgermanager.fxml"));
+        VBox root = loader.load();
+//        mainPane = loader.load();
 
-        Scene scene = new Scene(mainPane, 1490, 900);
+        Scene scene = new Scene(root, 1490, 900);
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("AccountEase");

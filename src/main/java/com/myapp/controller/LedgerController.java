@@ -1,6 +1,7 @@
 package com.myapp.controller;
 
 import com.myapp.model.FinanceData;
+import com.myapp.model.Ledger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.net.URL;
 import java.util.*;
 
@@ -126,6 +128,27 @@ public class LedgerController implements Initializable {
         initializePictures();
 
         }
+    public void loadLedger(Ledger ledger) {
+        updateDashboard();
+        // 设置账本的名称和类型
+//        titleLabel.setText(ledger.getName());
+//        ledgerTypeLabel.setText(ledger.getCategory());
+//
+//        // 设置账本的封面图像
+//        File coverImageFile = ledger.getCoverImage();
+//        if (coverImageFile != null && coverImageFile.exists()) {
+//            Image image = new Image(coverImageFile.toURI().toString());
+//            ImageView imageView = new ImageView(image);
+//            imageView.setFitWidth(175);
+//            imageView.setFitHeight(250);
+//            // 设置封面图像的显示位置，比如添加到某个控件中
+//        }
+//
+//        // 加载账本的描述、财务信息等
+//        expenseLabel.setText("Expense $" + ledger.getTransactionData().size());  // 示例，您可以根据需要展示交易数据
+//        // 同样的方式加载其他的标签，图表等
+    }
+
     private void initializePictures() {
         Image image_Back = new Image(getClass().getResource("/images/home.png").toExternalForm());
         image_Back_to_main.setImage(image_Back);
