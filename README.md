@@ -1,72 +1,74 @@
-# AICount
-This README is not complete
-## AI-side Function Implementation: Transaction Classification + Expense Forecasting
+Ledger Manager - JavaFX Ledger Management Module
+---
 
-Date Modified: 16 April
+📘 Ledger Manager - JavaFX Ledger Management Module
 
-Version: 2.1
+A ledger management module based on JavaFX, providing a graphical interface for viewing, creating, categorizing, and opening multiple ledgers, with support for cover images and category management.
 
-### Transaction Classification
+---
 
-The input is an XML file, structured as a series of `<transaction>` tags, where each transaction has the following format:
+🚀 Project Overview
 
-```xml
-<transaction>
-    <date>2025/03/01</date>
-    <counterparty>Freelance</counterparty>
-    <product>Project Fee</product>
-    <type>Income</type>
-    <amount>5204.03</amount>
-</transaction>
-```
+This module is the `LedgerManagerController` of a JavaFX application, featuring:
 
-Using a pre-trained Bert text classification model along with Java XML parsing tools, automatic classification into 25 transaction types can be achieved based on the transaction description text.
+- Displaying a list of today’s and historical ledgers (with optional cover images)
+- Dialog to create new ledgers
+- Sorting ledgers by time or category
+- Opening specific ledger pages for operations
 
-Usage is as follows:
-#### 1.	Batch Classification (used for classifying batch transaction data from an XML file)
+---
 
-```java
-// 1. Initialize classifier
-Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // Path to the model's tokenizer
-String modelPath = "src/main/resources/bert_transaction_categorization.onnx"; // Path to the model
-TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath);
+✨ Key Features
 
-// 2. Parse XML file
-String xmlFilePath = "src/main/resources/transactions.xml"; // Path to transaction record file
-List<Transaction> transactions = TransactionXmlParser.parse(xmlFilePath);
+Multi-ledger Management**: Manages multiple ledger objects via `LedgerManager`, supporting dynamic addition and retrieval.
+Cover Image Support**: Allows cover images for a visual display of each ledger.
+Date-based Categorization**: Automatically organizes ledgers into "Today" or historical sections (e.g., "July").
+New Ledger Dialog**: A standalone modal window for creating new ledgers.
+Sorting Capabilities**: Sort ledgers by creation date or category.
+Modular Page Loading**: Uses `MainController` to dynamically load ledger pages for seamless navigation.
 
-// 3. Batch classification
-Map<Transaction, String> categorized = classifier.classifyBatch(transactions);
-```
+---
 
-The final result is stored in a dictionary with each transaction and its classified type.
+ 📷 UI Features
 
-#### 2.	Classification of a Single Transaction Description (used when inputting a transaction manually)
+| Feature         | Description                                                 |
+|------------------|-------------------------------------------------------------|
+| 📅 Today's Ledgers | Ledgers created today are shown in the `todayGrid` pane     |
+| 📦 Historical Ledgers | Other ledgers are displayed in `julyGrid` for browsing     |
+| ➕ Create Ledger   | A dialog appears for input; upon confirmation, the ledger is added |
+| 🔍 Sorting         | Quickly sort the list by time or category                  |
+| 📖 Open Ledger     | Click any ledger button to load and open its detail page  |
 
-```java
-// Single classification (e.g., for manually entered data)
-String transaction = "";
-String category = classifier.classify(transaction);
-```
+---
 
-Next step: Add an <id> field in the XML structure to serve as a unique identifier for each transaction. Combine the classification result with the original XML data and write it into a new XML file. (Implemented)
+🛠 Tech Stack
 
-### Expense Forecasting
+- Java 17+
+- JavaFX 17
+- FXML + CSS
+- MVC Architecture
 
-The input is an array of doubles with arbitrary length, but truncation is recommended for better prediction performance. It represents daily expenses over a period.
+---
 
-An ARIMA model is used to predict expense data. Usage is as follows:
+⚙️ How to Use
 
-```java
-// ARIMAModel(inputData, period (if data has cyclic patterns), p, q)
-ARIMAModel model = new ARIMAModel(testData, 7, 4, 5);
+1. Import the project into a JavaFX-compatible IDE (e.g., IntelliJ IDEA).
+2. Ensure the JavaFX SDK is properly configured.
+3. Run the main application and navigate to the ledger management view.
+4. Click "Create Ledger" to add a new ledger; click any existing ledger to open its detail page.
+5. Use the "Sort by Time" or "Sort by Category" buttons to organize the view.
 
-// Predict expenses for any number of future days
-int steps = 20;
-int[] forecasts = model.predict(steps);
-```
+---
 
-The prediction result is an array of length = steps.
+## ⚠ Notes
 
-Next step: Post-process the prediction results to trim any values that deviate too much. (Implemented)
+- Cover images must be local `File` objects with valid paths.
+- The interface relies on `/fxml` and `/css` resources—ensure resource paths remain consistent.
+- Ledger pages are handled by `LedgerController`, which must implement the `loadLedger(Ledger ledger)` method.
+
+---
+
+📄 License
+
+This project is for learning and demonstration purposes only. For commercial use, please contact the author for licensing.
 
