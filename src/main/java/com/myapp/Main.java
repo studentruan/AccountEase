@@ -15,7 +15,6 @@ public class Main extends Application {
 
     private static Main instance;
 
-
     private BorderPane mainPane;
 
     @Override
