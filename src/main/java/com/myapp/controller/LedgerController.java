@@ -176,8 +176,6 @@ public class LedgerController implements Initializable {
             System.err.println("loadLedger received a null ledger.");
         }
 
-
-
         // 遍历输出
 //        for (Map.Entry<String, Transactions> entry : data.entrySet()) {
 //            System.out.println("ID: " + entry.getKey());
@@ -191,7 +189,6 @@ public class LedgerController implements Initializable {
         // 将 ImageView 设置为按钮的图标
         BackButton.setGraphic(image_Back_to_main);
         BackButton.setOnAction(event -> back_to_main());
-
     }
 
     private void initializeCharts() {
@@ -213,8 +210,9 @@ public class LedgerController implements Initializable {
 
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
             String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
-            series.getData().add(new XYChart.Data<>(dateStr, processor.getTotalExpenses("2025/" + dateStr)));
-            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
+            double expense_data = processor.getTotalExpenses("2025/" + dateStr);
+            series.getData().add(new XYChart.Data<>(dateStr, expense_data));
+            expense_history[index] = Math.sqrt(expense_data);
             index++;
         }
 
@@ -230,7 +228,7 @@ public class LedgerController implements Initializable {
 
         lineChart.getData().add(series);
 
-        ARIMAModel model = new ARIMAModel(expense_history, 1, 4, 5);
+        ARIMAModel model = new ARIMAModel(expense_history, 3, 4, 5);
 
         // 3. 预测未来3天
         int steps = 3;
@@ -248,7 +246,7 @@ public class LedgerController implements Initializable {
         for (int i = 0; i < steps; i++) {
             lastHistoryDate = lastHistoryDate.plusDays(1);
             String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd"));
-            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i],0)));
+            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.pow(forecasts[i],2)));
         }
 
         lineChart.getData().add(forecastSeries);

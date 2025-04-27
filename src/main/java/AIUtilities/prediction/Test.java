@@ -1,6 +1,10 @@
 package AIUtilities.prediction;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+
+import DataProcessor.DailyTransactionProcessor;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.colors.XChartSeriesColors;
@@ -10,12 +14,12 @@ public class Test {
     public static void main(String[] args) {
 
         // 1. 生成测试数据（60天的销售数据，周期为7天）
-        double[] testData = generateTestData(30, 7);
+        double[] testData = generateTestData();
         System.out.println("Generated test data:");
         System.out.println(Arrays.toString(Arrays.copyOf(testData, 20)));
 
         // 2. 创建模型并预测
-        ARIMAModel model = new ARIMAModel(testData, 7, 4, 5);
+        ARIMAModel model = new ARIMAModel(testData, 3, 4, 5);
 
         // 3. 预测未来5天
         int steps = 20;
@@ -24,31 +28,33 @@ public class Test {
         // 4. 输出结果
         System.out.println("未来" + steps + "天的预测结果:");
         for (int i = 0; i < forecasts.length; i++) {
-            System.out.println("第" + (i+1) + "天: " + forecasts[i]);
+            double forecast = Math.pow(forecasts[i],2); // 逆变换
+            forecast = Math.max(0, forecast); // 确保非负（可选）
+            System.out.println("第" + (i+1) + "天: " + forecast);
         }
 
         plotResults(testData, forecasts);
     }
 
-    private static double[] generateTestData(int days, int period) {
-        double[] data = new double[days];
-        double baseValue = 100; // 基础值
-        double noiseAmplitude = 15; // 噪声幅度
+    private static double[] generateTestData() {
+        DailyTransactionProcessor processor = new DailyTransactionProcessor();
 
-        // 生成周期性数据（每周模式）
-        double[] weeklyPattern = {0.8, 1.2, 1.5, 1.3, 1.6, 2.0, 0.6};
+        int start = 1;
+        int end = 31;
 
-        // 趋势分量（每天增加0.2）
-        double trend = 0.2;
+        LocalDate startDate = LocalDate.of(2025, 3, start);
+        LocalDate endDate = LocalDate.of(2025, 3, end);
 
-        // 生成数据
-        for (int i = 0; i < days; i++) {
-            int dayOfWeek = i % period;
-            double noise = (Math.random() - 0.5) * noiseAmplitude;
-            data[i] = baseValue + i * trend + weeklyPattern[dayOfWeek] * 30 + noise;
+        double[] expense_history = new double[end-start+1];
+        int index = 0;
+
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
+            expense_history[index] = Math.sqrt(processor.getTotalExpenses("2025/" + dateStr));
+            index++;
         }
 
-        return data;
+        return expense_history;
     }
 
     private static void plotResults(double[] history, int[] forecasts) {

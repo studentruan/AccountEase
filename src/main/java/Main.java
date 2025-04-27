@@ -18,15 +18,17 @@ public class Main {
             // 1. 初始化分类器
             Path tokenizerDir = Paths.get("src/main/resources/Tokenizer");
             String modelPath = "src/main/resources/bert_transaction_categorization.onnx";
-            TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath);
+            Path descriptionPath = Paths.get("src/main/resources/counterparty_description.json");
+            TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath, descriptionPath);
 
             // 2. 解析 XML 文件
             String xmlFilePath = "src/main/resources/transactions.xml";
             List<Transaction> transactions = TransactionXmlParser.parse(xmlFilePath);
 
             // 3.1 批量分类
-            Map<Transaction, String> categorized = classifier.classifyBatch(transactions);
-
+            Map<Transaction, Map<String,String>> categorized = classifier.classifyBatch(transactions);
+            // 4. 将分类结果写回XML文件
+            ClassificationXmlWriter.writeClassifications(xmlFilePath, "src/main/output/classified_transactions.xml" ,categorized);
             // 3.2 单个分类（比如手动输入数据）
 //            String transaction = "";
 //            String category = classifier.classify(transaction);
@@ -35,11 +37,13 @@ public class Main {
             categorized.forEach((tx, cate) -> {
                 System.out.println("--- Transaction ---");
                 System.out.println(tx);
-                System.out.println("Predicted Category: " + cate + "\n");
-            });
 
-            // 5. 将分类结果写回XML文件
-            ClassificationXmlWriter.writeClassifications(xmlFilePath, "src/main/output/classified_transactions.xml" ,categorized);
+                String enrichedText = cate.keySet().iterator().next();   // enriched text
+                String predictedCategory = cate.get(enrichedText);       // category
+
+                System.out.println("Input text: " + enrichedText);
+                System.out.println("Predicted Category: " + predictedCategory + "\n");
+            });
 
             // 6. 关闭分类器
             classifier.close();

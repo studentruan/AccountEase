@@ -3,8 +3,8 @@ package AIUtilities.classification;
 /**
  * A classifier for transaction categories using Bert-ONNX model.
  *
- * @version 1.0
- * @date 31 March
+ * @version 2.0
+ * @date 26 April
  * @author studentruan
  */
 
@@ -13,6 +13,9 @@ import java.util.*;
 import java.nio.LongBuffer;
 import ai.djl.huggingface.tokenizers.HuggingFaceTokenizer;
 import java.nio.file.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import org.jetbrains.annotations.NotNull;
 
 public class TransactionClassifier {
 
@@ -50,6 +53,7 @@ public class TransactionClassifier {
     private final HuggingFaceTokenizer tokenizer;
     private final OrtEnvironment env;
     private final OrtSession session;
+    private final Map<String, String> merchantMap;
 
     /**
      * Initializes the TransactionClassifier with tokenizer and ONNX model
@@ -58,10 +62,11 @@ public class TransactionClassifier {
      * @param modelPath Path to the ONNX model file
      * @throws Exception If initialization fails
      */
-    public TransactionClassifier(Path tokenizerDir, String modelPath) throws Exception {
+    public TransactionClassifier(Path tokenizerDir, String modelPath, Path merchantMapPath) throws Exception {
         this.tokenizer = HuggingFaceTokenizer.newInstance(tokenizerDir);
         this.env = OrtEnvironment.getEnvironment();
         this.session = env.createSession(modelPath, new OrtSession.SessionOptions());
+        this.merchantMap = loadMerchantMap(merchantMapPath);
     }
 
     /**
@@ -71,14 +76,16 @@ public class TransactionClassifier {
      * @return The predicted category name
      * @throws OrtException If classification fails
      */
-    public String classify(String text) throws OrtException {
+    public Map<String, String> classify(String text) throws OrtException {
         // Prepare input tensors
-        Map<String, OnnxTensor> inputs = prepareInputs(text);
-
+        String enrichedText = enrichTextWithMerchantInfo(text);
+        Map<String, OnnxTensor> inputs = prepareInputs(enrichedText);
+        Map<String, String> result = new LinkedHashMap<>();
         // Run inference
         try (OrtSession.Result results = session.run(inputs)) {
             int predictedClassId = extractPredictedClass(results);
-            return CATEGORIES.getOrDefault(predictedClassId, "Unknown");
+            result.put(enrichedText, CATEGORIES.getOrDefault(predictedClassId, "Unknown"));
+            return result;
         } finally {
             // Clean up resources
             inputs.values().forEach(OnnxTensor::close);
@@ -142,8 +149,8 @@ public class TransactionClassifier {
      * @return A map of transactions to their predicted categories
      * @throws OrtException If classification fails
      */
-    public Map<Transaction, String> classifyBatch(List<Transaction> transactions) throws OrtException {
-        Map<Transaction, String> results = new LinkedHashMap<>();
+    public Map<Transaction, Map<String,String>> classifyBatch(List<Transaction> transactions) throws OrtException {
+        Map<Transaction, Map<String,String>> results = new LinkedHashMap<>();
         for (Transaction tx : transactions) {
             // Combine counterparty and product as input text
             String inputText = tx.toString();
@@ -160,18 +167,26 @@ public class TransactionClassifier {
     public void close() throws Exception {
         session.close();
     }
+
+    private Map<String, String> loadMerchantMap(@NotNull Path path) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(path.toFile(), new TypeReference<Map<String, String>>() {});
+    }
+
+    private String enrichTextWithMerchantInfo(String text) {
+        List<String> matchedDescriptions = new ArrayList<>();
+
+        for (Map.Entry<String, String> entry : merchantMap.entrySet()) {
+            if (text.toLowerCase().contains(entry.getKey().toLowerCase())) {
+                matchedDescriptions.add(entry.getValue());
+            }
+        }
+
+        if (!matchedDescriptions.isEmpty()) {
+            String merchantInfo = String.join(" ", matchedDescriptions);
+            return "Description: " + merchantInfo + text;
+        } else {
+            return text;
+        }
+    }
 }
-
-/**
-{
- 属性：
-    'date':
-    'income': 当天的收入
-    'expense': 当天的支出
-    '？？？': 这是一个字典，存储每个分类的支出/收入情况
-
- 方法：
-    1。接收两个日期，返回一个数组，是这段时间每天的支出
-    2. 接收一个月份，返回一个字典，包含该月的总的每个分类的支出/收入情况
-    剩下的还没想好
-}*/

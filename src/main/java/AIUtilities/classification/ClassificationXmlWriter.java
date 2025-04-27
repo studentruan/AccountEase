@@ -12,7 +12,7 @@ public class ClassificationXmlWriter {
     public static void writeClassifications(
             String inputXmlFilePath,
             String outputXmlFilePath,
-            Map<Transaction, String> categorizedTransactions
+            Map<Transaction, Map<String, String>> categorizedTransactions
     ) throws Exception {
         // 解析输入 XML 文件
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -28,7 +28,11 @@ public class ClassificationXmlWriter {
             // 查找匹配的交易
             Transaction tx = findTransaction(transactionElement, categorizedTransactions);
             if (tx != null) {
-                String category = categorizedTransactions.get(tx);
+                Map<String, String> categoryMap = categorizedTransactions.get(tx);
+
+                Map.Entry<String, String> entry = categoryMap.entrySet().iterator().next();
+                String category = entry.getValue();
+
                 NodeList classNodes = transactionElement.getElementsByTagName("class");
                 if (classNodes.getLength() > 0) {
                     classNodes.item(0).setTextContent(category);
@@ -49,7 +53,7 @@ public class ClassificationXmlWriter {
         transformer.transform(source, result);
     }
 
-    private static Transaction findTransaction(Element transactionElement, Map<Transaction, String> categorizedTransactions) {
+    private static Transaction findTransaction(Element transactionElement, Map<Transaction, Map<String, String>> categorizedTransactions) {
         String id = transactionElement.getElementsByTagName("id").item(0).getTextContent();
 
         for (Transaction tx : categorizedTransactions.keySet()) {
