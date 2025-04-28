@@ -44,4 +44,4 @@ build/
 .DS_Store
 
 ### onnx_model ###
-!src/main/resources/bert_transaction_categorization.onnx
+src/main/resources/bert_transaction_categorization.onnx
