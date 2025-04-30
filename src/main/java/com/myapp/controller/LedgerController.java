@@ -158,7 +158,6 @@ public class LedgerController implements Initializable {
         // 获取数据
         Map<String, Transactions> data = loader.getTransactionData();
 
-
         for (Transactions t : data.values()) {
             LocalDate date = t.getDate();
             dateTransactions.computeIfAbsent(date, k -> new ArrayList<>()).add(t);
@@ -202,10 +201,12 @@ public class LedgerController implements Initializable {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         series.setName("Expense Statistics");
-        LocalDate startDate = LocalDate.of(2025, 3, 23);
-        LocalDate endDate = LocalDate.of(2025, 3, 31);
+        int start = 16;
+        int end = 31;
+        LocalDate startDate = LocalDate.of(2025, 3, start);
+        LocalDate endDate = LocalDate.of(2025, 3, end);
 
-        double[] expense_history = new double[31-23+1];
+        double[] expense_history = new double[end-start+1];
         int index = 0;
 
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
