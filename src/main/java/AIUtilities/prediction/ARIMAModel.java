@@ -34,6 +34,9 @@ public class ARIMAModel {
 
     // 单步预测
     public int predict() {
+        if(this.originalData.length <= 0) {
+            throw new IllegalArgumentException("There must be some input data");
+        }
         // 1. 差分处理
         double[] diffData = preDealDiff(period);
 
@@ -53,6 +56,10 @@ public class ARIMAModel {
     public int[] predict(int steps) {
         if (steps <= 0) {
             throw new IllegalArgumentException("Steps must be positive");
+        }
+
+        if(this.originalData.length <= 0) {
+            throw new IllegalArgumentException("There must be some input data");
         }
 
         int[] predictions = new int[steps];
