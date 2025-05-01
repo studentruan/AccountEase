@@ -2,6 +2,8 @@ package AIUtilities.classification;
 
 /**
  * A classifier for transaction categories using Bert-ONNX model.
+ * Providing two core methods: 1. Get a input transaction description and return its category
+ * 2. Get a input XML file containing a series of transactions, and return a Map of all their categories
  *
  * @version 2.0
  * @date 26 April
@@ -56,10 +58,11 @@ public class TransactionClassifier {
     private final Map<String, String> merchantMap;
 
     /**
-     * Initializes the TransactionClassifier with tokenizer and ONNX model
+     * Initializes the TransactionClassifier with tokenizer， ONNX model and merchant description
      *
      * @param tokenizerDir Path to the tokenizer directory
      * @param modelPath Path to the ONNX model file
+     * @param merchantMapPath Path to the merchant description
      * @throws Exception If initialization fails
      */
     public TransactionClassifier(Path tokenizerDir, String modelPath, Path merchantMapPath) throws Exception {
@@ -73,7 +76,7 @@ public class TransactionClassifier {
      * Classifies the input text into one of the predefined categories
      *
      * @param text The transaction description to classify
-     * @return The predicted category name
+     * @return The input text to the model -- The predicted category name
      * @throws OrtException If classification fails
      */
     public Map<String, String> classify(String text) throws OrtException {
@@ -146,7 +149,7 @@ public class TransactionClassifier {
      * Classifies a batch of transactions
      *
      * @param transactions List of transactions to classify
-     * @return A map of transactions to their predicted categories
+     * @return A map of transactions to their predicted results(input text -- category)
      * @throws OrtException If classification fails
      */
     public Map<Transaction, Map<String,String>> classifyBatch(List<Transaction> transactions) throws OrtException {
@@ -168,11 +171,24 @@ public class TransactionClassifier {
         session.close();
     }
 
+    /**
+     * Load the json file which contains the merchant description
+     * @param path
+     * @return
+     * @throws Exception
+     */
     private Map<String, String> loadMerchantMap(@NotNull Path path) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(path.toFile(), new TypeReference<Map<String, String>>() {});
     }
 
+    /**
+     *  Since it's hard for model to understand the merchant name like
+     *  KFC, Amazon, StarBacks ..., a additional description will be added
+     *  when a specific merchant name is detected
+     * @param text original transaction description
+     * @return enriched text with additional description
+     */
     private String enrichTextWithMerchantInfo(String text) {
         List<String> matchedDescriptions = new ArrayList<>();
 

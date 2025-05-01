@@ -1,17 +1,68 @@
-package AIUtilities.prediction;
+package AIUtilities;
 
+import AIUtilities.classification.ClassificationXmlWriter;
+import AIUtilities.classification.Transaction;
+import AIUtilities.classification.TransactionClassifier;
+import AIUtilities.classification.TransactionXmlParser;
+
+import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import java.util.*;
 
+import AIUtilities.prediction.ARIMAModel;
 import DataProcessor.DailyTransactionProcessor;
-import org.knowm.xchart.*;
+import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XYChart;
+import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.colors.XChartSeriesColors;
 import org.knowm.xchart.style.markers.SeriesMarkers;
 
-public class Test {
+import java.util.Map;
+
+/**
+ * Just a class to debug and visualize the result of classification and prediction.
+ * Just for my own testing(This will not replace the normal JUnit test).
+ */
+public class AIendTest {
     public static void main(String[] args) {
+        try {
+            // 1. 初始化分类器
+            Path tokenizerDir = Paths.get("src/main/resources/Tokenizer");
+            String modelPath = "src/main/resources/bert_transaction_categorization.onnx";
+            Path descriptionPath = Paths.get("src/main/resources/counterparty_description.json");
+            TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath, descriptionPath);
+
+            // 2. 解析 XML 文件
+            String xmlFilePath = "src/main/resources/transactions.xml";
+            List<Transaction> transactions = TransactionXmlParser.parse(xmlFilePath);
+
+            // 3.1 批量分类
+            Map<Transaction, Map<String,String>> categorized = classifier.classifyBatch(transactions);
+            // 4. 将分类结果写回XML文件
+            ClassificationXmlWriter.writeClassifications(xmlFilePath, "src/main/output/classified_transactions.xml" ,categorized);
+            // 3.2 单个分类（比如手动输入数据）
+//            String transaction = "";
+//            String category = classifier.classify(transaction);
+
+            // 4. 打印结果
+            categorized.forEach((tx, cate) -> {
+                System.out.println("--- Transaction ---");
+                System.out.println(tx);
+
+                String enrichedText = cate.keySet().iterator().next();   // enriched text
+                String predictedCategory = cate.get(enrichedText);       // category
+
+                System.out.println("Input text: " + enrichedText);
+                System.out.println("Predicted Category: " + predictedCategory + "\n");
+            });
+
+            // 6. 关闭分类器
+            classifier.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 1. 生成测试数据（60天的销售数据，周期为7天）
         double[] testData = generateTestData();
@@ -34,8 +85,8 @@ public class Test {
         }
 
         plotResults(testData, forecasts);
-    }
 
+    }
     private static double[] generateTestData() {
         DailyTransactionProcessor processor = new DailyTransactionProcessor();
 
@@ -94,3 +145,4 @@ public class Test {
         new SwingWrapper<>(chart).displayChart();
     }
 }
+
