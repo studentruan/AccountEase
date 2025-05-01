@@ -28,7 +28,7 @@ public class Test {
         // 4. 输出结果
         System.out.println("未来" + steps + "天的预测结果:");
         for (int i = 0; i < forecasts.length; i++) {
-            double forecast = Math.pow(forecasts[i],2); // 逆变换
+            int forecast = forecasts[i];
             forecast = Math.max(0, forecast); // 确保非负（可选）
             System.out.println("第" + (i+1) + "天: " + forecast);
         }
@@ -50,7 +50,7 @@ public class Test {
 
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
             String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
-            expense_history[index] = Math.sqrt(processor.getTotalExpenses("2025/" + dateStr));
+            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
             index++;
         }
 

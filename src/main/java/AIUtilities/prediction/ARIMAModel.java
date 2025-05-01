@@ -13,7 +13,12 @@ public class ARIMAModel {
     private double[] maCoefficients;
 
     public ARIMAModel(double[] data, int period, int p, int q) {
-        this.originalData = data;
+
+        //防止负数值预测，采取平方根变换
+        this.originalData = new double[data.length];
+        for(int i = 0;i < data.length;i++) {
+            this.originalData[i] = Math.sqrt(data[i]);
+        }
         this.period = period;
         this.p = p;
         this.q = q;
@@ -39,7 +44,9 @@ public class ARIMAModel {
         int predictDiff = predictValue(p, q, period);
 
         // 4. 逆差分处理
-        return aftDeal(predictDiff, period);
+        int results = aftDeal(predictDiff, period);
+
+        return (int) Math.pow(results, 2);
     }
 
     //多步预测
@@ -68,6 +75,11 @@ public class ARIMAModel {
             // 5. 将预测值加入数据末尾，用于下一步预测
             extendedData = Arrays.copyOf(extendedData, extendedData.length + 1);
             extendedData[extendedData.length - 1] = prediction;
+        }
+
+        //对预测值作逆平方根变换
+        for(int i = 0;i < predictions.length; i++) {
+            predictions[i] = (int) Math.pow(predictions[i], 2);
         }
 
         return predictions;

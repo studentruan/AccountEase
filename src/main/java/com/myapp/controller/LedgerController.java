@@ -213,7 +213,7 @@ public class LedgerController implements Initializable {
             String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
             double expense_data = processor.getTotalExpenses("2025/" + dateStr);
             series.getData().add(new XYChart.Data<>(dateStr, expense_data));
-            expense_history[index] = Math.sqrt(expense_data);
+            expense_history[index] = expense_data;
             index++;
         }
 
@@ -247,7 +247,7 @@ public class LedgerController implements Initializable {
         for (int i = 0; i < steps; i++) {
             lastHistoryDate = lastHistoryDate.plusDays(1);
             String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd"));
-            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.pow(forecasts[i],2)));
+            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, forecasts[i]));
         }
 
         lineChart.getData().add(forecastSeries);
