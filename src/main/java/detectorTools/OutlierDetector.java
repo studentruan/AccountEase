@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import DataProcessor.TransactionAnalyzer;
 
-
 public class OutlierDetector {
     public static Map<String, Double> outputOutliers(Map<String, Double> data, double threshold) {
         return data.entrySet().stream()

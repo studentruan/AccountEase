@@ -1,3 +1,5 @@
+package DataProcessor;
+
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.File;
@@ -9,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class TransactionAnalyzer {
 
-    private List<Transaction> transactions = new ArrayList<>();
+    public List<Transaction> transactions = new ArrayList<>();
 
     public TransactionAnalyzer(String xmlPath) {
         loadTransactions(xmlPath);

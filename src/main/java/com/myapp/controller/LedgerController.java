@@ -158,7 +158,6 @@ public class LedgerController implements Initializable {
         // 获取数据
         Map<String, Transactions> data = loader.getTransactionData();
 
-
         for (Transactions t : data.values()) {
             LocalDate date = t.getDate();
             dateTransactions.computeIfAbsent(date, k -> new ArrayList<>()).add(t);
@@ -176,8 +175,6 @@ public class LedgerController implements Initializable {
             System.err.println("loadLedger received a null ledger.");
         }
 
-
-
         // 遍历输出
 //        for (Map.Entry<String, Transactions> entry : data.entrySet()) {
 //            System.out.println("ID: " + entry.getKey());
@@ -191,7 +188,6 @@ public class LedgerController implements Initializable {
         // 将 ImageView 设置为按钮的图标
         BackButton.setGraphic(image_Back_to_main);
         BackButton.setOnAction(event -> back_to_main());
-
     }
 
     private void initializeCharts() {
@@ -205,16 +201,19 @@ public class LedgerController implements Initializable {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         series.setName("Expense Statistics");
-        LocalDate startDate = LocalDate.of(2025, 3, 23);
-        LocalDate endDate = LocalDate.of(2025, 3, 31);
+        int start = 16;
+        int end = 31;
+        LocalDate startDate = LocalDate.of(2025, 3, start);
+        LocalDate endDate = LocalDate.of(2025, 3, end);
 
-        double[] expense_history = new double[31-23+1];
+        double[] expense_history = new double[end-start+1];
         int index = 0;
 
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
             String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
-            series.getData().add(new XYChart.Data<>(dateStr, processor.getTotalExpenses("2025/" + dateStr)));
-            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
+            double expense_data = processor.getTotalExpenses("2025/" + dateStr);
+            series.getData().add(new XYChart.Data<>(dateStr, expense_data));
+            expense_history[index] = expense_data;
             index++;
         }
 
@@ -230,7 +229,7 @@ public class LedgerController implements Initializable {
 
         lineChart.getData().add(series);
 
-        ARIMAModel model = new ARIMAModel(expense_history, 1, 4, 5);
+        ARIMAModel model = new ARIMAModel(expense_history, 3, 4, 5);
 
         // 3. 预测未来3天
         int steps = 3;
@@ -248,7 +247,7 @@ public class LedgerController implements Initializable {
         for (int i = 0; i < steps; i++) {
             lastHistoryDate = lastHistoryDate.plusDays(1);
             String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd"));
-            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i],0)));
+            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, forecasts[i]));
         }
 
         lineChart.getData().add(forecastSeries);

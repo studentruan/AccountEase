@@ -1,7 +1,5 @@
 package com.myapp;
 
-import com.myapp.model.TransactionLoader;
-import com.myapp.model.Transactions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,6 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         instance = this;
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ledgermanager.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         //VBox root = loader.load();
         mainPane = loader.load();
@@ -32,16 +31,7 @@ public class Main extends Application {
 
         primaryStage.show();
 
-
-
     }
-
-
-
-
-
-
-
 
     public static void main(String[] args) {
         launch(args);

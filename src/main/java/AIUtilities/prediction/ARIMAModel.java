@@ -4,21 +4,38 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Vector;
 
+/**
+ * ARIMA (AutoRegressive Integrated Moving Average) model for time series forecasting.
+ * This class supports both single-step and multi-step prediction with square root transformation
+ * to prevent negative values, differencing to achieve stationarity, and ARMA parameter estimation.
+ */
 public class ARIMAModel {
     private final double[] originalData;
     private final int period;
-    private final int p; // 固定AR阶数
-    private final int q; // 固定MA阶数
+    private final int p; // AR order
+    private final int q; // MA order
     private double[] arCoefficients;
     private double[] maCoefficients;
 
+    /**
+     * Constructs an ARIMA model with the given data and parameters.
+     * Applies square root transformation to original data to prevent negative predictions.
+     *
+     * @param data   The original time series data.
+     * @param period The differencing period.
+     * @param p      The order of the autoregressive (AR) part.
+     * @param q      The order of the moving average (MA) part.
+     */
     public ARIMAModel(double[] data, int period, int p, int q) {
-        this.originalData = data;
+        this.originalData = new double[data.length];
+        for (int i = 0; i < data.length; i++) {
+            this.originalData[i] = Math.sqrt(data[i]); // Square root transform to avoid negative values
+        }
         this.period = period;
         this.p = p;
         this.q = q;
 
-        // 参数校验
+        // Parameter validation
         if (p < 0 || q < 0) {
             throw new IllegalArgumentException("p and q must be non-negative");
         }
@@ -27,67 +44,96 @@ public class ARIMAModel {
         }
     }
 
-    // 单步预测
+    /**
+     * Performs one-step ahead prediction using ARIMA model.
+     *
+     * @return The predicted next value (after inverse square root transformation).
+     */
     public int predict() {
-        // 1. 差分处理
+        if (this.originalData.length <= 0) {
+            throw new IllegalArgumentException("There must be some input data");
+        }
+
+        // 1. Apply differencing
         double[] diffData = preDealDiff(period);
 
-        // 2. 计算模型系数
+        // 2. Compute AR and MA coefficients
         calculateCoefficients(diffData);
 
-        // 3. 预测差分值
+        // 3. Predict differenced value
         int predictDiff = predictValue(p, q, period);
 
-        // 4. 逆差分处理
-        return aftDeal(predictDiff, period);
+        // 4. Invert differencing
+        int results = aftDeal(predictDiff, period);
+
+        // Invert square root transformation
+        return (int) Math.pow(results, 2);
     }
 
-    //多步预测
+    /**
+     * Performs multi-step prediction using ARIMA model.
+     *
+     * @param steps Number of future steps to predict.
+     * @return An array of predicted values (after inverse square root transformation).
+     */
     public int[] predict(int steps) {
         if (steps <= 0) {
             throw new IllegalArgumentException("Steps must be positive");
+        }
+
+        if (this.originalData.length <= 0) {
+            throw new IllegalArgumentException("There must be some input data");
         }
 
         int[] predictions = new int[steps];
         double[] extendedData = originalData.clone();
 
         for (int i = 0; i < steps; i++) {
-            // 1. 差分处理
+            // 1. Apply differencing
             double[] diffData = preDealDiff(period);
 
-            // 2. 计算模型系数
+            // 2. Compute AR and MA coefficients
             calculateCoefficients(diffData);
 
-            // 3. 预测差分值
+            // 3. Predict differenced value
             int predictDiff = predictValue(p, q, period);
 
-            // 4. 逆差分处理
+            // 4. Invert differencing
             int prediction = aftDeal(predictDiff, period);
             predictions[i] = prediction;
 
-            // 5. 将预测值加入数据末尾，用于下一步预测
+            // 5. Append prediction for next-step use
             extendedData = Arrays.copyOf(extendedData, extendedData.length + 1);
             extendedData[extendedData.length - 1] = prediction;
+        }
+
+        // Invert square root transformation
+        for (int i = 0; i < predictions.length; i++) {
+            predictions[i] = (int) Math.pow(predictions[i], 2);
         }
 
         return predictions;
     }
 
-    // 计算ARMA系数
+    /**
+     * Calculates AR or MA or ARMA model coefficients based on differenced data.
+     *
+     * @param diffData the differenced data series
+     */
     private void calculateCoefficients(double[] diffData) {
         if (p > 0 && q > 0) {
-            // ARMA模型
+            // ARMA model
             ARMAModel arma = new ARMAModel(diffData, p, q);
             Vector<double[]> coe = arma.solveCoeOfARMA();
             this.arCoefficients = coe.get(0);
             this.maCoefficients = coe.get(1);
         } else if (p > 0) {
-            // 纯AR模型
+            // Pure AR model
             ARModel ar = new ARModel(diffData, p);
             Vector<double[]> coe = ar.solveCoeOfAR();
             this.arCoefficients = coe.get(0);
         } else if (q > 0) {
-            // 纯MA模型
+            // Pure MA model
             MAModel ma = new MAModel(diffData, q);
             Vector<double[]> coe = ma.solveCoeOfMA();
             this.maCoefficients = coe.get(0);
@@ -96,7 +142,12 @@ public class ARIMAModel {
         }
     }
 
-    // 差分处理
+    /**
+     * Handles differencing process based on the specified period.
+     *
+     * @param period the differencing period (0: none, 1: first-order, >1: seasonal)
+     * @return differenced data
+     */
     private double[] preDealDiff(int period) {
         if (period >= originalData.length - 1) {
             period = 0;
@@ -112,7 +163,12 @@ public class ARIMAModel {
         }
     }
 
-    // 一阶差分
+    /**
+     * Applies first-order differencing to the input data.
+     *
+     * @param preData the original data array
+     * @return first-order differenced data
+     */
     private double[] preFirDiff(double[] preData) {
         double[] tmpData = new double[preData.length - 1];
         for (int i = 0; i < preData.length - 1; ++i) {
@@ -121,7 +177,12 @@ public class ARIMAModel {
         return tmpData;
     }
 
-    // 季节性差分
+    /**
+     * Applies seasonal differencing with fixed season length (7).
+     *
+     * @param preData the original data array
+     * @return seasonally differenced data
+     */
     private double[] preSeasonDiff(double[] preData) {
         double[] tmpData = new double[preData.length - 7];
         for (int i = 0; i < preData.length - 7; ++i) {
@@ -130,7 +191,13 @@ public class ARIMAModel {
         return tmpData;
     }
 
-    // 逆差分处理
+    /**
+     * Inverse differencing to restore the original scale after prediction.
+     *
+     * @param predictValue the predicted value in differenced form
+     * @param period the differencing period
+     * @return value after inverse differencing
+     */
     private int aftDeal(int predictValue, int period) {
         if (period >= originalData.length) {
             period = 0;
@@ -146,7 +213,14 @@ public class ARIMAModel {
         }
     }
 
-    // 预测差分值
+    /**
+     * Predicts the next differenced value using AR, MA or ARMA model.
+     *
+     * @param p AR order
+     * @param q MA order
+     * @param period differencing period
+     * @return predicted differenced value
+     */
     private int predictValue(int p, int q, int period) {
         double[] data = preDealDiff(period);
         int n = data.length;
@@ -156,13 +230,13 @@ public class ARIMAModel {
         Random random = new Random();
 
         if (p == 0) {
-            // 纯MA模型
+            // MA model
             for (int k = q; k < n; ++k) {
                 tmpMA = 0;
                 for (int i = 1; i <= q; ++i) {
                     tmpMA += maCoefficients[i] * errData[i];
                 }
-                // 更新噪声
+                // Update noise
                 for (int j = q; j > 0; --j) {
                     errData[j] = errData[j - 1];
                 }
@@ -170,7 +244,7 @@ public class ARIMAModel {
             }
             predict = (int) tmpMA;
         } else if (q == 0) {
-            // 纯AR模型
+            // AR model
             for (int k = p; k < n; ++k) {
                 tmpAR = 0;
                 for (int i = 0; i < p; ++i) {
@@ -179,7 +253,7 @@ public class ARIMAModel {
             }
             predict = (int) tmpAR;
         } else {
-            // ARMA模型
+            // ARMA model
             for (int k = p; k < n; ++k) {
                 tmpAR = 0;
                 tmpMA = 0;
@@ -189,7 +263,7 @@ public class ARIMAModel {
                 for (int i = 1; i <= q; ++i) {
                     tmpMA += maCoefficients[i] * errData[i];
                 }
-                // 更新噪声
+                // Update noise
                 for (int j = q; j > 0; --j) {
                     errData[j] = errData[j - 1];
                 }
