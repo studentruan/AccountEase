@@ -38,7 +38,7 @@ public class OutlierDetector {
 
 
 
-    // 静态方法直接处理外部数据（网页1静态类集成方案）
+    // 静态方法直接处理外部数据
     public static Map<String, Double> detectAnomalies(TransactionAnalyzer analyzer) {
         Map<String, Double> dailyData = convertToTargetMap(analyzer.getExpenseDailySummary());
         List<Double> amounts = new ArrayList<>(dailyData.values());
@@ -50,7 +50,7 @@ public class OutlierDetector {
         PureJavaKDEAnomalyDetector kde = new PureJavaKDEAnomalyDetector(amounts);
         double baseThreshold = calculator.calculateDynamicThreshold();
 
-        // 时间敏感调整（网页9时间API整合）
+        // 时间敏感调整
         TimeSensitiveAdjuster adjuster = new TimeSensitiveAdjuster();
 
         return dailyData.entrySet().stream()
