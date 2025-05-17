@@ -29,7 +29,7 @@ public class PureJavaKDEAnomalyDetector {
 
 
 
-    // KDE密度估计
+    // KDE密度估计（网页3算法Java重写）
     public double estimateDensity(double x) {
         double sum = 0.0;
         for (Double point : data) {
@@ -38,7 +38,7 @@ public class PureJavaKDEAnomalyDetector {
         return sum / data.size();
     }
 
-    // 动态异常检测
+    // 动态异常检测（网页1、网页5方法融合）
     public List<Double> detectHighSpendingAnomalies(List<Transaction> transactions) {
         List<Double> anomalies = new ArrayList<>();
         double q3 = calculateQ3(data);
@@ -58,7 +58,7 @@ public class PureJavaKDEAnomalyDetector {
         return anomalies;
     }
 
-    // 四分位数计算
+    // 四分位数计算（纯Java实现）
     private double calculateQ1(List<Double> data) {
         Collections.sort(data);
         int index = (int) Math.ceil(0.25 * data.size()) - 1;
@@ -71,7 +71,7 @@ public class PureJavaKDEAnomalyDetector {
         return data.get(index);
     }
 }
-// 后续开发中
+
 class TimeSensitiveAdjuster {
     // 未来用于处理节假日以及周末
     // TimeSensitiveAdjuster类中

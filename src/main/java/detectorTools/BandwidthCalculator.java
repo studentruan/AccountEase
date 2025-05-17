@@ -16,13 +16,13 @@ public class BandwidthCalculator {
         double q3 = calculateQuantile(data, 0.75);
         double iqr = q3 - q1;
 
-        // 3. 带宽参数计算
+        // 3. 带宽参数计算（网页8改进公式）
         double a = Math.min(std, iqr / 1.34);
         int n = data.size();
         return 0.9 * a * Math.pow(n, -0.2);
     }
 
-    // 辅助方法
+    // 辅助方法（需全部实现）
     private static double calculateMean(List<Double> data) {
         return data.stream().mapToDouble(d -> d).average().orElse(0);
     }
@@ -35,7 +35,7 @@ public class BandwidthCalculator {
     }
 
     private static double calculateQuantile(List<Double> sortedData, double percentile) {
-        // 需先对数据排序
+        // 需先对数据排序（网页6排序要求）
         List<Double> sorted = new ArrayList<>(sortedData);
         Collections.sort(sorted);
 
