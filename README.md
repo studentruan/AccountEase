@@ -15,7 +15,7 @@
 ## 快速接入指南
 ```java
 
-import TransactionAnalyzer.TransactionAnalyzer;
+import DataProcessor.TransactionAnalyzer;
 import detectorTools.AdvancedAnomalyDetector;
 
 // 数据加载
@@ -44,7 +44,7 @@ kernel function with bandwidth adjustment. These methods offer convenient tools 
 ## Quick Integration Guide
 
 ```java
-import TransactionAnalyzer.TransactionAnalyzer;
+import DataProcessor.TransactionAnalyzer;
 import detectorTools.AdvancedAnomalyDetector;
 
 // Load data
