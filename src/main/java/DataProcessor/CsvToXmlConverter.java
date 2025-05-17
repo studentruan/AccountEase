@@ -9,15 +9,8 @@ import javax.xml.transform.stream.StreamResult;
 
 public class CsvToXmlConverter {
 
-<<<<<<<< HEAD:src/main/java/TransactionAnalyzer/CsvToXmlConverter.java
-    public static void main(String[] args) {
-        String csvPath = "C:/Users/ASUS/Desktop/CSVXML/monthly_statement_custom_id.csv"; // 替换为你的CSV路径
-        String xmlPath = "C:/Users/ASUS/Desktop/CSVXML/transactions.xml";
-
-========
     // 新增的转换入口方法
     public static void convert(String csvPath, String xmlPath) {
->>>>>>>> main:src/main/java/DataProcessor/CsvToXmlConverter.java
         try {
             List<String[]> csvData = loadCSV(csvPath);
             Document xmlDocument = buildXmlDocument(csvData);

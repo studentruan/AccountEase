@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static detectorTools.DataPreprocessor.calculateQuantile;
+
 public class BandwidthCalculator {
     // Silverman带宽选择规则
     public static double calculateBandwidth(List<Double> data) {
@@ -34,13 +36,5 @@ public class BandwidthCalculator {
                 .orElse(0);
     }
 
-    private static double calculateQuantile(List<Double> sortedData, double percentile) {
-        // 需先对数据排序（网页6排序要求）
-        List<Double> sorted = new ArrayList<>(sortedData);
-        Collections.sort(sorted);
 
-        int index = (int) Math.ceil(percentile * sorted.size()) - 1;
-        index = Math.max(index, 0); // 防止负索引
-        return sorted.get(index);
-    }
 }

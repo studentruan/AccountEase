@@ -8,9 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import DataProcessor.TransactionAnalyzer;
 
 public class OutlierDetector {
+
+
     public static Map<String, Double> outputOutliers(Map<String, Double> data, double threshold) {
         return data.entrySet().stream()
                 .filter(entry -> entry.getValue() > threshold)
@@ -61,8 +65,8 @@ public class OutlierDetector {
 
 
     // 异常判断逻辑（网页5自定义异常处理的精简版）
-    private static boolean isAnomaly(double amount, String date, double baseThreshold,
-                                     PureJavaKDEAnomalyDetector kde, TimeSensitiveAdjuster adjuster) {
+    static boolean isAnomaly(double amount, String date, double baseThreshold,
+                             PureJavaKDEAnomalyDetector kde, TimeSensitiveAdjuster adjuster) {
         LocalDateTime timestamp = LocalDate.parse(date).atStartOfDay();
         double dynamicThreshold = adjuster.adjustThreshold(
                 Math.min(baseThreshold, kde.estimateDensity(amount)),

@@ -2,7 +2,7 @@ package detectorTools;
 
 import java.time.LocalDateTime;
 
-public class Transaction {
+class Transaction {
     private LocalDateTime timestamp;
     private double amount;
 

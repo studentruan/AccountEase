@@ -11,15 +11,15 @@ public class PureJavaKDEAnomalyDetector {
     private final List<Transaction> transactions;
     private final List<Double> data;
     private final double bandwidth;
+    private final TimeSensitiveAdjuster timeAdjuster = new TimeSensitiveAdjuster();
+
 
     public PureJavaKDEAnomalyDetector(List<?> inputData) {
         if (inputData.isEmpty()) throw new IllegalArgumentException("Input data is empty");
 
         if (inputData.get(0) instanceof Transaction) {
             this.transactions = (List<Transaction>) inputData;
-            this.data = transactions.stream()
-                    .map(Transaction::getAmount)
-                    .collect(Collectors.toList());
+            this.data = DataPreprocessor.extractValues(inputData);
         } else {
             this.data = (List<Double>) inputData;
             this.transactions = Collections.emptyList();
@@ -46,7 +46,7 @@ public class PureJavaKDEAnomalyDetector {
 
         transactions.forEach(tx -> {
             double kdeDensity = estimateDensity(tx.getAmount());
-            double dynamicThreshold = TimeSensitiveAdjuster.adjustThreshold(
+            double dynamicThreshold = timeAdjuster.adjustThreshold(
                     Math.min(iqrThreshold, kdeDensity),
                     tx.getTimestamp()
             );
@@ -72,11 +72,5 @@ public class PureJavaKDEAnomalyDetector {
     }
 }
 
-class TimeSensitiveAdjuster {
-    // 未来用于处理节假日以及周末
-    // TimeSensitiveAdjuster类中
-    public static double adjustThreshold(double threshold, LocalDateTime timestamp) {
-        return threshold;  // 时间参数无实际作用，仅保持方法签名兼容
-    }
-}
+
 
