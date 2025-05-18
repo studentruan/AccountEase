@@ -70,6 +70,7 @@ public class PureJavaKDEAnomalyDetector {
         int index = (int) Math.ceil(0.75 * data.size()) - 1;
         return data.get(index);
     }
+
 }
 
 

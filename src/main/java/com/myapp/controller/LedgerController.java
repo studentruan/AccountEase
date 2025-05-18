@@ -35,7 +35,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import static detectorTools.OutlierDetector.detectAnomalies;
-import static detectorTools.OutlierDetector.outputOutliers;
+
 
 public class LedgerController implements Initializable {
 
@@ -352,7 +352,7 @@ public class LedgerController implements Initializable {
             // 文件存在时，执行后续操作
             // 使用 TransactionAnalyzer 来分析数据
             TransactionAnalyzer analyzer = new TransactionAnalyzer("src/main/resources/xml/transactions1.xml");
-            Map<String, Double> anomalies = outputOutliers(detectAnomalies(analyzer), 1.5);
+            Map<String, Double> anomalies = detectAnomalies(analyzer);
 
             // 可选：输出异常的日期和金额
             System.out.println("Abnormally high spending dates:");

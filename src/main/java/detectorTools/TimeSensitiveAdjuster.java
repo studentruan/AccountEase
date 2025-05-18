@@ -21,8 +21,8 @@ public class TimeSensitiveAdjuster {
     private final Set<MonthDay> customHolidays = new HashSet<>();
     private static final Pattern MM_DD_PATTERN = Pattern.compile("^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$");
     // 灵敏度调整系数
-    private static final double WEEKEND_ADJUSTMENT = 0.8;  // 周末灵敏度降低20%
-    private static final double HOLIDAY_ADJUSTMENT = 0.6;  // 节日灵敏度降低40%
+    private static final double WEEKEND_ADJUSTMENT = 1.2;  // 周末灵敏度降低
+    private static final double HOLIDAY_ADJUSTMENT = 1.8;  // 节日灵敏度降低
     private static final Logger logger = LoggerFactory.getLogger(TimeSensitiveAdjuster.class);
     // 添加自定义节日（MM-dd格式）
     public void addCustomHoliday(String monthDayStr) {
