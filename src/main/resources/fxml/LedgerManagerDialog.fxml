@@ -27,7 +27,7 @@
         </HBox>
     </GridPane>
     <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button fx:id="confirmButton" text="Confirm" defaultButton="true" />
+        <Button fx:id="confirmButton" text="Confirm" defaultButton="true" onAction="#handleConfirm"/>
         <Button fx:id="cancelButton" text="Cancel" cancelButton="true" />
     </HBox>
 </VBox>

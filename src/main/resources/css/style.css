@@ -916,3 +916,28 @@ item-pie .bar {
     -fx-background-color: #2a5a8a;
 }
 
+/* 更新后的CSS样式 */
+/* style.css */
+.floating-btn {
+    -fx-background-radius: 15px;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-width: 15px;
+    -fx-height: 15px;
+    -fx-min-width: 15px;
+    -fx-min-height: 15px;
+    -fx-background-color: #2196F3;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 1);
+    -fx-cursor: hand;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.floating-btn:hover {
+    -fx-background-color: #1976D2;
+}
+
+.floating-btn:pressed {
+    -fx-scale-x: 0.85;
+    -fx-scale-y: 0.85;
+}

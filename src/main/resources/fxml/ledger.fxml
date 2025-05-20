@@ -19,6 +19,8 @@
 <?import javafx.scene.image.Image?>
 
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
 <BorderPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myapp.controller.LedgerController">
     <!-- 顶部栏 -->
 
@@ -147,27 +149,32 @@
                                         <children>
                                             <Label styleClass="chart-title" text="Expense Categories" />
                                             <PieChart fx:id="expenseCategoriesChart" />
-                                            <HBox spacing="10" alignment="CENTER">
-                                                <Label text="Shop" styleClass="text-pie" />
-                                                <ProgressBar progress="0.71" styleClass="item-pie" />
-                                                <Label text="71%, 370$" styleClass="text-pie" />
-                                            </HBox>
-                                            <HBox spacing="10" alignment="CENTER">
-                                                <Label text="car" styleClass="text-pie" />
-                                                <ProgressBar progress="0.14" styleClass="item-pie" />
-                                                <Label text="14%, 85$" styleClass="text-pie" />
-                                            </HBox>
-                                            <HBox spacing="10" alignment="CENTER">
-                                                <Label text="dress" styleClass="text-pie" />
-                                                <ProgressBar progress="0.1" styleClass="item-pie" />
-                                                <Label text="10%, 700$" styleClass="text-pie" />
-                                            </HBox>
+<!--                                            <HBox spacing="10" alignment="CENTER">-->
+<!--                                                <Label text="Shop" styleClass="text-pie" />-->
+<!--                                                <ProgressBar progress="0.71" styleClass="item-pie" />-->
+<!--                                                <Label text="71%, 370$" styleClass="text-pie" />-->
+<!--                                            </HBox>-->
+<!--                                            <HBox spacing="10" alignment="CENTER">-->
+<!--                                                <Label text="car" styleClass="text-pie" />-->
+<!--                                                <ProgressBar progress="0.14" styleClass="item-pie" />-->
+<!--                                                <Label text="14%, 85$" styleClass="text-pie" />-->
+<!--                                            </HBox>-->
+<!--                                            <HBox spacing="10" alignment="CENTER">-->
+<!--                                                <Label text="dress" styleClass="text-pie" />-->
+<!--                                                <ProgressBar progress="0.1" styleClass="item-pie" />-->
+<!--                                                <Label text="10%, 700$" styleClass="text-pie" />-->
+<!--                                            </HBox>-->
 
-                                            <HBox spacing="10" alignment="CENTER">
-                                                <Label text="Pet" styleClass="text-pie" />
-                                                <ProgressBar progress="0.05" styleClass="item-pie" />
-                                                <Label text="5%, 35$" styleClass="text-pie" />
-                                            </HBox>
+<!--                                            <HBox spacing="10" alignment="CENTER">-->
+<!--                                                <Label text="Pet" styleClass="text-pie" />-->
+<!--                                                <ProgressBar progress="0.05" styleClass="item-pie" />-->
+<!--                                                <Label text="5%, 35$" styleClass="text-pie" />-->
+<!--                                            </HBox>-->
+                                                <HBox spacing="10" alignment="CENTER">
+                                                    <Label text="The top four types with the highest expenditures" styleClass="text-pie" />
+
+                                                </HBox>
+
                                         </children>
                                     </VBox>
                                 </children>
@@ -250,16 +257,47 @@
                                         </VBox>
                                     </children>
                                 </VBox>
+                                <!-- 优化后的FXML结构 -->
+
+
+                                <VBox spacing="10" alignment="CENTER_RIGHT">
+                                    <Button fx:id="addButton" styleClass="floating-btn"
+                                            StackPane.alignment="CENTER"
+                                            onAction="#handleAddTransaction">
+                                        <graphic>
+                                            <ImageView fitWidth="35"
+                                                       fitHeight="35"
+                                                       preserveRatio="true">
+                                                <Image url="@/images/add.png" />
+                                            </ImageView>
+                                        </graphic>
+
+                                    </Button>
+                                </VBox>
+
+
+                                    <!-- 原有内容 -->
+
+                                    <!-- 悬浮按钮 -->
+
+
+
+
+
+
                             </children>
                         </VBox>
 
                     </children>
+
                 </HBox>
 
             <!-- 使用 HBox 分为左侧和右侧 -->
 
         </AnchorPane>
     </center>
+    <!-- 在 BorderPane 底部添加 -->
+
 
 
 </BorderPane>
