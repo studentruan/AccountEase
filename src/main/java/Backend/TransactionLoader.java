@@ -1,6 +1,5 @@
-package com.myapp.model;
+package Backend;
 
-import com.myapp.model.Transactions;
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;

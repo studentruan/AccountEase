@@ -36,6 +36,9 @@
         <GridPane fx:id="todayGrid" hgap="20" vgap="20" VBox.vgrow="ALWAYS">
             <!-- 账本项将通过代码动态添加 -->
         </GridPane>
+        <GridPane fx:id="historyGrid" hgap="20" vgap="20" VBox.vgrow="ALWAYS">
+            <!-- 账本项将通过代码动态添加 -->
+        </GridPane>
 
         <!-- July 2024 Section -->
         <Label text="July 2024" styleClass="section-label" />
