@@ -1,9 +1,25 @@
+/**
+ * Provides data preprocessing utilities for anomaly detection systems.
+ */
 package detectorTools;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataPreprocessor {
+    /**
+     * Extracts numerical values from heterogeneous collections.
+     * <p>
+     * Supported types:
+     * <ul>
+     *   <li>{@link Transaction} objects (extracts amount field)</li>
+     *   <li>{@link Double} primitive values</li>
+     * </ul>
+     *
+     * @param data input list containing supported types
+     * @return list of extracted numerical values
+     * @throws IllegalArgumentException for unsupported data types
+     */
     // 通用数据提取方法（支持Transaction和原始数值）
     public static List<Double> extractValues(List<?> data) {
         return data.stream()
@@ -17,8 +33,17 @@ public class DataPreprocessor {
                 })
                 .collect(Collectors.toList());
     }
-
-    // 统一分位数计算方法（网页3+网页6方法）
+    /**
+     * Computes quantile value using linear interpolation between nearest ranks.
+     * <p>
+     * Uses R-7 algorithm implementation for quantile estimation.
+     *
+     * @param data sorted list of numerical values
+     * @param percentile target quantile position (0.0 ≤ percentile ≤ 1.0)
+     * @return interpolated quantile value
+     * @throws IllegalArgumentException for empty data or invalid percentiles
+     */
+    // 统一分位数计算方法
     public static double calculateQuantile(List<Double> data, double percentile) {
         List<Double> sorted = data.stream().sorted().collect(Collectors.toList());
         int n = sorted.size();
