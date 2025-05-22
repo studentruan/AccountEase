@@ -5,73 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/1767aff0-d61b-45c8-a692-5f383f13f2c1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/26383630-3776-46e0-9bc0-14d3bf2170ce.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/28b1def3-9a39-4a7b-9fc7-3d5d2fb107ba.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/515f7c15-90d1-40cc-bc82-4162ce6d8169.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/5eab8ec3-993f-4a9a-8e31-555807e5b88e.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/6263219c-ddf7-4ef6-825f-1ddd0c2c8beb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/8f2eaf69-d35e-4963-94e8-89087d4bf94d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/9933ca11-f869-4b66-b749-8a800bbb3c0e.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/a6ce7828-3619-4aee-b942-838a0b9f5a46.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/ad130e95-94c3-48fa-a40f-6f2f7cf96dba.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/e627d462-b158-4223-a9d7-71d7f3dbbb5c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/secondlevel_json/images/f5747751-5881-4da3-95fe-78691c7cee06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/FinanceData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/GlobalContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/Ledger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/LedgerManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/MergeMainForExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/TransactionDataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/TransactionMainForExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/TransactionXmlMerger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/Transaction_FZ.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/dataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Backend/output_transactions.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/26383630-3776-46e0-9bc0-14d3bf2170ce/detailed_monthly_statement.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/515f7c15-90d1-40cc-bc82-4162ce6d8169/detailed_monthly_statement.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/26383630-3776-46e0-9bc0-14d3bf2170ce/detailed_monthly_statement.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/515f7c15-90d1-40cc-bc82-4162ce6d8169/detailed_monthly_statement.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/firstlevel_json/ledger_ids.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/515f7c15-90d1-40cc-bc82-4162ce6d8169/merged_transactions.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/add.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/secondlevel_json/515f7c15-90d1-40cc-bc82-4162ce6d8169.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/secondlevel_json/images/e9a01e4d-6139-4a8b-b0b6-c3f44a50a686.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/515f7c15-90d1-40cc-bc82-4162ce6d8169.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/交易记录_CSV/26383630-3776-46e0-9bc0-14d3bf2170ce/detailed_monthly_statement.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/交易记录_XML/26383630-3776-46e0-9bc0-14d3bf2170ce/detailed_monthly_statement.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/CsvToXmlConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/CsvToXmlConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/DailyTransactionProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/DailyTransactionProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/NewLedgerDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/FinanceData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Ledger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/LedgerManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/TransactionLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/TransactionLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/model/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/Transactions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bert_transaction_categorization.onnx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/LedgerManagerDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledgermanager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledgermanager.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/sidebar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/sidebar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +57,13 @@
     "Application.OnnxInference.executor": "Run",
     "Application.Test.executor": "Run",
     "Application.Unnamed.executor": "Run",
+    "JUnit.ARIMAModelTest.executor": "Run",
+    "JUnit.AppTest.executor": "Run",
+    "JUnit.CoreTest.executor": "Run",
+    "JUnit.StatisticalThresholdCalculatorTest.executor": "Run",
+    "JUnit.TimeSensitiveAdjusterTest.executor": "Run",
+    "JUnit.TransactionClassifierTest.executor": "Run",
+    "JUnit.detectorTest.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.AIend [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "Maven.AIend [org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile].executor": "Run",
@@ -130,7 +72,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/windy/IdeaProjects/SE_SS/src/main/resources/images",
     "node.js.detected.package.eslint": "true",
@@ -152,31 +94,18 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/交易记录_XML/" />
       <recent name="$PROJECT_DIR$/src/main/resources/交易记录_CSV/" />
       <recent name="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/" />
       <recent name="$PROJECT_DIR$/src/main/java/DataProcessor" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Backend" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration name="DailyTransactionProcessor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DataProcessor.DailyTransactionProcessor" />
-      <module name="daily-routine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DataProcessor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TimeSensitiveAdjusterTest">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.myapp.Main" />
       <module name="AIend" />
@@ -185,6 +114,90 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ARIMAModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AIUtilities.prediction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AIUtilities.prediction" />
+      <option name="MAIN_CLASS_NAME" value="AIUtilities.prediction.ARIMAModelTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CoreTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="detectorTools.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="detectorTools" />
+      <option name="MAIN_CLASS_NAME" value="detectorTools.CoreTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticalThresholdCalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="detectorTools.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="detectorTools" />
+      <option name="MAIN_CLASS_NAME" value="detectorTools.StatisticalThresholdCalculatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeSensitiveAdjusterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="detectorTools.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="detectorTools" />
+      <option name="MAIN_CLASS_NAME" value="detectorTools.TimeSensitiveAdjusterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="detectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="detectorTools.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="detectorTools" />
+      <option name="MAIN_CLASS_NAME" value="detectorTools.detectorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TimeSensitiveAdjusterTest" />
+        <item itemvalue="JUnit.StatisticalThresholdCalculatorTest" />
+        <item itemvalue="JUnit.detectorTest" />
+        <item itemvalue="JUnit.CoreTest" />
+        <item itemvalue="JUnit.ARIMAModelTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
