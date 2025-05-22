@@ -6,11 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 import java.util.*;
 
-
-
-
-
-
 public class FinanceData {
     private final SimpleDoubleProperty expense;
     private final SimpleDoubleProperty income;
