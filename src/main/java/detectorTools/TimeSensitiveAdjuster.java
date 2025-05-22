@@ -1,3 +1,6 @@
+/**
+ * Adjusts detection thresholds based on temporal patterns.
+ */
 package detectorTools;
 
 import java.io.BufferedReader;
@@ -24,6 +27,12 @@ public class TimeSensitiveAdjuster {
     private static final double WEEKEND_ADJUSTMENT = 1.2;  // 周末灵敏度降低
     private static final double HOLIDAY_ADJUSTMENT = 1.8;  // 节日灵敏度降低
     private static final Logger logger = LoggerFactory.getLogger(TimeSensitiveAdjuster.class);
+    /**
+     * Registers custom holiday dates.
+     *
+     * @param monthDayStr date in MM-DD format
+     * @throws DateTimeParseException for invalid formats
+     */
     // 添加自定义节日（MM-dd格式）
     public void addCustomHoliday(String monthDayStr) {
         if (!monthDayStr.matches(MM_DD_PATTERN.pattern())) {
@@ -55,8 +64,14 @@ public class TimeSensitiveAdjuster {
                 .filter(dateStr -> MM_DD_PATTERN.matcher(dateStr).matches()) // 验证格式
                 .forEach(this::addCustomHoliday); // 添加到节假日集合
     }
-
-    // 核心调整逻辑（整合网页4、网页6、网页9方法）
+    /**
+     * Adjusts base threshold using temporal context.
+     *
+     * @param base initial threshold value
+     * @param timestamp evaluation timepoint
+     * @return adjusted threshold accounting for weekends/holidays
+     */
+    // 核心调整逻辑
     public double adjustThreshold(double base, LocalDateTime timestamp) {
         // 节假日优先逻辑（空集合不影响判断）
         if (customHolidays.contains(MonthDay.from(timestamp))) {
@@ -65,13 +80,7 @@ public class TimeSensitiveAdjuster {
         // 周末判断
         return isWeekend(timestamp) ? base * WEEKEND_ADJUSTMENT : base;
     }
-
-    /*
-    public static double adjustThreshold(double threshold, LocalDateTime timestamp) {
-        return threshold;  // 时间参数无实际作用，仅保持方法签名兼容
-    }
-    */
-    // 判断是否为周末（网页6方法优化）
+    // 判断是否为周末
     private boolean isWeekend(LocalDateTime dateTime) {
         return dateTime.getDayOfWeek().getValue() >= 6;  // 6=周六，7=周日
     }

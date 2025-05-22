@@ -7,6 +7,15 @@
     <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/AdvancedAnomalyDetector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/DataPreprocessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/DataPreprocessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/KernelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/KernelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/OutlierDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/OutlierDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/StatisticalThresholdCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/StatisticalThresholdCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/TimeSensitiveAdjuster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/TimeSensitiveAdjuster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/Transaction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +49,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2utBnnFGrSlmKNwRwxMwbHOJEBT" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -72,7 +81,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "outlierDetect__yth",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/windy/IdeaProjects/SE_SS/src/main/resources/images",
     "node.js.detected.package.eslint": "true",

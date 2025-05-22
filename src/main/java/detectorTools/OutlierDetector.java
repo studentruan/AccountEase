@@ -1,3 +1,7 @@
+/**
+ * Statistical anomaly detection system using hybrid thresholding.
+ * Provides a way to use the detection functionality
+ */
 package detectorTools;
 
 import java.math.BigDecimal;
@@ -16,10 +20,10 @@ public class OutlierDetector {
 
     private static Map<String, Double> convertToTargetMap(Map<LocalDate, BigDecimal> originalMap) {
         return originalMap.entrySet().stream()
-                .filter(entry -> entry.getKey() != null && entry.getValue() != null)  // 过滤空值（参考网页5空值处理）
+                .filter(entry -> entry.getKey() != null && entry.getValue() != null)  // 过滤空值
                 .collect(Collectors.toMap(
-                        entry -> entry.getKey().format(DateTimeFormatter.ISO_DATE),  // LocalDate→String（网页4日期格式化）
-                        entry -> entry.getValue().doubleValue()                       // BigDecimal→Double（网页10数值转换）
+                        entry -> entry.getKey().format(DateTimeFormatter.ISO_DATE),  // LocalDate→String
+                        entry -> entry.getValue().doubleValue()                       // BigDecimal→Double
                 ));
     }
     private static Map<String, Double> normalizeData(Map<String, Double> rawData) {
@@ -35,7 +39,18 @@ public class OutlierDetector {
 
 
 
-
+    /**
+     * Detects anomalous transactions using normalized KDE thresholds.
+     * <p>
+     * Workflow:
+     * 1. Convert transaction data to daily summaries
+     * 2. Normalize transaction amounts
+     * 3. Calculate dynamic thresholds using IQR method
+     * 4. Apply time-sensitive threshold adjustments
+     *
+     * @param analyzer transaction data source
+     * @return map of detected anomalies (date → normalized amount)
+     */
     // 静态方法直接处理外部数据
     public static Map<String, Double> detectAnomalies(TransactionAnalyzer analyzer) {
         Map<String, Double> dailyData = convertToTargetMap(analyzer.getExpenseDailySummary());
@@ -56,6 +71,13 @@ public class OutlierDetector {
                 .filter(entry -> isAnomaly(entry.getValue(), entry.getKey(), baseThreshold, kde, adjuster))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
+    /**
+     * Holiday-aware anomaly detection variant.
+     *
+     * @param analyzer transaction data source
+     * @param holidaylist custom holidays in MM-DD format
+     * @return map of detected anomalies with holiday adjustments
+     */
     public static Map<String, Double> detectAnomalies(TransactionAnalyzer analyzer, List<String> holidaylist) {
         Map<String, Double> dailyData = convertToTargetMap(analyzer.getExpenseDailySummary());
         dailyData = normalizeData(dailyData);
