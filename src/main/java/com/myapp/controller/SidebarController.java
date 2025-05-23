@@ -1,5 +1,7 @@
 package com.myapp.controller;
 
+import Backend.GlobalContext;
+import Backend.Ledger;
 import com.myapp.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,11 +45,21 @@ public class SidebarController implements Initializable {
         refreshImage.setImage(new Image(getClass().getResource("/images/refresh.png").toExternalForm()));
     }
 
-
+    private Ledger ledger;
 
     @FXML
     private void handleLedgerClick() {
+        ledger = GlobalContext.getInstance().getCurrentLedger();
         MainController.getInstance().loadPage("ledger.fxml");
+        Object controller = MainController.getInstance().getCurrentController();
+
+
+
+        if (controller instanceof LedgerController ledgerController) {
+            ledgerController.loadLedger(this.ledger);
+        }
+
+
     }
 
 //    @FXML
@@ -57,7 +69,9 @@ public class SidebarController implements Initializable {
 
     @FXML
     private void handleSettingsClick() {
+
         MainController.getInstance().loadPage("settings.fxml");
+
     }
 
 

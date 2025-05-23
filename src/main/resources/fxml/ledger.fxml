@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myapp.controller.LedgerController">
     <!-- 顶部栏 -->
 
@@ -69,7 +70,7 @@
                                         </children>
                                     </VBox>
                                     <!-- 卡片2 -->
-                                    <VBox spacing="5"  styleClass="financial-card" HBox.hgrow="ALWAYS">
+                                    <VBox fx:id="budgetVBox" spacing="5"  styleClass="financial-card" HBox.hgrow="ALWAYS">
                                         <children>
                                             <HBox spacing="10" alignment="CENTER_LEFT">
                                                 <ImageView fitWidth="25" fitHeight="25">
@@ -92,10 +93,10 @@
                                                         <Image url="@/images/pending.png" />
                                                     </image>
                                                 </ImageView>
-                                                <Label fx:id="pendingLabel" text="Pending $1900" styleClass="text-financial-card"/>
+                                                <Label fx:id="pendingLabel" text="Pending $0" styleClass="text-financial-card"/>
                                             </HBox>
-                                            <Label fx:id="claimedLabel" text="Claimed $1000" styleClass="text-financial-card"/>
-                                            <Label fx:id="reimburLabel" text="Reimbur $900" styleClass="text-financial-card"/>
+                                            <Label fx:id="claimedLabel" text="Claimed $0" styleClass="text-financial-card"/>
+                                            <Label fx:id="reimburLabel" text="Reimbur $0" styleClass="text-financial-card"/>
                                         </children>
                                     </VBox>
                                     <!-- 卡片4 -->
@@ -252,14 +253,28 @@
                                 <VBox fx:id="dateDetailsContainer" spacing="10" alignment="CENTER" styleClass="date-details-container">
                                     <children>
                                         <Label fx:id="selectedDateLabel" text="Select a date to view details" styleClass="date-details-title" />
-                                        <VBox fx:id="expenseItemsContainer" spacing="5" alignment="CENTER" styleClass="expense-items-container">
-                                            <!-- 收支项目会通过代码动态生成 -->
-                                        </VBox>
+                                        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+                                            <content>
+                                                <VBox fx:id="expenseItemsContainer" spacing="5" alignment="CENTER" styleClass="expense-items-container">
+                                                    <!-- 收支项目会通过代码动态生成 -->
+                                                </VBox>
+                                            </content>
+                                        </ScrollPane>
                                     </children>
                                 </VBox>
                                 <!-- 优化后的FXML结构 -->
 
-
+                                <VBox spacing="10" alignment="CENTER_RIGHT">
+                                    <Button fx:id="addMemorialDayButton" styleClass="floating-btn"
+                                            StackPane.alignment="CENTER"
+                                            onAction="#handleAddMemorialDay">
+                                        <graphic>
+                                            <ImageView fitWidth="35" fitHeight="35" preserveRatio="true">
+                                                <Image url="@/images/jinianri.png" />
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                </VBox>
                                 <VBox spacing="10" alignment="CENTER_RIGHT">
                                     <Button fx:id="addButton" styleClass="floating-btn"
                                             StackPane.alignment="CENTER"

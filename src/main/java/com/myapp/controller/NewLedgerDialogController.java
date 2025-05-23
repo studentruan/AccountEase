@@ -296,7 +296,7 @@ public class NewLedgerDialogController implements Initializable {
 
     private File processCoverImage(String ledgerId) throws IOException {
         if (coverImage != null && coverImage.exists()) {
-            Path imageDir = Path.of("resources/secondlevel_json/images");
+            Path imageDir = Path.of("src/main/resources/secondlevel_json/images");
             Files.createDirectories(imageDir);
 
             String fileExtension = getFileExtension(coverImage.getName());

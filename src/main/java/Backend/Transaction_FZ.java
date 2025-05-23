@@ -19,6 +19,7 @@ public class Transaction_FZ {
         this.product = product;
         this.type = type;
         this.amount = amount;
+
     }
 
     // === Getters and Setters ===
