@@ -5,69 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/secondlevel_json/截屏2025-05-24 00.41.50.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/ExportSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/ExportSettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/classification/ClassificationXmlWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/classification/DeepSeekONNXInference.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/classification/Transaction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/classification/TransactionClassifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/classification/TransactionXmlParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/prediction/ARIMAModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/prediction/ARMAMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/prediction/ARMAModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/prediction/ARModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/prediction/MAModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/AIUtilities/prediction/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/DataProcessor/CsvToXmlConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/DataProcessor/DailyTransactionProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/DataProcessor/TransactionAnalyzer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/DataProcessor/TransactionDataProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/config/AppConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/AppearanceSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/BackupSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/BaseController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/CurrencySettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/DeepaccountController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/ExportSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/FunctionSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/GeneralSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/LanguageSettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/LedgerManagerDialogController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/NewLedgerDialogController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/SettingsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/controller/SidebarController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/model/FinanceData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/model/Ledger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/model/LedgerManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/model/TransactionLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/model/Transactions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/util/ConfigUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/com/myapp/util/I18nUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/AdvancedAnomalyDetector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/BandwidthCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/KernelUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/OutlierDetector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/StatisticalThresholdCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/java/detectorTools/Transaction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main/output/classified_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/firstlevel_json/ledger_ids.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/firstlevel_json/ledger_ids.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/7ee227a9-77b9-4a52-88d3-65065522f8e2/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/7ee227a9-77b9-4a52-88d3-65065522f8e2/merged_transactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/add.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/images/jinianri.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/jinianri.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,6 +40,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
+      <recent name="$PROJECT_DIR$/src/main/resources/secondlevel_json" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>

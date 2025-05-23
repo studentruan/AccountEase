@@ -5,6 +5,7 @@ import Backend.Ledger;
 import com.myapp.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -100,6 +101,19 @@ public class SidebarController implements Initializable {
 
     @FXML
     private void handlequestion() {
-        System.out.println("问题");
+        // 创建 Alert 弹窗（类型为 INFORMATION）
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        // 设置弹窗标题
+        alert.setTitle("Information");
+
+        // 设置弹窗头部文本（可选，设为 null 则不显示）
+        alert.setHeaderText(null);
+
+        // 设置弹窗内容文本（显示英文提示）
+        alert.setContentText("If there's a problem, there's nothing we can do.");
+
+        // 显示弹窗并等待用户关闭
+        alert.showAndWait();
     }
 }

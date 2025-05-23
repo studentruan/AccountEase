@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250524012710268</id>
+        
+    <date>2025/05/24</date>
+        
+    <counterparty>3</counterparty>
+        
+    <product>3</product>
+        
+    <type>Expense</type>
+        
+    <amount>3</amount>
+        
+    <class>Dining</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250524012710268</id>
+            
+    
+    <date>2025/05/24</date>
+            
+    
+    <counterparty>3</counterparty>
+            
+    
+    <product>3</product>
+            
+    
+    <type>Expense</type>
+            
+    
+    <amount>3</amount>
+            
+    
+    <class>Dining</class>
+        
+  
+  </transaction>
+</transactions>

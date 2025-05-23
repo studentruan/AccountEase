@@ -125,7 +125,7 @@ public class LedgerManagerController {
     @FXML
     private void handleSortByCategory() {
         // 需要扩展Ledger类添加分类属性
-        showInfoAlert("功能提示", "分类排序功能正在开发中");
+        showInfoAlert("Feature Notification", "The category sorting feature is under development");
     }
 
     // 打开账本详情界面

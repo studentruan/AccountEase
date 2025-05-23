@@ -252,7 +252,7 @@ public class LedgerController implements Initializable {
             List<String> anniversaries = getAllAnniversaries();
 
             if (anniversaries.isEmpty()) {
-                showAlert("提示", "暂无纪念日数据");
+                showAlert("Tip", "No Anniversary Data");
                 return;
             }
 
@@ -261,13 +261,13 @@ public class LedgerController implements Initializable {
 
             // 创建弹窗展示
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("所有纪念日");
+            alert.setTitle("All Anniversaries");
             alert.setHeaderText(null);
             alert.setContentText(content);
             alert.showAndWait();
 
         } catch (IOException e) {
-            showAlert("错误", "加载纪念日失败: " + e.getMessage());
+            showAlert("Wrong", "Fail to load Anniversaries: " + e.getMessage());
         }
     }
 
@@ -283,61 +283,61 @@ public class LedgerController implements Initializable {
     private void handleAddMemorialDay() {
         // 创建输入对话框
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("添加纪念日");
-        dialog.setHeaderText("请输入纪念日(MM-dd格式)");
-        dialog.setContentText("日期:");
+        dialog.setTitle("Add Anniversaries");
+        dialog.setHeaderText("Input Anniversary(MM-dd format)");
+        dialog.setContentText("Data:");
 
         // 显示对话框并获取结果
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(dateStr -> {
             try {
-                // 验证日期格式
+                // Validate date format
                 if (!dateStr.matches("(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])")) {
-                    throw new IllegalArgumentException("日期格式不正确，请使用MM-dd格式");
+                    throw new IllegalArgumentException("Invalid date format. Please use MM-dd format");
                 }
 
-                // 读取JSON文件
+                // Read JSON file
                 String jsonFilePath = "src/main/resources/thirdlevel_json/" + ledgerId + ".json";
                 JSONObject rootObject;
                 try (FileReader reader = new FileReader(jsonFilePath)) {
                     rootObject = new JSONObject(new JSONTokener(reader));
                 }
 
-                // 获取或创建纪念日数组
+                // Get or create memorial days array
                 JSONArray memorialDays = rootObject.optJSONArray("所有的纪念日");
                 if (memorialDays == null) {
                     memorialDays = new JSONArray();
-                    rootObject.put("所有的纪念日", memorialDays);
+                    rootObject.put("anniversaries", memorialDays);
                 }
 
-                // 检查是否已存在
+                // Check if already exists
                 if (memorialDays.toList().contains(dateStr)) {
-                    throw new IllegalArgumentException("该纪念日已存在");
+                    throw new IllegalArgumentException("This anniversary already exists");
                 }
 
-                // 添加新纪念日
+                // Add new anniversary
                 memorialDays.put(dateStr);
 
-                // 写回文件
+                // Write back to file
                 try (FileWriter writer = new FileWriter(jsonFilePath)) {
                     writer.write(rootObject.toString(4));
                 }
 
-                // 显示成功消息
+                // Show success message
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("成功");
+                    alert.setTitle("Success");
                     alert.setHeaderText(null);
-                    alert.setContentText("纪念日添加成功: " + dateStr);
+                    alert.setContentText("Anniversary added successfully: " + dateStr);
                     alert.showAndWait();
                 });
 
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("错误");
-                    alert.setHeaderText("添加纪念日失败");
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to add anniversary");
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
                 });
@@ -537,7 +537,7 @@ public class LedgerController implements Initializable {
         int index = 0;
 
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
-            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
+            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
             series.getData().add(new XYChart.Data<>(dateStr, processor.getTotalExpenses("2025/" + dateStr)));
             expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
             index++;
@@ -565,7 +565,7 @@ public class LedgerController implements Initializable {
         LocalDate lastHistoryDate = endDate;
         for (int i = 0; i < steps; i++) {
             lastHistoryDate = lastHistoryDate.plusDays(1);
-            String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd"));
+            String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
             forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i],0)));
         }
 
@@ -754,14 +754,14 @@ public class LedgerController implements Initializable {
             balanceLabel.setText(formatAmount(monthlyData.budget - monthlyData.spentBudget, false));
 
             // 预算相关（仅月模式）
-            budgetLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.budget, false));
-            remainLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.remainingBudget, false));
-            spentLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.spentBudget, false));
+            budgetLabel.setText(isDailyMode ? "Budget N/A" : "Budget：" + formatAmount(monthlyData.budget, false));
+            remainLabel.setText(isDailyMode ? "RemainingBudget N/A" : "RemainingBudget：" + formatAmount(monthlyData.remainingBudget, false));
+            spentLabel.setText(isDailyMode ? "SpentBudget N/A" : "SpentBudget：" + formatAmount(monthlyData.spentBudget, false));
 
             // 资产概况（始终使用月数据）
-            netAssetsLabel.setText(formatAmount(monthlyData.income - monthlyData.expense, false));
-            totalsLabel.setText(formatAmount(monthlyData.income, false));
-            debtsLabel.setText(formatAmount(monthlyData.expense, false));
+            netAssetsLabel.setText("net：" + formatAmount(monthlyData.income - monthlyData.expense, false));
+            totalsLabel.setText("totals：" + formatAmount(monthlyData.income, false));
+            debtsLabel.setText("debts：" + formatAmount(monthlyData.expense, false));
 
         }
 
@@ -856,8 +856,13 @@ public class LedgerController implements Initializable {
 
     @FXML
     private void back_to_main() {
-        System.out.println("切换页面");
-        // 在这里执行页面切换逻辑，例如切换 Scene 或者加载新的 FXML
+        // 获取当前按钮所在的 Stage
+        Stage stage = (Stage) BackButton.getScene().getWindow();
+
+        // 关闭当前窗口
+        stage.close();
+
+
     }
 
 
@@ -1034,7 +1039,7 @@ public class LedgerController implements Initializable {
 
     private void updateCalendar() {
         // 更新月份标题
-        monthTitle.setText(currentMonth.format(DateTimeFormatter.ofPattern("MMM, yyyy")));
+        monthTitle.setText(currentMonth.format(DateTimeFormatter.ofPattern("MMM, yyyy", Locale.US)));
 
         // 清空网格
         calendarGrid.getChildren().clear();
@@ -1171,7 +1176,11 @@ public class LedgerController implements Initializable {
 
     private void showDateDetails(LocalDate date) {
         // 更新选中日期的标签
-        selectedDateLabel.setText(date.format(DateTimeFormatter.ofPattern("MMMM d, yyyy")));
+        selectedDateLabel.setText(
+                date.format(
+                        DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.US)
+                )
+        );
 
         // 清空之前的收支项目
         expenseItemsContainer.getChildren().clear();
@@ -1226,7 +1235,7 @@ public class LedgerController implements Initializable {
 
     private void showTransactionDialog() {
         Dialog<TransactionData> dialog = new Dialog<>();
-        dialog.setTitle("新增交易");
+        dialog.setTitle("New transaction");
 
         // 创建表单组件
         TextField counterpartyField = new TextField();
@@ -1246,10 +1255,10 @@ public class LedgerController implements Initializable {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.addRow(0, new Label("交易方:"), counterpartyField);
-        grid.addRow(1, new Label("产品:"), productField);
-        grid.addRow(2, new Label("类型:"), typeCombo);
-        grid.addRow(3, new Label("金额:"), amountField);
+        grid.addRow(0, new Label("Counterparty:"), counterpartyField);
+        grid.addRow(1, new Label("Product:"), productField);
+        grid.addRow(2, new Label("type:"), typeCombo);
+        grid.addRow(3, new Label("amount:"), amountField);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
