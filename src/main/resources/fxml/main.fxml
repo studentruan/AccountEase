@@ -19,10 +19,10 @@
 
     <center>
         <AnchorPane  AnchorPane.topAnchor="0"
-                    AnchorPane.bottomAnchor="0"
-                    AnchorPane.leftAnchor="0"
-                    AnchorPane.rightAnchor="0" fx:id="contentArea">
-<!--            <VBox fx:id="contentArea" VBox.vgrow="ALWAYS"/>-->
+                     AnchorPane.bottomAnchor="0"
+                     AnchorPane.leftAnchor="0"
+                     AnchorPane.rightAnchor="0" fx:id="contentArea">
+            <!--            <VBox fx:id="contentArea" VBox.vgrow="ALWAYS"/>-->
         </AnchorPane>
     </center>
 

@@ -19,9 +19,9 @@
                        onMouseClicked="#handleLedgerClick" style="-fx-cursor: hand;" translateY="15"/>
             <Label text="Ledger" styleClass="label-left"/>
 
-<!--            <ImageView fx:id="deepAccountImage" fitWidth="35" fitHeight="35" pickOnBounds="true" preserveRatio="true"-->
-<!--                       onMouseClicked="#handleDeepAccountClick" style="-fx-cursor: hand;" translateY="15"/>-->
-<!--            <Label text="DeepAccount" styleClass="label-left"/>-->
+            <ImageView fx:id="deepAccountImage" fitWidth="35" fitHeight="35" pickOnBounds="true" preserveRatio="true"
+                       onMouseClicked="#handleDeepAccountClick" style="-fx-cursor: hand;" translateY="15"/>
+            <Label text="DeepAccount" styleClass="label-left"/>
 
             <ImageView fx:id="settingsImage" fitWidth="35" fitHeight="35" pickOnBounds="true" preserveRatio="true"
                        onMouseClicked="#handleSettingsClick" style="-fx-cursor: hand;" translateY="15"/>

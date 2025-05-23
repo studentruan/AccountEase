@@ -18,12 +18,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>31.1-jre</version> <!-- 使用最新稳定版 -->
-        </dependency>
-
-        <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20240303</version>
@@ -137,7 +131,15 @@
             <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- Google EventBus (推荐) -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version> <!-- 使用最新稳定版 -->
+        </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>
