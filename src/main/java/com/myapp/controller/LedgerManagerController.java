@@ -129,7 +129,7 @@ public class LedgerManagerController {
     }
 
     // 打开账本详情界面
-    public void openLedgerDetail(Ledger ledger) {
+    private void openLedgerDetail(Ledger ledger) {
         try {
 
             GlobalContext.getInstance().setCurrentLedger(ledger);
