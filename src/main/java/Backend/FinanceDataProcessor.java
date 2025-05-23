@@ -1,5 +1,6 @@
 package Backend;
 
+import AIUtilities.classification.TransactionClassifier;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class FinanceDataProcessor {
+
     private final String ledgerId;
     private final Map<String, Transaction_FZ> transactions;
     private final JSONObject financeJson = new JSONObject();
@@ -27,9 +29,14 @@ public class FinanceDataProcessor {
     private static final DateTimeFormatter ANNIVERSARY_FORMATTER =
             DateTimeFormatter.ofPattern("MM-dd");
 
-    public FinanceDataProcessor(String ledgerId, Map<String, Transaction_FZ> transactions) {
+    public static TransactionClassifier classifier;
+
+    public FinanceDataProcessor(String ledgerId, Map<String, Transaction_FZ> transactions) throws Exception {
         this.ledgerId = ledgerId;
         this.transactions = transactions;
+        Path tokenizerDir = Paths.get("src/main/resources/Tokenizer");
+        String modelPath = "src/main/resources/bert_transaction_categorization.onnx";
+        this.classifier = new TransactionClassifier(tokenizerDir, modelPath);
     }
 
     public void process() {
@@ -67,7 +74,7 @@ public class FinanceDataProcessor {
             double expense = sumByType(transactions, "EXPENSE");
 
             // 预算计算（示例逻辑，需根据实际业务调整）
-            double budget = 1000.0; // 应从配置获取
+            double budget = 0; // 应从配置获取
             double spent = expense;
             double remaining = budget - spent;
 
@@ -79,8 +86,18 @@ public class FinanceDataProcessor {
             dailyData.put("日剩余预算", remaining);
 
             // 分类统计
-            List<String> topCategories = getTopCategories(transactions);
-            financeJson.append("当天前四个支出最多的种类", new JSONArray(topCategories));
+
+            List<Map.Entry<String, Double>> topCategories = getTopCategories(transactions);
+            JSONArray topCategoriesArray = new JSONArray();
+            for (Map.Entry<String, Double> entry : topCategories) {
+                JSONObject categoryJson = new JSONObject();
+                categoryJson.put("category", entry.getKey());
+                categoryJson.put("amount", entry.getValue());
+                topCategoriesArray.put(categoryJson);
+            }
+            dailyData.put("前四个支出类别", topCategoriesArray);
+
+
 
             // 合并到主结构
             financeJson.put(date.format(DATE_FORMATTER), dailyData);
@@ -98,7 +115,7 @@ public class FinanceDataProcessor {
             double expense = sumByType(transactions, "EXPENSE");
 
             // 月度预算计算（示例值）
-            double budget = 30000.0;
+            double budget = 0;
             double spent = expense;
             double remaining = budget - spent;
 
@@ -109,25 +126,55 @@ public class FinanceDataProcessor {
             monthlyData.put("月剩余预算", remaining);
 
             // 合并分类统计
-            List<String> topCategories = getTopCategories(transactions);
-            financeJson.append("当月前四个支出最多的种类", new JSONArray(topCategories));
+            List<Map.Entry<String, Double>> topCategories = getTopCategories(transactions);
+            JSONArray topCategoriesArray = new JSONArray();
+            for (Map.Entry<String, Double> entry : topCategories) {
+                JSONObject categoryJson = new JSONObject();
+                categoryJson.put("category", entry.getKey());
+                categoryJson.put("amount", entry.getValue());
+                topCategoriesArray.put(categoryJson);
+            }
+            monthlyData.put("前四个支出类别", topCategoriesArray);
 
             financeJson.put(month, monthlyData);
         });
     }
 
-    private List<String> getTopCategories(List<Transaction_FZ> transactions) {
+
+    private List<Map.Entry<String, Double>> getTopCategories(List<Transaction_FZ> transactions) {
         return transactions.stream()
                 .filter(t -> "EXPENSE".equalsIgnoreCase(t.getType()))
+                // 添加分类预测步骤
+                .map(t -> {
+                    try {
+                        String predictedCategory = classifyTransaction(
+                                t.getProduct(),
+                                t.getCounterparty() // 假设Transaction_FZ有getCounterparty方法
+                        );
+                        return new AbstractMap.SimpleEntry<>(predictedCategory, t);
+                    } catch (Exception e) {
+                        throw new RuntimeException("分类失败: " + e.getMessage());
+                    }
+                })
+                // 按预测分类分组
                 .collect(Collectors.groupingBy(
-                        Transaction_FZ::getProduct,
-                        Collectors.summingDouble(Transaction_FZ::getAmount)
+                        Map.Entry::getKey,
+                        Collectors.summingDouble(e -> e.getValue().getAmount())
                 ))
                 .entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
                 .limit(4)
-                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+    }
+
+    // 分类器调用方法（需异常处理）
+    private String classifyTransaction(String product, String counterparty) {
+        try {
+
+            return classifier.classify(product + " " + counterparty);
+        } catch (Exception e) {
+            return "分类失败"; // 或返回默认分类
+        }
     }
 
     private void setSystemMetadata() {
