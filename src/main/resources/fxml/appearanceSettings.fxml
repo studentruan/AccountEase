@@ -13,7 +13,7 @@
 
     <!-- 主题模式设置 -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Theme mode：" styleClass="settings-label"/>
+        <Label text="%settings.theme" styleClass="settings-label"/>
         <ComboBox fx:id="themeModeCombo" prefWidth="150">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -26,7 +26,7 @@
 
     <!-- 数字字体设置 -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Number Font：" styleClass="settings-label"/>
+        <Label text="%settings.numberFont" styleClass="settings-label"/>
         <ComboBox fx:id="numberFontCombo" prefWidth="150">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -40,7 +40,7 @@
 
     <!-- 语言字体设置 -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Language font：" styleClass="settings-label"/>
+        <Label text="%settings.languageFont" styleClass="settings-label"/>
         <ComboBox fx:id="languageFontCombo" prefWidth="150">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -54,7 +54,7 @@
     </HBox>
 
     <!-- 应用按钮 -->
-    <Button text="Apply Settings"
+    <Button text="保存"
             onAction="#saveAppearanceSettings"
             styleClass="save-btn"
     />

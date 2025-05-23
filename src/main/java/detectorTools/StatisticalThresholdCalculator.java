@@ -1,12 +1,7 @@
-/**
- * Dynamic threshold calculator using statistical methods.
- */
 package detectorTools;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static detectorTools.DataPreprocessor.calculateQuantile;
 
 public class StatisticalThresholdCalculator {
     private final List<Double> amounts;
@@ -16,22 +11,19 @@ public class StatisticalThresholdCalculator {
                 .sorted()
                 .collect(Collectors.toList());
     }
-    /**
-     * Calculates upper outlier boundary using IQR method.
-     * <p>
-     * Formula: {@code Q3 + 1.5 * IQR}
-     *
-     * @return dynamic threshold value
-     */
-    // 动态阈值计算
+
+    // 动态阈值计算（网页6 KDE + 网页8假设检验）
     public double calculateDynamicThreshold() {
-        double q1 = calculateQuantile(amounts,0.25);
-        double q3 = calculateQuantile(amounts,0.75);
+        double q1 = calculateQuantile(0.25);
+        double q3 = calculateQuantile(0.75);
         double iqr = q3 - q1;
 
-        // 异常边界
+        // 异常边界（网页1边界值法）
         return q3 + 1.5 * iqr;
     }
 
-
+    private double calculateQuantile(double percentile) {
+        int index = (int) Math.ceil(percentile * amounts.size()) - 1;
+        return amounts.get(Math.max(index, 0));
+    }
 }

@@ -15,6 +15,12 @@ public class ARMAModel
         this.q = q;
     }
 
+    /**
+     * 在ARMA模型中，首先根据原始数据求得AR模型的自回归系数(AR系数)
+     * 利用AR系数与原始数据，求解的残差序列，根据残差序列的自协方差
+     * 最终求得ARMA中MA系数
+     * @return ar, ma
+     */
     public Vector<double []> solveCoeOfARMA()
     {
         Vector<double []>vec = new Vector<>();

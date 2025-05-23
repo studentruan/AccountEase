@@ -389,7 +389,7 @@
                 
         <amount>243.46</amount>
             
-        <class>Food</class>
+        <class>Groceries</class>
     </transaction>
         
     <transaction>
@@ -763,7 +763,7 @@
                 
         <amount>34.84</amount>
             
-        <class>Food</class>
+        <class>Household</class>
     </transaction>
         
     <transaction>
@@ -882,7 +882,7 @@
                 
         <amount>108.04</amount>
             
-        <class>Food</class>
+        <class>Household</class>
     </transaction>
         
     <transaction>

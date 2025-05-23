@@ -15,7 +15,7 @@ public class SidebarController implements Initializable {
     @FXML private ImageView Icon;
     @FXML private ImageView Profile;
     @FXML private ImageView ledgerImage;
-//    @FXML private ImageView deepAccountImage;
+    @FXML private ImageView deepAccountImage;
     @FXML private ImageView settingsImage;
     @FXML private ImageView refreshImage;
     @FXML private ImageView questionImage;
@@ -37,7 +37,7 @@ public class SidebarController implements Initializable {
         Profile.setClip(clip_Profile);
 
         ledgerImage.setImage(new Image(getClass().getResource("/images/ledger.png").toExternalForm()));
-//        deepAccountImage.setImage(new Image(getClass().getResource("/images/AI.png").toExternalForm()));
+        deepAccountImage.setImage(new Image(getClass().getResource("/images/AI.png").toExternalForm()));
         settingsImage.setImage(new Image(getClass().getResource("/images/settings.png").toExternalForm()));
         questionImage.setImage(new Image(getClass().getResource("/images/question.png").toExternalForm()));
         refreshImage.setImage(new Image(getClass().getResource("/images/refresh.png").toExternalForm()));
@@ -50,10 +50,10 @@ public class SidebarController implements Initializable {
         MainController.getInstance().loadPage("ledger.fxml");
     }
 
-//    @FXML
-//    private void handleDeepAccountClick() {
-//        MainController.getInstance().loadPage("deepAccount.fxml");
-//    }
+    @FXML
+    private void handleDeepAccountClick() {
+        MainController.getInstance().loadPage("deepAccount.fxml");
+    }
 
     @FXML
     private void handleSettingsClick() {

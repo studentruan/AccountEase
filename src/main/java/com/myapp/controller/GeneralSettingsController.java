@@ -1,5 +1,6 @@
 package com.myapp.controller;
 
+import com.myapp.util.I18nUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -36,13 +37,19 @@ public class GeneralSettingsController {
 
         // 验证输入
         if (billName.isEmpty()) {
-            showAlert("错误", "账单名称不能为空");
+            showAlert(
+                    I18nUtil.get("alert.error"),
+                    I18nUtil.get("bill.name.empty")
+            );
             billNameField.requestFocus();
             return;
         }
 
         if (billDescription.length() > 500) {
-            showAlert("错误", "账单描述不能超过500字");
+            showAlert(
+                    I18nUtil.get("alert.error"),
+                    I18nUtil.get("bill.description.long")
+            );
             billDescriptionArea.requestFocus();
             return;
         }
@@ -52,8 +59,12 @@ public class GeneralSettingsController {
         System.out.println("名称: " + billName);
         System.out.println("描述: " + billDescription);
 
-        showAlert("成功", "账单设置已保存");
+        showAlert(
+                I18nUtil.get("alert.success"),
+                I18nUtil.get("bill.save.success")
+        );
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -63,10 +74,4 @@ public class GeneralSettingsController {
         alert.showAndWait();
     }
 
-    // 可选：从配置文件加载已有设置
-    private void loadSavedSettings() {
-        // 示例代码：
-        // billNameField.setText(ConfigManager.getBillName());
-        // billDescriptionArea.setText(ConfigManager.getBillDescription());
-    }
 }

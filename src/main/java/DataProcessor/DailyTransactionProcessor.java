@@ -1,6 +1,5 @@
 package DataProcessor;
 
-import Backend.GlobalContext;
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -9,18 +8,12 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class DailyTransactionProcessor {
+    private static final String FILE_NAME = "src/main/resources/transactions.xml"; // XML文件名
 
-    String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
-    String outputDir = "src/main/resources/Transactions_Record_XML/"+ledgerId+"/";
-
-
-
-
-    /*
-            * 方法1：根据给定日期获取当天所有交易记录，返回按收入（Income）和支出（Expense）分类的字典列表。
-            * 修改为从outputDir目录下读取所有XML文件
+    /**
+     * 方法1：根据给定日期获取当天所有交易记录，返回按收入（Income）和支出（Expense）分类的字典列表。
      *
-             * @param date 日期，格式为YYYY/MM/DD
+     * @param date 日期，格式为YYYY/MM/DD
      * @return 包含当天所有交易记录的字典列表
      */
     public Map<String, List<Map<String, String>>> getTransactionsByDate(String date) {
@@ -29,45 +22,34 @@ public class DailyTransactionProcessor {
         List<Map<String, String>> expenseList = new ArrayList<>();
 
         try {
-            File directory = new File(outputDir);
-            if (!directory.exists() || !directory.isDirectory()) {
-                throw new IllegalArgumentException("目录不存在或不可访问: " + outputDir);
-            }
+            File file = new File(FILE_NAME);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+            doc.getDocumentElement().normalize();
 
-            File[] xmlFiles = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
-            if (xmlFiles == null || xmlFiles.length == 0) {
-                return result; // 没有XML文件时返回空结果
-            }
+            NodeList nodeList = doc.getElementsByTagName("transaction");
 
-            for (File xmlFile : xmlFiles) {
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(xmlFile);
-                doc.getDocumentElement().normalize();
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
 
-                NodeList nodeList = doc.getElementsByTagName("transaction");
+                    // 检查日期是否匹配
+                    if (element.getElementsByTagName("date").item(0).getTextContent().equals(date)) {
+                        Map<String, String> transaction = new HashMap<>();
+                        transaction.put("id", element.getElementsByTagName("id").item(0).getTextContent());
+                        transaction.put("date", element.getElementsByTagName("date").item(0).getTextContent());
+                        transaction.put("counterparty", element.getElementsByTagName("counterparty").item(0).getTextContent());
+                        transaction.put("product", element.getElementsByTagName("product").item(0).getTextContent());
+                        transaction.put("type", element.getElementsByTagName("type").item(0).getTextContent());
+                        transaction.put("amount", element.getElementsByTagName("amount").item(0).getTextContent());
 
-                for (int i = 0; i < nodeList.getLength(); i++) {
-                    Node node = nodeList.item(i);
-                    if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element element = (Element) node;
-
-                        // 检查日期是否匹配
-                        if (element.getElementsByTagName("date").item(0).getTextContent().equals(date)) {
-                            Map<String, String> transaction = new HashMap<>();
-                            transaction.put("id", element.getElementsByTagName("id").item(0).getTextContent());
-                            transaction.put("date", element.getElementsByTagName("date").item(0).getTextContent());
-                            transaction.put("counterparty", element.getElementsByTagName("counterparty").item(0).getTextContent());
-                            transaction.put("product", element.getElementsByTagName("product").item(0).getTextContent());
-                            transaction.put("type", element.getElementsByTagName("type").item(0).getTextContent());
-                            transaction.put("amount", element.getElementsByTagName("amount").item(0).getTextContent());
-
-                            // 分类存储到收入或支出列表
-                            if (transaction.get("type").equals("Income")) {
-                                incomeList.add(transaction);
-                            } else if (transaction.get("type").equals("Expense")) {
-                                expenseList.add(transaction);
-                            }
+                        // 分类存储到收入或支出列表
+                        if (transaction.get("type").equals("Income")) {
+                            incomeList.add(transaction);
+                        } else if (transaction.get("type").equals("Expense")) {
+                            expenseList.add(transaction);
                         }
                     }
                 }

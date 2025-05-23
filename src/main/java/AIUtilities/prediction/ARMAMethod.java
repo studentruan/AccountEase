@@ -5,30 +5,33 @@ import org.apache.commons.math3.linear.*;
 import java.util.Random;
 import java.util.Vector;
 
-/**
- * A utility class for computing AR, MA, and ARMA coefficients for time series modeling.
- * It includes methods for autocovariance computation, solving Yule-Walker equations,
- * and estimating model parameters using Levinson-Durbin recursion.
- */
 public class ARMAMethod {
-
+    /**
+     * @param garma 代表的是数据的协方差
+     * @return 返回经由Y-W方程求解的结果，其中数组的最后
+     * 一个元素存储的是模型中的噪声方差
+     */
     public double [] YWSolve(double [] garma)
     {
         int order = garma.length - 1;
         double [] garmaPart = new double[order];
         System.arraycopy(garma, 1, garmaPart, 0, order);
 
+        // 将协方差转换为矩阵的形式
         double [][] garmaArray = new double[order][order];
         for (int i = 0; i < order; ++i)
         {
+            // 对角线
             garmaArray[i][i] = garma[0];
 
+            //下三角
             int subIndex = i;
             for (int j = 0; j < i; ++j)
             {
                 garmaArray[i][j] = garma[subIndex--];
             }
 
+            //上三角
             int topIndex = i;
             for (int j = i + 1; j < order; ++j)
             {
@@ -39,18 +42,22 @@ public class ARMAMethod {
         RealMatrix garmaMatrix = MatrixUtils.createRealMatrix(garmaArray);
         RealVector garmaVector = MatrixUtils.createRealVector(garmaPart);
 
+        // 2. 处理可能的奇异矩阵（对角加小量）
         double epsilon = 1e-6;
         LUDecomposition luDecomposition = new LUDecomposition(garmaMatrix);
         if (luDecomposition.getDeterminant() < epsilon) {
+            // 对角元素加小量修正
             for (int i = 0; i < order; i++) {
                 garmaMatrix.setEntry(i, i, garmaMatrix.getEntry(i, i) + epsilon);
             }
             luDecomposition = new LUDecomposition(garmaMatrix);
         }
 
+        // 3. 解线性方程组：garmaMatrix * X = garmaVector
         DecompositionSolver solver = luDecomposition.getSolver();
         RealVector solution = solver.solve(garmaVector);
 
+        // 4. 转换为double数组
         double[] result = new double[order + 1];  // 保持与原代码相同维度
         for (int i = 0; i < solution.getDimension(); i++) {
             result[i] = solution.getEntry(i);
@@ -65,6 +72,11 @@ public class ARMAMethod {
         return result;
     }
 
+    /**
+     * @param garma  代表的是数据的协方差
+     * @return  返回结果的第一行元素代表的是在迭代过程中的方差，
+     * 其余的元素代表的是迭代过程中存储的系数
+     */
     public double [][] LevinsonSolve(double [] garma)
     {
         int order = garma.length - 1;
@@ -95,6 +107,11 @@ public class ARMAMethod {
         return result;
     }
 
+    /**
+     * @param originalData  原始数据
+     * @param p     模型的阶数
+     * @return      AR模型的系数
+     */
     public double [] computeARCoe(double [] originalData, int p)
     {
         double [] garma = this.autoCovData(originalData, p);        //p+1
@@ -111,6 +128,11 @@ public class ARMAMethod {
         return ARCoe;
     }
 
+    /**
+     * @param originalData   原始数据
+     * @param q         模型阶数
+     * @return          MA系数
+     */
     public double [] computeMACoe(double [] originalData, int q)
     {
         // 确定最佳的p
@@ -144,6 +166,8 @@ public class ARMAMethod {
             }
         }
 
+//      System.out.println("The best p is " + p);
+        // 求取系数
         double [] bestGarma = this.autoCovData(originalData, p);
         double [][] bestResult = this.LevinsonSolve(bestGarma);
 
@@ -154,6 +178,13 @@ public class ARMAMethod {
             alpha[i] = bestResult[p][i];
         }
 
+//      double [] result = this.YWSolve(bestGarma);
+//      double [] alpha = new double[p + 1];
+//      alpha[0] = -1;
+//      for (int i = 1; i <= p; ++i)
+//      {
+//          alpha[i] = result[i - 1];
+//      }
         double [] paraGarma = new double[q + 1];
         for (int k = 0; k <= q; ++k)
         {
@@ -171,16 +202,21 @@ public class ARMAMethod {
         {
             MACoe[i] = tmp[q][i];
         }
-        MACoe[0] = tmp[0][q];
+        MACoe[0] = tmp[0][q];       //噪声参数
+
+//      double [] tmp = this.YWSolve(paraGarma);
+//      double [] MACoe = new double[q + 1];
+//      System.arraycopy(tmp, 0, MACoe, 1, tmp.length - 1);
+//      MACoe[0] = tmp[tmp.length - 1];
 
         return MACoe;
     }
 
     /**
-     * @param originalData  The original time series data to be modeled.
-     * @param p             The order of the AR (AutoRegressive) model.
-     * @param q             The order of the MA (Moving Average) model.
-     * @return              The coefficients of the fitted ARMA model.
+     * @param originalData      原始数据
+     * @param p         AR模型阶数
+     * @param q         MA模型阶数
+     * @return          ARMA模型系数
      */
     public double [] computeARMACoe(double [] originalData, int p, int q)
     {
@@ -230,6 +266,11 @@ public class ARMAMethod {
         }
         MACoe[0] = maResult[0][q];
 
+//      double [] tmp = this.YWSolve(paraGarma);
+//      double [] MACoe = new double[q + 1];
+//      System.arraycopy(tmp, 0, MACoe, 1, tmp.length - 1);
+//      MACoe[0] = tmp[tmp.length - 1];
+
         double [] ARMACoe = new double[p + q + 2];
         for (int i = 0; i < ARMACoe.length; ++i)
         {
@@ -245,11 +286,19 @@ public class ARMAMethod {
         return ARMACoe;
     }
 
+    /**
+     * @param originalData
+     * @return 均值
+     */
     public double avgData(double [] originalData)
     {
         return this.sumData(originalData) / originalData.length;
     }
 
+    /**
+     * @param originalData
+     * @return 求和
+     */
     public double sumData(double [] originalData) {
         double sum = 0.0;
 
@@ -259,11 +308,21 @@ public class ARMAMethod {
         return sum;
     }
 
+    /**
+     * 计算标准差 sigma = sqrt(var);
+     * @param originalData
+     * @return 标准差
+     */
     public double stdErrData(double [] originalData)
     {
         return Math.sqrt(this.varErrData(originalData));
     }
 
+    /**
+     * 计算方差 var = sum(x - mu) ^2 / N;
+     * @param originalData
+     * @return 方差
+     */
     public double varErrData(double [] originalData) {
         if (originalData.length <= 1)
             return 0.0;
@@ -279,6 +338,11 @@ public class ARMAMethod {
         return var;
     }
 
+    /**
+     * @param dataFir
+     * @param dataSec
+     * @return 皮尔逊相关系数(互相关)
+     */
     public double mutalCorr ( double[] dataFir, double[] dataSec) {
 
         double sumX = 0.0;
@@ -311,6 +375,10 @@ public class ARMAMethod {
         return numerator / denominator;
     }
 
+    /**
+     * @param data
+     * @return 互相关矩阵
+     */
     public double[][] computeMutalCorrMatrix ( double[][] data)
     {
         double[][] result = new double[data.length][data.length];
@@ -323,6 +391,12 @@ public class ARMAMethod {
         return result;
     }
 
+    /**
+     * 计算自协方差，C(k)=sum((x(t)-mu)*(x(t-k)-mu))/(N-k);
+     * @param originalData
+     * @param order
+     * @return 自协方差(gama ( k))-->认为是自相关系数
+     */
     public double[] autoCovData ( double[] originalData, int order)
     {
         double mu = this.avgData(originalData);
@@ -353,6 +427,12 @@ public class ARMAMethod {
         return autoCorr;
     }
 
+    /**
+     * @param vec       模型的系数
+     * @param data      数据
+     * @param type      选定的模型
+     * @return
+     */
     public double getModelAIC(Vector<double []>vec, double [] data, int type)
     {
         int n = data.length;
@@ -404,7 +484,7 @@ public class ARMAMethod {
             }
 //          return Math.log(sumErr) + (p + 1) * 2 / n;
             return (n - (p - 1)) * Math.log(sumErr / (n - (p - 1))) + (p + 1) * 2;
-            // return (n-(p-1))*Math.log(sumErr/(n-(p-1)))+(p)*Math.log(n-(p-1));
+            // return (n-(p-1))*Math.log(sumErr/(n-(p-1)))+(p)*Math.log(n-(p-1));       //AIC 最小二乘估计
         }
         /* ARMA */
         else
@@ -438,7 +518,8 @@ public class ARMAMethod {
             }
 //          return Math.log(sumErr) + (q + p + 1) * 2 / n;
             return (n - (q + p - 1)) * Math.log(sumErr / (n - (q + p - 1))) + (p + q) * 2;
-            // return (n-(p-1))*Math.log(sumErr/(n-(p-1)))+(p+q-1)*Math.log(n-(p-1));
+            // return (n-(p-1))*Math.log(sumErr/(n-(p-1)))+(p+q-1)*Math.log(n-(p-1));       //AIC 最小二乘估计
         }
     }
+
 }

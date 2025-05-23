@@ -1,21 +1,23 @@
 package com.myapp.controller;
 
-import AIUtilities.classification.TransactionClassifier;
 import AIUtilities.prediction.ARIMAModel;
-
-import Backend.*;
-
 import DataProcessor.DailyTransactionProcessor;
 import DataProcessor.TransactionAnalyzer;
+import com.myapp.model.FinanceData;
+import com.myapp.model.Ledger;
+import com.myapp.model.TransactionLoader;
+import com.myapp.model.Transactions;
+import com.myapp.util.I18nUtil;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -23,37 +25,21 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import javafx.scene.layout.GridPane;
 
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.util.stream.Stream;
 
-import static detectorTools.OutlierDetector.*;
+import static detectorTools.OutlierDetector.detectAnomalies;
+import static detectorTools.OutlierDetector.outputOutliers;
 
-public class LedgerController implements Initializable {
+public class LedgerController extends BaseController {
 
     @FXML
     private Label titleLabel;
@@ -65,6 +51,7 @@ public class LedgerController implements Initializable {
     private Button BackButton;
     @FXML
     private ImageView image_Back_to_main;
+
     @FXML
     private Label image_Back_to_main_text;
 
@@ -138,11 +125,9 @@ public class LedgerController implements Initializable {
 
     private YearMonth currentMonth = YearMonth.now();
     private Map<LocalDate, String> dateMarkers = new HashMap<>();
-
+    private Map<LocalDate, List<Transactions>> dateTransactions = new HashMap<>();
 
     private LocalDate selectedDate = null;
-    private boolean isDailyMode = false;
-
 
 
     @FXML
@@ -152,7 +137,6 @@ public class LedgerController implements Initializable {
     private VBox expenseItemsContainer;
 
     List<String> adviceList = new ArrayList<>();
-    private Map<LocalDate, List<Transactions>> dateTransactions = new HashMap<>();
 
 
 //    @FXML
@@ -161,6 +145,16 @@ public class LedgerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // 设置界面基础视图（不依赖账本数据）
+        super.initialize(location, resources);
+
+        updateLocalizedText();
+
+
+
+
+
+
+
         updateCalendar();
 
         LocalDate today = LocalDate.now();
@@ -169,26 +163,79 @@ public class LedgerController implements Initializable {
         initializeCharts();
         initializePictures();
         loadAiAdvice(adviceList);
+        TransactionLoader loader = new TransactionLoader();
+
+        // 加载 XML 文件中的数据
+        loader.loadTransactionsFromXml("src/main/output/classified_transactions.xml");
+
+        // 获取数据
+        Map<String, Transactions> data = loader.getTransactionData();
 
 
-
+        for (Transactions t : data.values()) {
+            LocalDate date = t.getDate();
+            dateTransactions.computeIfAbsent(date, k -> new ArrayList<>()).add(t);
+        }
         // 不要在这里调用 updateDashboard()，因为 ledger 还未传入
     }
 
+    @Override
+    protected void updateLocalizedText() {
+        // 更新顶部栏
+//        image_Back_to_main_text.setText(I18nUtil.get("ledger.back"));
+//        ledgerTypeLabel.setText(I18nUtil.get("ledger.type.default"));
+
+        // 更新财务卡片
+        updateFinancialCards();
+
+        // 更新图表标题
+        xAxis.setLabel(I18nUtil.get("ledger.time"));
+        yAxis.setLabel(I18nUtil.get("ledger.value"));
+
+        // 更新日历
+        updateCalendarText();
+    }
+    private void updateCalendarText() {
+        // 更新月份标题（根据当前语言环境格式化）
+        monthTitle.setText(currentMonth.format(
+                DateTimeFormatter.ofPattern(I18nUtil.get("ledger.month.format"))
+        ));
+
+        // 更新星期标题（从日历网格中查找所有星期标签）
+        List<Node> weekDays = calendarGrid.lookupAll(".week-day").stream().toList();
+
+        // 确保找到7个星期标签（周日到周六）
+        if (weekDays.size() >= 7) {
+            ((Label)weekDays.get(0)).setText(I18nUtil.get("ledger.week.sun"));  // 周日
+            ((Label)weekDays.get(1)).setText(I18nUtil.get("ledger.week.mon"));  // 周一
+            ((Label)weekDays.get(2)).setText(I18nUtil.get("ledger.week.tue"));  // 周二
+            ((Label)weekDays.get(3)).setText(I18nUtil.get("ledger.week.wed"));  // 周三
+            ((Label)weekDays.get(4)).setText(I18nUtil.get("ledger.week.thu"));  // 周四
+            ((Label)weekDays.get(5)).setText(I18nUtil.get("ledger.week.fri"));  // 周五
+            ((Label)weekDays.get(6)).setText(I18nUtil.get("ledger.week.sat"));  // 周六
+        } else {
+            System.err.println("Warning: Expected 7 week day labels, found " + weekDays.size());
+        }
+
+        // 更新选中日期标签的文本（如果存在选中日期）
+        if (selectedDate != null) {
+            selectedDateLabel.setText(
+                    selectedDate.format(DateTimeFormatter.ofPattern(I18nUtil.get("ledger.date.format")))
+            );
+        } else {
+            selectedDateLabel.setText(I18nUtil.get("ledger.date.details"));
+        }
+    }
     public void loadLedger(Ledger ledger) {
         this.ledger = ledger;
 
         if (ledger != null) {
-            this.financeData = new FinanceData();  // 正确初始化
-            try {
-                financeData.loadFinanceData(ledger.getId());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.financeData = new FinanceData(ledger);  // 正确初始化
             updateDashboard();  // 显示图表/数据
         } else {
             System.err.println("loadLedger received a null ledger.");
         }
+
 
 
 
@@ -232,6 +279,13 @@ public class LedgerController implements Initializable {
             index++;
         }
 
+//        LocalDate initialDate = LocalDate.of(2025, 3, 1);
+//        index = 0;
+//        for (LocalDate date = initialDate; !date.isAfter(startDate); date = date.plusDays(1)) {
+//            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd"));
+//            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
+//            index++;
+//        }
 
         System.out.println(expense_history.length);
 
@@ -267,16 +321,16 @@ public class LedgerController implements Initializable {
                         "-fx-stroke-width: 2px;"
         );
 
-//        // 初始化饼图，所有比例都设置为0
-//        PieChart.Data slice1 = new PieChart.Data("Shop", 71);
-//        PieChart.Data slice2 = new PieChart.Data("Dress", 10);
-//        PieChart.Data slice3 = new PieChart.Data("Car", 14);
-//        PieChart.Data slice4 = new PieChart.Data("Pet", 5);
-//
-//        expenseCategoriesChart.getData().addAll(slice1, slice2, slice3, slice4);
+        // 初始化饼图，所有比例都设置为0
+        PieChart.Data slice1 = new PieChart.Data("Shop", 71);
+        PieChart.Data slice2 = new PieChart.Data("Dress", 10);
+        PieChart.Data slice3 = new PieChart.Data("Car", 14);
+        PieChart.Data slice4 = new PieChart.Data("Pet", 5);
+
+        expenseCategoriesChart.getData().addAll(slice1, slice2, slice3, slice4);
     }
 
-
+//
 //    public void updateDashboard() {
 //
 //        // 更新支出
@@ -339,131 +393,64 @@ public class LedgerController implements Initializable {
 //
 //
 //    }
-    public void updateDashboard() {
-        isDailyMode = selectedDate != null;
-        // 获取当前显示模式
 
+private void updateFinancialCards(){
+    if (financeData != null) {
+        // 更新支出/收入/余额
+        expenseLabel.setText(I18nUtil.get("ledger.expense") + " $" + financeData.getExpense());
+        incomeLabel.setText(I18nUtil.get("ledger.income") + " $" + financeData.getIncome());
+        balanceLabel.setText(I18nUtil.get("ledger.balance") + " $" + financeData.getBalance());
 
-        // 更新核心财务指标
-        updateFinancialMetrics(isDailyMode);
+        // 更新预算相关
+        budgetLabel.setText(I18nUtil.get("ledger.budget") + " $" + financeData.getBudget());
+        remainLabel.setText(I18nUtil.get("ledger.remain") + " $" + (financeData.getBudget() - financeData.getExpense()));
+        spentLabel.setText(I18nUtil.get("ledger.spent") + " $" + financeData.getExpense());
 
-        // 更新图表数据
-        refreshCharts(isDailyMode);
+        // 更新待处理相关
+        pendingLabel.setText(I18nUtil.get("ledger.pending") + " $" + financeData.getPending());
+        claimedLabel.setText(I18nUtil.get("ledger.claimed") + " $" + financeData.getClaimed());
+        reimburLabel.setText(I18nUtil.get("ledger.reimbur") + " $" + financeData.getReimbursement());
 
-        // 加载智能建议
+        // 更新净资产相关
+        netAssetsLabel.setText(I18nUtil.get("ledger.net") + " $" + financeData.getnNetAssets());
+        totalsLabel.setText(I18nUtil.get("ledger.total") + " $" + financeData.getTotals());
+        debtsLabel.setText(I18nUtil.get("ledger.debts") + " $" + financeData.getDebts());
+
+        // 加载AI建议
         loadAiAdvice(adviceList);
 
-        TransactionLoader loader = new TransactionLoader();
-        String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
+        // 图表更新逻辑（保留原注释）
+        /*
+        ObservableList<XYChart.Series<String, Number>> chartData = lineChart.getData();
+        if (chartData != null && !chartData.isEmpty()) {
+            XYChart.Series<String, Number> series = chartData.get(0);
+            Map<String, Double> monthlyExpenses = financeData.getMonthlyExpenses();
+            if (monthlyExpenses != null && !monthlyExpenses.isEmpty()) {
+                series.getData().clear();
+                for (Map.Entry<String, Double> entry : monthlyExpenses.entrySet()) {
+                    series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+                }
+            }
 
-        // 步骤2：验证ID有效性
-        if (ledgerId == null || ledgerId.trim().isEmpty()) {
-            throw new IllegalStateException("未找到有效的账本ID，请先选择账本");
+            ObservableList<PieChart.Data> pieChartData = expenseCategoriesChart.getData();
+            Map<String, Double> expenseCategories = financeData.getExpenseCategories();
+            if (expenseCategories != null && !expenseCategories.isEmpty()) {
+                pieChartData.clear();
+                for (Map.Entry<String, Double> entry : expenseCategories.entrySet()) {
+                    pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+                }
+            }
         }
+        */
+    } else {
+        System.err.println("FinanceData is null in updateDashboard()");
+    }
 
-
-
-        // 加载 XML 文件中的数据
-        String resourcePath = "fourthlevel_xml/" + ledgerId;
-        URL resourceUrl = getClass().getClassLoader().getResource(resourcePath);
-
-        if (resourceUrl == null) {
-            System.err.println("目录不存在：" + resourcePath);
-            return;
-        }
-
-        File folder = new File(resourceUrl.getFile());
-        File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
-
-        if (files == null || files.length == 0) {
-            System.out.println("未找到XML文件");
-            return;
-        }
-
-        for (File file : files) {
-            String filePath = file.getAbsolutePath();
-            loader.loadTransactionsFromXml(filePath);
-        }
-
-        // 获取数据
-        Map<String, Transactions> data = loader.getTransactionData();
-
-        for (Transactions t : data.values()) {
-            LocalDate date = t.getDate();
-            dateTransactions.computeIfAbsent(date, k -> new ArrayList<>()).add(t);
-        }
 }
+public void updateDashboard() {
+    updateFinancialCards();
 
-    private void updateFinancialMetrics(boolean isDailyMode) {
-        // 获取对应数据
-        FinanceData.DailyData dailyData = isDailyMode ?
-                financeData.getDailyData(selectedDate) : null;
-        FinanceData.MonthlyData monthlyData = financeData.getMonthlyData();
-
-        // 更新基础指标
-        expenseLabel.setText(formatAmount(isDailyMode ? dailyData.expense : monthlyData.expense, isDailyMode));
-        incomeLabel.setText(formatAmount(isDailyMode ? dailyData.income : monthlyData.income, isDailyMode));
-        balanceLabel.setText(formatAmount(monthlyData.budget - monthlyData.spentBudget, false));
-
-        // 预算相关（仅月模式）
-        budgetLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.budget, false));
-        remainLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.remainingBudget, false));
-        spentLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.spentBudget, false));
-
-        // 资产概况（始终使用月数据）
-        netAssetsLabel.setText(formatAmount(monthlyData.income - monthlyData.expense, false));
-        totalsLabel.setText(formatAmount(monthlyData.income, false));
-        debtsLabel.setText(formatAmount(monthlyData.expense, false));
-    }
-
-    private String formatAmount(double value, boolean showDecimal) {
-        return showDecimal ?
-                String.format("$%.2f", value) :
-                String.format("$%,.0f", value);
-    }
-
-    private void refreshCharts(boolean isDailyMode) {
-        lineChart.getData().clear();
-        expenseCategoriesChart.getData().clear();
-
-        if (isDailyMode) {
-            // 日模式图表
-            refreshDailyCharts(selectedDate);
-        } else {
-            // 月模式图表
-            refreshMonthlyCharts();
-        }
-    }
-
-    private void refreshDailyCharts(LocalDate date) {
-        // 当天消费分类
-        List<List<String>> categories = financeData.getDailyTopCategories();
-        if (!categories.isEmpty()) {
-            categories.get(0).forEach(category ->
-                    expenseCategoriesChart.getData().add(
-                            new PieChart.Data(category, 25) // 示例比例，需根据实际数据调整
-                    )
-            );
-        }
-
-        // 当天消费趋势（示例数据）
-        initializeCharts();
-    }
-
-    private void refreshMonthlyCharts() {
-        // 月度消费分类
-        List<List<String>> categories = financeData.getMonthlyTopCategories();
-        if (!categories.isEmpty()) {
-            categories.get(0).forEach(category ->
-                    expenseCategoriesChart.getData().add(
-                            new PieChart.Data(category, 25) // 示例比例，需根据实际数据调整
-                    )
-            );
-        }
-
-        // 月度消费趋势（示例数据）
-        initializeCharts();
-    }
+}
 
     @FXML
     private void back_to_main() {
@@ -474,73 +461,55 @@ public class LedgerController implements Initializable {
     @FXML
     public void loadAiAdvice(List<String> adviceList) {
         try {
-            // 加载 XML 文件中的数据
-            String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
-//
-            String resourcePath = "Transactions_Record_XML/" + ledgerId;
-            URL resourceUrl = getClass().getClassLoader().getResource(resourcePath);
-            System.out.println("资源路径: " + resourceUrl);
-
-            if (resourceUrl == null) {
-                System.err.println("目录不存在：" + resourcePath);
-                return;
+            // 检查文件是否存在
+            File file = new File("src/main/resources/xml/test.xml");
+            if (!file.exists()) {
+                // 文件不存在时，不打印异常
+                System.err.println("文件不存在: " + file.getAbsolutePath());
+                return;  // 如果文件不存在，则退出方法
             }
 
-            File folder = new File(resourceUrl.getFile());
-            File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
+            // 文件存在时，执行后续操作
+            // 使用 TransactionAnalyzer 来分析数据
+            TransactionAnalyzer analyzer = new TransactionAnalyzer("src/main/resources/xml/transactions1.xml");
+            Map<String, Double> anomalies = outputOutliers(detectAnomalies(analyzer), 1.5);
 
-            if (files == null || files.length == 0) {
-                System.out.println("未找到XML文件");
-                return;
-            }
+            // 可选：输出异常的日期和金额
+            System.out.println("Abnormally high spending dates:");
+            anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
 
-            for (File file : files) {
-                String filePath = file.getAbsolutePath();
-                System.out.println(filePath);
-                TransactionAnalyzer analyzer = new TransactionAnalyzer(filePath);
-                Map<String, Double> anomalies = detectAnomalies(analyzer);
-                // 可选：输出异常的日期和金额
-                System.out.println("Abnormally high spending dates:");
-                anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
+            // 清空原始建议列表，避免重复
+            adviceList.clear();
 
-                // 清空原始建议列表，避免重复
-                adviceList.clear();
+            // 将异常信息转换为 List<String> 格式
+            anomalies.forEach((date, amount) -> {
+                adviceList.add("Abnormal spending detected on " + date + " confidence coefficient: " + String.format("%.2f", amount));
+            });
 
-                // 将异常信息转换为 List<String> 格式
-                anomalies.forEach((date, amount) -> {
-                    adviceList.add("Abnormal spending detected on " + date + " confidence coefficient: " + String.format("%.2f", amount));
-                });
+            // 确保 UI 更新发生在 JavaFX 应用线程上
+            Platform.runLater(() -> {
+                adviceBox.getChildren().clear(); // 清除现有内容
 
-                // 确保 UI 更新发生在 JavaFX 应用线程上
-                Platform.runLater(() -> {
-                    adviceBox.getChildren().clear(); // 清除现有内容
+                // 重新添加标题标签
+                Label titleLabel = new Label("Advice From AI");
+                titleLabel.getStyleClass().add("advice-title");
+                adviceBox.getChildren().add(titleLabel);
 
-                    // 重新添加标题标签
-                    Label titleLabel = new Label("Advice From AI");
-                    titleLabel.getStyleClass().add("advice-title");
-                    adviceBox.getChildren().add(titleLabel);
+                // 将新的 adviceList 内容加载到 UI
+                int i = 1;
+                for (String advice : adviceList) {
+                    Label label = new Label(i + ". " + advice);
+                    label.setWrapText(true);           // 启用自动换行
+                    label.setMaxWidth(400);            // 可选：设置最大宽度（根据需要调整）
+                    label.getStyleClass().remove("label");
+                    label.getStyleClass().add("text-advice");
+                    adviceBox.getChildren().add(label);
 
-                    // 将新的 adviceList 内容加载到 UI
-                    int i = 1;
-                    for (String advice : adviceList) {
-                        Label label = new Label(i + ". " + advice);
-                        label.setWrapText(true);           // 启用自动换行
-                        label.setMaxWidth(400);            // 可选：设置最大宽度（根据需要调整）
-                        label.getStyleClass().remove("label");
-                        label.getStyleClass().add("text-advice");
-                        adviceBox.getChildren().add(label);
-
-                        System.out.println("Label added: " + label.getText());
-                        System.out.println("Label style class: " + label.getStyleClass());
-                        i++;
-                    }
-                });
-
-            }
-
-
-
-
+                    System.out.println("Label added: " + label.getText());
+                    System.out.println("Label style class: " + label.getStyleClass());
+                    i++;
+                }
+            });
         } catch (Exception e) {
             // 捕获其他异常并打印
             e.printStackTrace();
@@ -561,14 +530,12 @@ public class LedgerController implements Initializable {
 
     @FXML
     private void handlePrevMonth() {
-        isDailyMode = false;
         currentMonth = currentMonth.minusMonths(1);
         updateCalendar();
     }
 
     @FXML
     private void handleNextMonth() {
-        isDailyMode = false;
         currentMonth = currentMonth.plusMonths(1);
         updateCalendar();
     }
@@ -620,11 +587,6 @@ public class LedgerController implements Initializable {
             dayLabel.setOnMouseClicked(event -> {
                 // 移除之前选中日期的特效
                 if (selectedDate != null) {
-                    isDailyMode = !isDailyMode;
-                    updateFinancialMetrics(isDailyMode);
-
-
-
                     Label previousLabel = findDayLabel(selectedDate);
                     if (previousLabel != null) {
                         previousLabel.getStyleClass().remove("selected-day");
@@ -756,190 +718,6 @@ public class LedgerController implements Initializable {
             expenseItemsContainer.getChildren().add(noDataLabel);
         }
     }
-
-    String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
-    // 添加成员变量
-
-
-    @FXML
-    private void handleAddTransaction() {
-        showTransactionDialog();
-    }
-
-    private void showTransactionDialog() {
-        Dialog<TransactionData> dialog = new Dialog<>();
-        dialog.setTitle("新增交易");
-
-        // 创建表单组件
-        TextField counterpartyField = new TextField();
-        TextField productField = new TextField();
-        ComboBox<String> typeCombo = new ComboBox<>(FXCollections.observableArrayList(
-                "Income", "Expense", "Transfer"
-        ));
-        TextField amountField = new TextField();
-
-        // 金额输入验证
-        amountField.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.matches("\\d*(\\.\\d*)?")) {
-                amountField.setText(oldVal);
-            }
-        });
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.addRow(0, new Label("交易方:"), counterpartyField);
-        grid.addRow(1, new Label("产品:"), productField);
-        grid.addRow(2, new Label("类型:"), typeCombo);
-        grid.addRow(3, new Label("金额:"), amountField);
-
-        dialog.getDialogPane().setContent(grid);
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-        // 转换结果
-        dialog.setResultConverter(buttonType -> {
-            if (buttonType == ButtonType.OK) {
-                return new TransactionData(
-                        counterpartyField.getText(),
-                        productField.getText(),
-                        typeCombo.getValue(),
-                        amountField.getText()
-                );
-            }
-            return null;
-        });
-
-        Optional<TransactionData> result = dialog.showAndWait();
-        result.ifPresent(this::processTransaction);
-    }
-
-    private void processTransaction(TransactionData data) {
-        try {
-            // 生成交易ID
-            String id = generateTransactionId();
-
-            // 自动生成日期
-            String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-
-            // AI分类
-            String category = classifyTransaction(data.product(), data.counterparty()).values().iterator().next();
-            // 生成XML
-            Document doc = createTransactionXml(id, date, data, category);
-
-            // 保存文件
-            saveTransactionFile(doc, id);
-
-            // 合并文件
-            mergeTransactionFiles();
-
-            // 刷新UI
-            refreshUI();
-
-        } catch (Exception e) {
-            showErrorAlert("交易处理失败", e.getMessage());
-        }
-    }
-
-    private String generateTransactionId() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmssSSS"));
-    }
-
-    private Map<String,String> classifyTransaction(String product, String counterparty) throws Exception {
-        Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // Path to the model's tokenizer
-        String modelPath = "src/main/resources/bert_transaction_categorization.onnx"; // Path to the model
-        Path descriptionPath = Paths.get("src/main/resources/counterparty_description.json"); //Path to the merchant description
-        TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath, descriptionPath);
-
-        return classifier.classify(product + " " + counterparty);
-
-    }
-
-    private Document createTransactionXml(String id, String date, TransactionData data, String category)
-            throws ParserConfigurationException {
-
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        Document doc = factory.newDocumentBuilder().newDocument();
-
-        Element transaction = doc.createElement("transaction");
-
-        appendXmlElement(doc, transaction, "id", id);
-        appendXmlElement(doc, transaction, "date", date);
-        appendXmlElement(doc, transaction, "counterparty", data.counterparty());
-        appendXmlElement(doc, transaction, "product", data.product());
-        appendXmlElement(doc, transaction, "type", data.type());
-        appendXmlElement(doc, transaction, "amount", data.amount());
-        appendXmlElement(doc, transaction, "class", category);
-
-        doc.appendChild(transaction);
-        return doc;
-    }
-
-    private void appendXmlElement(Document doc, Element parent, String tagName, String value) {
-        Element elem = doc.createElement(tagName);
-        elem.setTextContent(value);
-        parent.appendChild(elem);
-    }
-
-    private void saveTransactionFile(Document doc, String id) throws Exception {
-        String dirPath = "src/main/resources/fourthlevel_xml/" + ledgerId + "/";
-        Path outputDir = Paths.get(dirPath);
-
-        if (!Files.exists(outputDir)) {
-            Files.createDirectories(outputDir);
-        }
-
-        Path outputPath = outputDir.resolve(id + ".xml");
-
-        TransformerFactory tf = TransformerFactory.newInstance();
-        Transformer transformer = tf.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.transform(new DOMSource(doc), new StreamResult(outputPath.toFile()));
-    }
-
-    private void mergeTransactionFiles() {
-        String inputDir = "src/main/resources/fourthlevel_xml/" + ledgerId + "/";
-        String outputFile = inputDir + "merged_transactions.xml";
-
-        if (TransactionXmlMerger.mergeTransactionXmlFiles(inputDir, outputFile) != null) {
-            cleanUpIndividualFiles(inputDir);
-        }
-    }
-
-    private void cleanUpIndividualFiles(String dirPath) {
-        File dir = new File(dirPath);
-        File[] files = dir.listFiles((d, name) ->
-                name.endsWith(".xml") && !name.equals("merged_transactions.xml")
-        );
-
-        if (files != null) {
-            for (File file : files) {
-                if (!file.delete()) {
-                    System.err.println("无法删除文件: " + file.getAbsolutePath());
-                }
-            }
-        }
-    }
-
-    private void refreshUI() {
-        // 实现UI刷新逻辑
-    }
-
-    private void showErrorAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    // 数据记录类
-    private record TransactionData(
-            String counterparty,
-            String product,
-            String type,
-            String amount
-    ) {}
-
 }
 
 

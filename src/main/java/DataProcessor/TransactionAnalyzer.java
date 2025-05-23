@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class TransactionAnalyzer {
 
-    public List<Transaction> transactions = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
 
     public TransactionAnalyzer(String xmlPath) {
         loadTransactions(xmlPath);

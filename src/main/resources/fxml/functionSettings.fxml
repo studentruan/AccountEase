@@ -10,47 +10,48 @@
       spacing="15"
       style="-fx-padding: 20;">
 
-    <Label text="功能设置" styleClass="settings-title"/>
+    <Label text="%function.title" styleClass="settings-title"/>
 
     <VBox spacing="10">
         <!-- 支出开关 -->
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Expense" styleClass="settings-label"/>
+            <Label text="%function.expense" styleClass="settings-label"/>
             <ToggleSwitch fx:id="expenseSwitch" styleClass="function-switch"/>
         </HBox>
 
         <!-- 预算开关 -->
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Budget" styleClass="settings-label"/>
+            <Label text="%function.budget" styleClass="settings-label"/>
             <ToggleSwitch fx:id="budgetSwitch" styleClass="function-switch"/>
         </HBox>
 
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Pending" styleClass="settings-label"/>
+            <Label text="%function.pending" styleClass="settings-label"/>
             <ToggleSwitch fx:id="pendingSwitch" styleClass="function-switch"/>
         </HBox>
 
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Asserts" styleClass="settings-label"/>
+            <Label text="%function.asserts" styleClass="settings-label"/>
             <ToggleSwitch fx:id="assertsSwitch" styleClass="function-switch"/>
         </HBox>
 
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Bar gragh" styleClass="settings-label"/>
+            <Label text="%function.barGraph" styleClass="settings-label"/>
             <ToggleSwitch fx:id="bargraphSwitch" styleClass="function-switch"/>
         </HBox>
 
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Line gragh" styleClass="settings-label"/>
+            <Label text="%function.lineGraph" styleClass="settings-label"/>
             <ToggleSwitch fx:id="linegraphSwitch" styleClass="function-switch"/>
         </HBox>
 
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Pie gragh" styleClass="settings-label"/>
+            <Label text="%function.pieGraph" styleClass="settings-label"/>
             <ToggleSwitch fx:id="piegraphSwitch" styleClass="function-switch"/>
         </HBox>
     </VBox>
 
-
-
+    <Button text="%button.save"
+            onAction="#saveFunctionSettings"
+            styleClass="save-btn"/>
 </VBox>
