@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.myapp.controller.CurrencySettingsController"
+      spacing="15"
+      style="-fx-padding: 20;">
+
+    <Label text="%currency.settings.title" styleClass="settings-title"/>
+
+    <VBox spacing="20">
+        <!-- 默认货币选择 -->
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="%currency.default.label" styleClass="currency-label"/>
+            <ComboBox fx:id="defaultCurrencyCombo"
+                      styleClass="currency-combo"/>
+        </HBox>
+
+        <!-- 汇率列表 -->
+        <VBox spacing="10">
+            <Label text="%currency.rates.label" styleClass="section-label"/>
+            <VBox fx:id="exchangeRateContainer"
+                  style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10;">
+                <!-- 汇率内容将通过控制器动态生成 -->
+            </VBox>
+        </VBox>
+    </VBox>
+
+    <!-- 保存按钮 -->
+    <Button text="%button.save"
+            styleClass="save-btn"
+            onAction="#saveCurrencySettings"/>
+</VBox>
+
+
+<!--<VBox xmlns="http://javafx.com/javafx/11"-->
+<!--      xmlns:fx="http://javafx.com/fxml/1"-->
+<!--      fx:controller="com.myapp.controller.CurrencySettingsController"-->
+<!--      spacing="15"-->
+<!--      style="-fx-padding: 20;">-->
+
+<!--    <Label text="货币与汇率设置" styleClass="settings-title"/>-->
+
+<!--    <VBox spacing="20">-->
+<!--        &lt;!&ndash; 默认货币选择 &ndash;&gt;-->
+<!--        <HBox alignment="CENTER_LEFT" spacing="15">-->
+<!--            <Label text="默认货币:" styleClass="currency-label"/>-->
+<!--            <ComboBox fx:id="defaultCurrencyCombo"-->
+<!--                      styleClass="currency-combo"/>-->
+<!--        </HBox>-->
+
+<!--        &lt;!&ndash; 汇率列表 &ndash;&gt;-->
+<!--        <VBox spacing="10">-->
+<!--            <Label text="货币汇率列表:" styleClass="section-label"/>-->
+<!--            <VBox fx:id="exchangeRateContainer"-->
+<!--                  style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 10;">-->
+<!--                &lt;!&ndash; 汇率内容将通过控制器动态生成 &ndash;&gt;-->
+<!--            </VBox>-->
+<!--        </VBox>-->
+<!--    </VBox>-->
+
+<!--    &lt;!&ndash; 在VBox的最后添加保存按钮 &ndash;&gt;-->
+<!--    <Button text="保存设置"-->
+<!--            styleClass="save-btn"-->
+<!--            onAction="#saveCurrencySettings"/>-->
+<!--</VBox>-->

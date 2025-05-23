@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.myapp.controller.BackupSettingsController"
+      spacing="20"
+      style="-fx-padding: 20;">
+
+    <Label text="%backup.title" styleClass="settings-title"/>
+
+    <VBox spacing="15">
+        <!-- 备份区域 -->
+        <VBox spacing="10">
+            <Label text="%backup.save.label" style="-fx-font-size: 16px; -fx-text-fill: #444;"/>
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <TextField fx:id="backupPathField"
+                           styleClass="path-input"
+                           promptText="%backup.save.prompt"
+                           editable="false"/>
+                <Button text="%button.browse"
+                        styleClass="browse-btn"
+                        onAction="#handleChooseBackupPath"/>
+            </HBox>
+            <Button text="%button.backup"
+                    styleClass="save-btn"
+                    onAction="#handleBackup"/>
+        </VBox>
+
+        <!-- 恢复区域 -->
+        <VBox spacing="10">
+            <Label text="%backup.restore.label" style="-fx-font-size: 16px; -fx-text-fill: #444;"/>
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <TextField fx:id="restorePathField"
+                           styleClass="path-input"
+                           promptText="%backup.restore.prompt"
+                           editable="false"/>
+                <Button text="%button.browse"
+                        styleClass="browse-btn"
+                        onAction="#handleChooseRestoreFile"/>
+            </HBox>
+            <Button text="%button.restore"
+                    styleClass="save-btn"
+                    onAction="#handleRestore"/>
+        </VBox>
+    </VBox>
+</VBox>
+
+<!--<VBox xmlns="http://javafx.com/javafx/11"-->
+<!--      xmlns:fx="http://javafx.com/fxml/1"-->
+<!--      fx:controller="com.myapp.controller.BackupSettingsController"-->
+<!--      spacing="20"-->
+<!--      style="-fx-padding: 20;">-->
+
+<!--    <Label text="Backup and Recovery" styleClass="settings-title"/>-->
+
+<!--    <VBox spacing="15">-->
+<!--        &lt;!&ndash; 备份区域 &ndash;&gt;-->
+<!--        <VBox spacing="10">-->
+<!--            <Label text="Save current version" style="-fx-font-size: 16px; -fx-text-fill: #444;"/>-->
+<!--            <HBox alignment="CENTER_LEFT" spacing="15">-->
+<!--                <TextField fx:id="backupPathField"-->
+<!--                           styleClass="path-input"-->
+<!--                           promptText="Location where backup files are saved"-->
+<!--                           editable="false"/>-->
+<!--                <Button text="Chosen Position..."-->
+<!--                        styleClass="browse-btn"-->
+<!--                        onAction="#handleChooseBackupPath"/>-->
+<!--            </HBox>-->
+<!--            <Button text="Immediate backup"-->
+<!--                    styleClass="save-btn"-->
+<!--                    onAction="#handleBackup"/>-->
+<!--        </VBox>-->
+
+<!--&lt;!&ndash;        &lt;!&ndash; 分隔线 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <Separator style="-fx-padding: 10 0;"/>&ndash;&gt;-->
+
+<!--        &lt;!&ndash; 恢复区域 &ndash;&gt;-->
+<!--        <VBox spacing="10">-->
+<!--            <Label text="Restore historical version" style="-fx-font-size: 16px; -fx-text-fill: #444;"/>-->
+<!--            <HBox alignment="CENTER_LEFT" spacing="15">-->
+<!--                <TextField fx:id="restorePathField"-->
+<!--                           styleClass="path-input"-->
+<!--                           promptText="Select backup file"-->
+<!--                           editable="false"/>-->
+<!--                <Button text="Browse file..."-->
+<!--                        styleClass="browse-btn"-->
+<!--                        onAction="#handleChooseRestoreFile"/>-->
+<!--            </HBox>-->
+<!--            <Button text="Restore Backup"-->
+<!--                    styleClass="save-btn"-->
+<!--                    onAction="#handleRestore"/>-->
+<!--        </VBox>-->
+<!--    </VBox>-->
+<!--    -->
+<!--</VBox>-->

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.myapp.controller.FunctionSettingsController"
+      spacing="15"
+      style="-fx-padding: 20;">
+
+    <Label text="%function.title" styleClass="settings-title"/>
+
+    <VBox spacing="10">
+        <!-- 支出开关 -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.expense" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="expenseSwitch" styleClass="function-switch"/>
+        </HBox>
+
+        <!-- 预算开关 -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.budget" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="budgetSwitch" styleClass="function-switch"/>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.pending" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="pendingSwitch" styleClass="function-switch"/>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.asserts" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="assertsSwitch" styleClass="function-switch"/>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.barGraph" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="bargraphSwitch" styleClass="function-switch"/>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.lineGraph" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="linegraphSwitch" styleClass="function-switch"/>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="%function.pieGraph" styleClass="settings-label"/>
+            <ToggleSwitch fx:id="piegraphSwitch" styleClass="function-switch"/>
+        </HBox>
+    </VBox>
+
+    <Button text="%button.save"
+            onAction="#saveFunctionSettings"
+            styleClass="save-btn"/>
+</VBox>

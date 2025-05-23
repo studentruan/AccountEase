@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.myapp.controller.GeneralSettingsController"
+      spacing="20" alignment="TOP_LEFT" style="-fx-padding: 30;">
+
+    <!-- 账单名称输入行 -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="%ledger.name" styleClass="settings-label"/>
+
+        <TextField fx:id="billNameField"
+                   promptText="%input.name"
+                   prefWidth="200"/>
+    </HBox>
+
+    <!-- 账单描述输入区域 -->
+    <VBox spacing="5">
+        <Label text="%ledger.des" styleClass="settings-label"/>
+        <TextArea fx:id="billDescriptionArea"
+                  promptText="%hint.input"
+                  prefHeight="100"
+                  prefWidth="300"
+                  wrapText="true"/>
+    </VBox>
+
+    <!-- 保存按钮 -->
+    <Button text="%button.save"
+            onAction="#saveGeneralSettings"
+            styleClass="save-btn"/>
+</VBox>

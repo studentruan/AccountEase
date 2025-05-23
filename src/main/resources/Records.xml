@@ -1,0 +1,58 @@
+<transactions>
+    <transaction>
+        <counterparty>McDonald's</counterparty>
+        <product>McDonald's</product>
+    </transaction>
+    <transaction>
+        <counterparty>Wumart Convenience</counterparty>
+        <product>Wumart Convenience</product>
+    </transaction>
+    <transaction>
+        <counterparty>Luxixi Food (Nanjing) Co., Ltd.</counterparty>
+        <product>Jinhe Food (Beijing) Co., Ltd.</product>
+    </transaction>
+    <transaction>
+        <counterparty>Luckin Coffee</counterparty>
+        <product>Order Payment</product>
+    </transaction>
+    <transaction>
+        <counterparty>23 Stone Fashion</counterparty>
+        <product>/</product>
+    </transaction>
+    <transaction>
+        <counterparty>Beijing Rail Transit Internet Ticketing</counterparty>
+        <product>March 23, 17:14 - Beijing Rail Transit QR Code Ride</product>
+    </transaction>
+    <transaction>
+        <counterparty>Luxixi Food (Nanjing) Co., Ltd.</counterparty>
+        <product>Jinhe Food (Beijing) Co., Ltd.</product>
+    </transaction>
+    <transaction>
+        <counterparty>/</counterparty>
+        <product>Transfer Note: WeChat Transfer</product>
+    </transaction>
+    <transaction>
+        <counterparty>Meituan Platform Merchant</counterparty>
+        <product>Miss Fu in Chengdu (Wudaokou Store) - Meituan Takeout App - 25032111100300001307235165980243</product>
+    </transaction>
+    <transaction>
+        <counterparty>Yang</counterparty>
+        <product>Transfer Note: WeChat Transfer</product>
+    </transaction>
+    <transaction>
+        <counterparty>Meituan Platform Merchant</counterparty>
+        <product>LAVAZZA Coffee (Cuifei Mudanyuan Store) - Meituan Takeout App - 25032111100300001307148939862243</product>
+    </transaction>
+    <transaction>
+        <counterparty>ChaBaiDao</counterparty>
+        <product>Beijing Post Super Milk Tea Shop 4220 ChaBaiDao Beijing University of Posts and Telecommunications Store</product>
+    </transaction>
+    <transaction>
+        <counterparty>Jiang Gutou (Beiyou Store)</counterparty>
+        <product>Meituan Payment 909700198484510093</product>
+    </transaction>
+    <transaction>
+        <counterparty>Kuro Game</counterparty>
+        <product>Moon Phase Observation Card</product>
+    </transaction>
+</transactions>

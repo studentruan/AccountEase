@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.myapp.controller.InputSettingsController"
+      spacing="15"
+      style="-fx-padding: 20;">
+
+    <Label text="%settings.filepath.title" styleClass="settings-title"/>
+
+    <VBox spacing="10">
+        <!-- File Path Input Row -->
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="%settings.filepath.label" styleClass="input-label"/>
+            <TextField fx:id="filePathField"
+                       styleClass="file-path-input"
+                       promptText="%settings.filepath.prompt"/>
+            <Button text="%button.browse"
+                    styleClass="browse-btn"
+                    onAction="#handleBrowseFile"/>
+        </HBox>
+
+        <!-- Save Button -->
+        <Button text="%button.save"
+                styleClass="save-btn"
+                onAction="#saveFilePath"/>
+    </VBox>
+
+</VBox>
+
+<!--<VBox xmlns="http://javafx.com/javafx/11"-->
+<!--      xmlns:fx="http://javafx.com/fxml/1"-->
+<!--      fx:controller="com.myapp.controller.InputSettingsController"-->
+<!--      spacing="15"-->
+<!--      style="-fx-padding: 20;">-->
+
+<!--    <Label text="File Path Configuration" styleClass="settings-title"/>-->
+
+<!--    <VBox spacing="10">-->
+<!--        &lt;!&ndash; File Path Input Row &ndash;&gt;-->
+<!--        <HBox alignment="CENTER_LEFT" spacing="15">-->
+<!--            <Label text="File Path:" styleClass="input-label"/>-->
+<!--            <TextField fx:id="filePathField"-->
+<!--                       styleClass="file-path-input"-->
+<!--                       promptText="Please select an Excel/CSV file"-->
+<!--                       editable="false"/>-->
+<!--            <Button text="Browse..."-->
+<!--                    styleClass="browse-btn"-->
+<!--                    onAction="#handleBrowseFile"/>-->
+<!--        </HBox>-->
+
+<!--        &lt;!&ndash; Save Button &ndash;&gt;-->
+<!--        <Button text="%button.save"-->
+<!--                styleClass="save-btn"-->
+<!--                onAction="#saveFilePath"/>-->
+<!--    </VBox>-->
+
+<!--</VBox>-->
