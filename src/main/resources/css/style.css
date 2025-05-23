@@ -55,7 +55,7 @@
 
 .text-advice {
     -fx-font-family: 'Comic Sans MS';
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
     -fx-font-weight: Normal;
     -fx-padding: 5 0 0 10;
 }
@@ -98,11 +98,7 @@
     -fx-cursor: hand;
     -fx-alignment: center-left;
 }
-.text-advice{
-    -fx-font-family: 'Comic Sans MS';
-    -fx-font-size: 16px;
-    -fx-font-weight: Normal;
-}
+
 
 /* 标题样式 */
 .title {

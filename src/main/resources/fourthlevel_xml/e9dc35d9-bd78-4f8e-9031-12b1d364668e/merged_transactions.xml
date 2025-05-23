@@ -1370,19 +1370,19 @@
   </transaction>
   <transaction>
         
-    <id>250523234941912</id>
+    <id>250523235247317</id>
         
     <date>2025/05/23</date>
         
-    <counterparty>1</counterparty>
+    <counterparty>bugers</counterparty>
         
-    <product>1</product>
+    <product>bugers</product>
         
     <type>Expense</type>
         
-    <amount>1</amount>
+    <amount>1000</amount>
         
-    <class>Dining</class>
+    <class>Grooming</class>
     
   </transaction>
   <transaction>
@@ -3212,100 +3212,26 @@
   <transaction>
             
     
-    <id>250523234941912</id>
+    <id>250523235247317</id>
             
     
     <date>2025/05/23</date>
             
     
-    <counterparty>1</counterparty>
+    <counterparty>bugers</counterparty>
             
     
-    <product>1</product>
+    <product>bugers</product>
             
     
     <type>Expense</type>
             
     
-    <amount>1</amount>
+    <amount>1000</amount>
             
     
-    <class>Dining</class>
+    <class>Grooming</class>
         
-  
-  </transaction>
-  <transaction>
-                
-    
-    
-    <id>250523204029595</id>
-                
-    
-    
-    <date>2025/05/23</date>
-                
-    
-    
-    <counterparty>3</counterparty>
-                
-    
-    
-    <product>3</product>
-                
-    
-    
-    <type>Expense</type>
-                
-    
-    
-    <amount>3</amount>
-                
-    
-    
-    <class>Dining</class>
-            
-  
-  
-  </transaction>
-  <transaction>
-                    
-    
-    
-    
-    <id>250523204029595</id>
-                    
-    
-    
-    
-    <date>2025/05/23</date>
-                    
-    
-    
-    
-    <counterparty>3</counterparty>
-                    
-    
-    
-    
-    <product>3</product>
-                    
-    
-    
-    
-    <type>Expense</type>
-                    
-    
-    
-    
-    <amount>3</amount>
-                    
-    
-    
-    
-    <class>Dining</class>
-                
-  
-  
   
   </transaction>
 </transactions>

@@ -263,14 +263,22 @@
                                     </children>
                                 </VBox>
                                 <!-- 优化后的FXML结构 -->
-
                                 <VBox spacing="10" alignment="CENTER_RIGHT">
+
+                                    <Button fx:id="MemorialDayButton" styleClass="floating-btn"
+                                            onAction="#handleShowAllAnniversaries">  <!-- 修改事件方法名 -->
+                                        <graphic>
+                                            <ImageView fitWidth="35" fitHeight="35">
+                                                <Image url="@/images/jinianri.png"/>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
                                     <Button fx:id="addMemorialDayButton" styleClass="floating-btn"
                                             StackPane.alignment="CENTER"
                                             onAction="#handleAddMemorialDay">
                                         <graphic>
                                             <ImageView fitWidth="35" fitHeight="35" preserveRatio="true">
-                                                <Image url="@/images/jinianri.png" />
+                                                <Image url="@/images/tianjiajinianri.png" />
                                             </ImageView>
                                         </graphic>
                                     </Button>

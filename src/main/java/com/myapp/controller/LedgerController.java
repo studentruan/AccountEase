@@ -152,7 +152,7 @@ public class LedgerController implements Initializable {
     private YearMonth currentMonth = YearMonth.now();
     private Map<LocalDate, String> dateMarkers = new HashMap<>();
 
-
+    private List<String> allAnniversaries = new ArrayList<>();
     private LocalDate selectedDate = null;
     private boolean isDailyMode = false;
 
@@ -243,7 +243,41 @@ public class LedgerController implements Initializable {
     @FXML
     private Button addMemorialDayButton;
 
+    @FXML
+    private Button MemorialDayButton;
 
+    @FXML
+    private void handleShowAllAnniversaries() {
+        try {
+            List<String> anniversaries = getAllAnniversaries();
+
+            if (anniversaries.isEmpty()) {
+                showAlert("提示", "暂无纪念日数据");
+                return;
+            }
+
+            // 将列表转换为换行显示的字符串
+            String content = String.join("\n", anniversaries);
+
+            // 创建弹窗展示
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("所有纪念日");
+            alert.setHeaderText(null);
+            alert.setContentText(content);
+            alert.showAndWait();
+
+        } catch (IOException e) {
+            showAlert("错误", "加载纪念日失败: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     @FXML
     private void handleAddMemorialDay() {
@@ -728,7 +762,9 @@ public class LedgerController implements Initializable {
             netAssetsLabel.setText(formatAmount(monthlyData.income - monthlyData.expense, false));
             totalsLabel.setText(formatAmount(monthlyData.income, false));
             debtsLabel.setText(formatAmount(monthlyData.expense, false));
+
         }
+
     }
 
     private String formatAmount(double value, boolean showDecimal) {
@@ -824,9 +860,74 @@ public class LedgerController implements Initializable {
         // 在这里执行页面切换逻辑，例如切换 Scene 或者加载新的 FXML
     }
 
+
+    /**
+            * 从指定目录的JSON文件中读取所有纪念日
+ * 包含所有纪念日的List<String>
+ * IOException 如果目录不存在或读取文件出错
+ */
+    public List<String> getAllAnniversaries() throws IOException {
+        // 1. 获取当前账本ID和目录路径
+        String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
+        String jsonDir = "src/main/resources/thirdlevel_json";
+
+        // 2. 准备结果集合
+        List<String> anniversaries = new ArrayList<>();
+
+        // 3. 检查目录是否存在
+        Path dirPath = Paths.get(jsonDir);
+        if (!Files.exists(dirPath)) {
+            throw new IOException("纪念日目录不存在: " + jsonDir);
+        }
+
+        // 4. 遍历目录中的所有JSON文件
+        Files.list(dirPath)
+                .filter(path -> path.toString().endsWith(ledgerId + ".json"))
+                .forEach(jsonFile -> {
+                    try (FileReader reader = new FileReader(jsonFile.toFile())) {
+                        // 5. 解析JSON文件
+                        JSONObject json = new JSONObject(new JSONTokener(reader));
+
+                        // 6. 检查并获取纪念日数组
+                        if (json.has("所有的纪念日")) {
+                            JSONArray dates = json.getJSONArray("所有的纪念日");
+
+                            // 7. 添加到结果集合
+                            for (int i = 0; i < dates.length(); i++) {
+                                anniversaries.add(dates.getString(i));
+                            }
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException("读取文件失败: " + jsonFile, e);
+                    }
+                });
+
+        // 8. 返回结果
+        return anniversaries;
+    }
     @FXML
     public void loadAiAdvice(List<String> adviceList) {
         try {
+
+            adviceList.clear();
+            allAnniversaries = getAllAnniversaries();
+            System.out.println(allAnniversaries);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             // 加载 XML 文件中的数据
             String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
 //
@@ -850,50 +951,17 @@ public class LedgerController implements Initializable {
                 return;
             }
 
-// 处理每个文件
-//            for (File file : files) {
-//                String filePath = file.getAbsolutePath();
-//
-//            }
-
-
-
-
-
-
-
-
-
-
-
-//            String resourcePath = "Transactions_Record_XML/" + ledgerId;
-//            URL resourceUrl = getClass().getClassLoader().getResource(resourcePath);
-//            System.out.println("资源路径: " + resourceUrl);
-//
-//            if (resourceUrl == null) {
-//                System.err.println("目录不存在：" + resourcePath);
-//                return;
-//            }
-//
-//            File folder = new File(resourceUrl.getFile());
-//            File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
-//
-//            if (files == null || files.length == 0) {
-//                System.out.println("未找到XML文件");
-//                return;
-//            }
-
             for (File file : files) {
                 String filePath = file.getAbsolutePath();
                 System.out.println(filePath);
                 TransactionAnalyzer analyzer = new TransactionAnalyzer(filePath);
-                Map<String, Double> anomalies = detectAnomalies(analyzer);
+                Map<String, Double> anomalies = detectAnomalies(analyzer, allAnniversaries);
                 // 可选：输出异常的日期和金额
                 System.out.println("Abnormally high spending dates:");
                 anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
 
                 // 清空原始建议列表，避免重复
-                adviceList.clear();
+
 
                 // 将异常信息转换为 List<String> 格式
                 anomalies.forEach((date, amount) -> {
@@ -1396,30 +1464,30 @@ public class LedgerController implements Initializable {
 
             // 获取 LedgerController 并传递账本
 
-            ledger = GlobalContext.getInstance().getCurrentLedger();
-            MainController.getInstance().loadPage("ledger.fxml");
-            Object controller = MainController.getInstance().getCurrentController();
+//            ledger = GlobalContext.getInstance().getCurrentLedger();
+//            MainController.getInstance().loadPage("ledger.fxml");
+//            Object controller = MainController.getInstance().getCurrentController();
+//
+//
+//
+//            if (controller instanceof LedgerController ledgerController) {
+//                ledgerController.loadLedger(this.ledger);
+//            }
 
-
-
-            if (controller instanceof LedgerController ledgerController) {
-                ledgerController.loadLedger(this.ledger);
-            }
-
-        try {
-            financeData.loadFinanceData(ledger.getId());
-
-
-            if (isDailyMode) {
-                // 日模式图表
-                refreshDailyCharts(selectedDate);
-            } else {
-                // 月模式图表
-                refreshMonthlyCharts();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            financeData.loadFinanceData(ledger.getId());
+//
+//
+//            if (isDailyMode) {
+//                // 日模式图表
+//                refreshDailyCharts(selectedDate);
+//            } else {
+//                // 月模式图表
+//                refreshMonthlyCharts();
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         updateDashboard();
 
 
