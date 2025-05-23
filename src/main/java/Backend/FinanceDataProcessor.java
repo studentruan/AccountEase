@@ -34,9 +34,10 @@ public class FinanceDataProcessor {
     public FinanceDataProcessor(String ledgerId, Map<String, Transaction_FZ> transactions) throws Exception {
         this.ledgerId = ledgerId;
         this.transactions = transactions;
-        Path tokenizerDir = Paths.get("src/main/resources/Tokenizer");
-        String modelPath = "src/main/resources/bert_transaction_categorization.onnx";
-        this.classifier = new TransactionClassifier(tokenizerDir, modelPath);
+        Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // Path to the model's tokenizer
+        String modelPath = "src/main/resources/bert_transaction_categorization.onnx"; // Path to the model
+        Path descriptionPath = Paths.get("src/main/resources/counterparty_description.json"); //Path to the merchant descriptio
+        this.classifier = new TransactionClassifier(tokenizerDir, modelPath, descriptionPath);
     }
 
     public void process() {
@@ -170,8 +171,10 @@ public class FinanceDataProcessor {
     // 分类器调用方法（需异常处理）
     private String classifyTransaction(String product, String counterparty) {
         try {
+            Map<String, String> category = classifier.classify(product + " " + counterparty);
 
-            return classifier.classify(product + " " + counterparty);
+            return category.values().iterator().next();
+
         } catch (Exception e) {
             return "分类失败"; // 或返回默认分类
         }

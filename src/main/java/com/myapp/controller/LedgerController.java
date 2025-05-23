@@ -65,7 +65,6 @@ import java.util.stream.Stream;
 
 import static Backend.FinanceData.THIRD_DIR;
 import static detectorTools.OutlierDetector.detectAnomalies;
-import static detectorTools.OutlierDetector.outputOutliers;
 
 public class LedgerController implements Initializable {
 
@@ -712,19 +711,24 @@ public class LedgerController implements Initializable {
         FinanceData.MonthlyData monthlyData = financeData.getMonthlyData();
 
         // 更新基础指标
-        expenseLabel.setText(formatAmount(isDailyMode ? dailyData.expense : monthlyData.expense, isDailyMode));
-        incomeLabel.setText(formatAmount(isDailyMode ? dailyData.income : monthlyData.income, isDailyMode));
-        balanceLabel.setText(formatAmount(monthlyData.budget - monthlyData.spentBudget, false));
+        if(dailyData!=null) {
+            expenseLabel.setText(formatAmount(isDailyMode ? dailyData.expense : monthlyData.expense, isDailyMode));
+            incomeLabel.setText(formatAmount(isDailyMode ? dailyData.income : monthlyData.income, isDailyMode));
+        }
 
-        // 预算相关（仅月模式）
-        budgetLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.budget, false));
-        remainLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.remainingBudget, false));
-        spentLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.spentBudget, false));
+        if(monthlyData != null) {
+            balanceLabel.setText(formatAmount(monthlyData.budget - monthlyData.spentBudget, false));
 
-        // 资产概况（始终使用月数据）
-        netAssetsLabel.setText(formatAmount(monthlyData.income - monthlyData.expense, false));
-        totalsLabel.setText(formatAmount(monthlyData.income, false));
-        debtsLabel.setText(formatAmount(monthlyData.expense, false));
+            // 预算相关（仅月模式）
+            budgetLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.budget, false));
+            remainLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.remainingBudget, false));
+            spentLabel.setText(isDailyMode ? "N/A" : formatAmount(monthlyData.spentBudget, false));
+
+            // 资产概况（始终使用月数据）
+            netAssetsLabel.setText(formatAmount(monthlyData.income - monthlyData.expense, false));
+            totalsLabel.setText(formatAmount(monthlyData.income, false));
+            debtsLabel.setText(formatAmount(monthlyData.expense, false));
+        }
     }
 
     private String formatAmount(double value, boolean showDecimal) {
@@ -883,7 +887,7 @@ public class LedgerController implements Initializable {
                 String filePath = file.getAbsolutePath();
                 System.out.println(filePath);
                 TransactionAnalyzer analyzer = new TransactionAnalyzer(filePath);
-                Map<String, Double> anomalies = outputOutliers(detectAnomalies(analyzer), 1.5);
+                Map<String, Double> anomalies = detectAnomalies(analyzer);
                 // 可选：输出异常的日期和金额
                 System.out.println("Abnormally high spending dates:");
                 anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
@@ -1208,7 +1212,8 @@ public class LedgerController implements Initializable {
             String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
 
             // AI分类
-            String category = classifyTransaction(data.product(), data.counterparty());
+            Map<String,String> back_category = classifyTransaction(data.product(), data.counterparty());
+            String category = back_category.values().iterator().next();
 
             // 生成XML
             Document doc = createTransactionXml(id, date, data, category);
@@ -1275,12 +1280,13 @@ public class LedgerController implements Initializable {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmssSSS"));
     }
 
-    private String classifyTransaction(String product, String counterparty) throws Exception {
-        Path tokenizerDir = Paths.get("src/main/resources/Tokenizer");
-        String modelPath = "src/main/resources/bert_transaction_categorization.onnx";
-        TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath);
-        return classifier.classify(product + " " + counterparty);
+    private Map<String,String> classifyTransaction(String product, String counterparty) throws Exception {
+        Path tokenizerDir = Paths.get("src/main/resources/Tokenizer"); // Path to the model's tokenizer
+        String modelPath = "src/main/resources/bert_transaction_categorization.onnx"; // Path to the model
+        Path descriptionPath = Paths.get("src/main/resources/counterparty_description.json"); //Path to the merchant description
+        TransactionClassifier classifier = new TransactionClassifier(tokenizerDir, modelPath, descriptionPath);
 
+        return classifier.classify(product + " " + counterparty);
 
     }
 

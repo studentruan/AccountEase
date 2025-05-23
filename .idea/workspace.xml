@@ -4,125 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="Changes">
+    <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/AdvancedAnomalyDetector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/BandwidthCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/DataPreprocessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/DataPreprocessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/KernelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/KernelUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/OutlierDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/OutlierDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/PureJavaKDEAnomalyDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/StatisticalThresholdCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/StatisticalThresholdCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/TimeSensitiveAdjuster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/TimeSensitiveAdjuster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/detectorTools/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/detectorTools/Transaction.java" afterDir="false" />
-=======
->>>>>>> ad42df7 (nothing)
+      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;studentruan&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:studentruan/AccountEase.git&quot;,
-    &quot;accountId&quot;: &quot;945dfae0-919a-4189-bb16-f0bd34804d9f&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="2utBnnFGrSlmKNwRwxMwbHOJEBT" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.CsvToXmlConverter.executor": "Run",
-    "Application.DailyTransactionProcessor.executor": "Run",
-    "Application.DeepSeekONNXInference.executor": "Run",
     "Application.Main.executor": "Run",
-    "Application.OnnxBertClassifier.executor": "Run",
-    "Application.OnnxInference.executor": "Run",
-    "Application.Test.executor": "Run",
     "Application.Unnamed.executor": "Run",
-    "JUnit.ARIMAModelTest.executor": "Run",
-    "JUnit.AppTest.executor": "Run",
-    "JUnit.CoreTest.executor": "Run",
-    "JUnit.StatisticalThresholdCalculatorTest.executor": "Run",
-    "JUnit.TimeSensitiveAdjusterTest.executor": "Run",
-    "JUnit.TransactionClassifierTest.executor": "Run",
-    "JUnit.detectorTest.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.AIend [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.AIend [org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile].executor": "Run",
-    "Maven.AIend [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
-    "Maven.AIend.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-<<<<<<< HEAD
-    "git-widget-placeholder": "outlierDetect__yth",
-=======
-    "git-widget-placeholder": "main",
->>>>>>> ad42df7 (nothing)
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/windy/IdeaProjects/SE_SS/src/main/resources/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.Unnamed.executor": "Run"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/images" />
-      <recent name="$PROJECT_DIR$/src/main/java/Backend" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/resources/交易记录_XML/" />
-      <recent name="$PROJECT_DIR$/src/main/resources/交易记录_CSV/" />
-      <recent name="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/" />
-      <recent name="$PROJECT_DIR$/src/main/java/DataProcessor" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="Backend" />
-      <recent name="" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.TimeSensitiveAdjusterTest">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.myapp.Main" />
       <module name="AIend" />
       <option name="VM_PARAMETERS" value="--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-21.0.7/lib --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
@@ -130,138 +35,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ARIMAModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AIend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="AIUtilities.prediction.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="AIUtilities.prediction" />
-      <option name="MAIN_CLASS_NAME" value="AIUtilities.prediction.ARIMAModelTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CoreTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AIend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="detectorTools.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="detectorTools" />
-      <option name="MAIN_CLASS_NAME" value="detectorTools.CoreTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticalThresholdCalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AIend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="detectorTools.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="detectorTools" />
-      <option name="MAIN_CLASS_NAME" value="detectorTools.StatisticalThresholdCalculatorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TimeSensitiveAdjusterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AIend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="detectorTools.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="detectorTools" />
-      <option name="MAIN_CLASS_NAME" value="detectorTools.TimeSensitiveAdjusterTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="detectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AIend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="detectorTools.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="detectorTools" />
-      <option name="MAIN_CLASS_NAME" value="detectorTools.detectorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.TimeSensitiveAdjusterTest" />
-        <item itemvalue="JUnit.StatisticalThresholdCalculatorTest" />
-        <item itemvalue="JUnit.detectorTest" />
-        <item itemvalue="JUnit.CoreTest" />
-        <item itemvalue="JUnit.ARIMAModelTest" />
-      </list>
-    </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="f2f46db9-e493-4a34-8aed-9ea4b32c447a" name="Changes" comment="" />
-      <created>1743058160194</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1743058160194</updated>
-      <workItem from="1747380687663" duration="49474000" />
-      <workItem from="1747569054041" duration="7177000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>208</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>205</line>
-          <properties class="com.myapp.controller.LedgerController">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
