@@ -11,7 +11,9 @@ import java.util.*;
 public class DailyTransactionProcessor {
 
     String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
-    String outputDir = "src/main/resources/Transactions_Record_XML/"+ledgerId+"/";
+//    String outputDir = "src/main/resources/Transactions_Record_XML/"+ledgerId+"/";
+    String outputDir = "src/main/resources/fourthlevel_xml/"+ledgerId+"/";
+
 
 
 

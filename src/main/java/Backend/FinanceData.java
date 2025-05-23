@@ -7,10 +7,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.stream.Collectors;
 
 public class FinanceData {
@@ -26,13 +26,16 @@ public class FinanceData {
         public double budget;
         public double spentBudget;
         public double remainingBudget;
+        public List<Map.Entry<String, Double>> topCategories; // 修改为包含金额的数据结构
 
-        public DailyData(double income, double expense, double budget, double spentBudget) {
+        public DailyData(double income, double expense, double budget, double spentBudget,
+                         List<Map.Entry<String, Double>> topCategories) {
             this.income = income;
             this.expense = expense;
             this.budget = budget;
             this.spentBudget = spentBudget;
             this.remainingBudget = budget - spentBudget;
+            this.topCategories = topCategories;
         }
     }
 
@@ -43,21 +46,22 @@ public class FinanceData {
         public double budget;
         public double spentBudget;
         public double remainingBudget;
+        public List<Map.Entry<String, Double>> topCategories; // 包含分类和金额
 
-        public MonthlyData(double income, double expense, double budget, double spentBudget) {
+        public MonthlyData(double income, double expense, double budget,
+                           double spentBudget, List<Map.Entry<String, Double>> topCategories) {
             this.income = income;
             this.expense = expense;
             this.budget = budget;
             this.spentBudget = spentBudget;
             this.remainingBudget = budget - spentBudget;
+            this.topCategories = topCategories;
         }
     }
 
     // 数据存储
     private final Map<LocalDate, DailyData> dailyDataMap = new HashMap<>();
     private MonthlyData monthlyData;
-    private final List<List<String>> dailyTopCategories = new ArrayList<>();
-    private final List<List<String>> monthlyTopCategories = new ArrayList<>();
     private final List<String> anniversaryDates = new ArrayList<>();
 
     // 元数据
@@ -93,14 +97,13 @@ public class FinanceData {
         parseBasicInfo(json);
         parseDailyData(json);
         parseMonthlyData(json);
-        parseCategories(json);
+        parseAnniversaries(json);
         parseMetadata(json);
     }
 
     private void parseBasicInfo(JSONObject json) {
         this.ledgerId = json.getString("账本ID");
 
-        // 从二级目录获取创建时间
         try {
             File metaFile = new File(SECONDARY_DIR, ledgerId + ".json");
             JSONObject metaJson = new JSONObject(new String(Files.readAllBytes(metaFile.toPath())));
@@ -114,16 +117,22 @@ public class FinanceData {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
 
         json.keySet().stream()
-                .filter(key -> key.matches("\\d{4}-\\d{2}-\\d{2}"))  // 匹配日期格式
+                .filter(key -> key.matches("\\d{4}-\\d{2}-\\d{2}"))
                 .forEach(dateStr -> {
                     LocalDate date = LocalDate.parse(dateStr, dateFormatter);
                     JSONObject dailyJson = json.getJSONObject(dateStr);
+
+                    // 解析分类数据
+                    List<Map.Entry<String, Double>> categories = parseCategoryEntries(
+                            dailyJson.optJSONArray("前四个支出类别")
+                    );
 
                     DailyData data = new DailyData(
                             dailyJson.optDouble("日收入", 0),
                             dailyJson.optDouble("日支出", 0),
                             dailyJson.optDouble("日预算", 0),
-                            dailyJson.optDouble("日已花预算", 0)
+                            dailyJson.optDouble("日已花预算", 0),
+                            categories
                     );
 
                     dailyDataMap.put(date, data);
@@ -137,38 +146,36 @@ public class FinanceData {
                 .orElseThrow();
 
         JSONObject monthlyJson = json.getJSONObject(monthKey);
+
+        // 解析分类数据
+        List<Map.Entry<String, Double>> categories = parseCategoryEntries(
+                monthlyJson.optJSONArray("前四个支出类别")
+        );
+
         this.monthlyData = new MonthlyData(
                 monthlyJson.optDouble("月收入", 0),
                 monthlyJson.optDouble("月支出", 0),
                 monthlyJson.optDouble("月预算", 0),
-                monthlyJson.optDouble("月已花预算", 0)
+                monthlyJson.optDouble("月已花预算", 0),
+                categories
         );
     }
 
-    private void parseCategories(JSONObject json) {
-        // 当天支出分类
-        JSONArray dailyCategories = json.optJSONArray("当天前四个支出最多的种类");
-        if (dailyCategories != null) {
-            for (int i = 0; i < dailyCategories.length(); i++) {
-                JSONArray items = dailyCategories.getJSONArray(i);
-                dailyTopCategories.add(items.toList().stream()
-                        .map(Object::toString)
-                        .collect(Collectors.toList()));
+    private List<Map.Entry<String, Double>> parseCategoryEntries(JSONArray categories) {
+        List<Map.Entry<String, Double>> result = new ArrayList<>();
+        if (categories != null) {
+            for (int i = 0; i < categories.length(); i++) {
+                JSONObject item = categories.getJSONObject(i);
+                result.add(new SimpleEntry<>(
+                        item.getString("category"),
+                        item.getDouble("amount")
+                ));
             }
         }
+        return result;
+    }
 
-        // 当月支出分类
-        JSONArray monthlyCategories = json.optJSONArray("当月前四个支出最多的种类");
-        if (monthlyCategories != null) {
-            for (int i = 0; i < monthlyCategories.length(); i++) {
-                JSONArray items = monthlyCategories.getJSONArray(i);
-                monthlyTopCategories.add(items.toList().stream()
-                        .map(Object::toString)
-                        .collect(Collectors.toList()));
-            }
-        }
-
-        // 纪念日
+    private void parseAnniversaries(JSONObject json) {
         JSONArray anniversaries = json.optJSONArray("所有的纪念日");
         if (anniversaries != null) {
             anniversaryDates.addAll(anniversaries.toList().stream()
@@ -185,21 +192,13 @@ public class FinanceData {
         }
     }
 
-    // 以下为数据访问方法
+    // 数据访问方法
     public DailyData getDailyData(LocalDate date) {
         return dailyDataMap.get(date);
     }
 
     public MonthlyData getMonthlyData() {
         return monthlyData;
-    }
-
-    public List<List<String>> getDailyTopCategories() {
-        return Collections.unmodifiableList(dailyTopCategories);
-    }
-
-    public List<List<String>> getMonthlyTopCategories() {
-        return Collections.unmodifiableList(monthlyTopCategories);
     }
 
     public List<String> getAnniversaryDates() {
@@ -211,4 +210,5 @@ public class FinanceData {
     public LocalDate getCreationTime() { return creationTime; }
     public LocalDate getGeneratedDate() { return generatedDate; }
     public int getTransactionCount() { return transactionCount; }
+
 }
