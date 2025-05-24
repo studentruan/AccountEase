@@ -6,6 +6,8 @@
 <?import javafx.collections.*?>
 
 <?import java.lang.String?>
+<?import javafx.fxml.FXMLLoader?>
+
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.myapp.controller.LanguageSettingsController"
@@ -15,7 +17,7 @@
 
     <!-- 语言选择行 -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="请选择你的语言：" styleClass="settings-label"/>
+        <Label text="%language.select" styleClass="settings-label"/>
 
         <!-- 下拉框 -->
         <ComboBox fx:id="languageComboBox" prefWidth="150">
@@ -29,7 +31,31 @@
     </HBox>
 
     <!-- 保存按钮 -->
-    <Button text="保存"
-             onAction="#saveLanguageSettings"
-             styleClass="save-btn"/>
+    <Button text="%button.save"
+            onAction="#saveLanguageSettings"
+            styleClass="save-btn"/>
 </VBox>
+
+
+
+        <!--<VBox xmlns="http://javafx.com/javafx/8.0"-->
+        <!--      xmlns:fx="http://javafx.com/fxml/1"-->
+        <!--      fx:controller="com.myapp.controller.LanguageSettingsController"-->
+        <!--      spacing="20">-->
+
+        <!--    <HBox spacing="10" alignment="CENTER_LEFT">-->
+        <!--        <Label text="%language.select" styleClass="settings-label"/>-->
+        <!--        <ComboBox fx:id="languageComboBox" prefWidth="150">-->
+        <!--            <items>-->
+        <!--                <FXCollections fx:factory="observableArrayList">-->
+        <!--                    <String fx:value="English"/>-->
+        <!--                    <String fx:value="简体中文"/>-->
+        <!--                </FXCollections>-->
+        <!--            </items>-->
+        <!--        </ComboBox>-->
+        <!--    </HBox>-->
+
+        <!--    <Button text="%button.save"-->
+        <!--            onAction="#saveLanguageSettings"-->
+        <!--            styleClass="save-btn"/>-->
+        <!--</VBox>-->
