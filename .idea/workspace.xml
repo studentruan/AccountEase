@@ -5,44 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/03e4fc47-13a8-464f-924b-1dda187b7c6e/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/0fd4a16c-689b-4eba-be1e-48d835b3b55d/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/2da4c6d3-be31-46b5-9427-beefc6a2ff32/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/3ee127fd-872f-44ef-a81b-6fc266f91ae0/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/67bf8e5d-b728-4d20-b720-dc30d8edf35b/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/7ee227a9-77b9-4a52-88d3-65065522f8e2/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/8af49bf6-1b0a-44b8-a369-1b22b5485d20/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/c1396b75-49fc-4269-88b7-bd09d611f394/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/e21e5b1f-df6a-4d2f-b8de-3571cfe635cb/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/e9dc35d9-bd78-4f8e-9031-12b1d364668e/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_CSV/f528d257-429d-40d7-aa80-4a5f90b14719/detailed_monthly_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/03e4fc47-13a8-464f-924b-1dda187b7c6e/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/0fd4a16c-689b-4eba-be1e-48d835b3b55d/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/2da4c6d3-be31-46b5-9427-beefc6a2ff32/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/3ee127fd-872f-44ef-a81b-6fc266f91ae0/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/67bf8e5d-b728-4d20-b720-dc30d8edf35b/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/7ee227a9-77b9-4a52-88d3-65065522f8e2/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/8af49bf6-1b0a-44b8-a369-1b22b5485d20/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/c1396b75-49fc-4269-88b7-bd09d611f394/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/e21e5b1f-df6a-4d2f-b8de-3571cfe635cb/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/e9dc35d9-bd78-4f8e-9031-12b1d364668e/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Transactions_Record_XML/f528d257-429d-40d7-aa80-4a5f90b14719/detailed_monthly_statement.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/firstlevel_json/ledger_ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/3ee127fd-872f-44ef-a81b-6fc266f91ae0/detailed_monthly_statement.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/3ee127fd-872f-44ef-a81b-6fc266f91ae0/merged_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/7ee227a9-77b9-4a52-88d3-65065522f8e2/merged_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/c1396b75-49fc-4269-88b7-bd09d611f394/detailed_monthly_statement.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/c1396b75-49fc-4269-88b7-bd09d611f394/merged_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b/detailed_monthly_statement.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b/merged_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/messages_zh.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/messages_zh.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/3aa78261-c2f9-47c2-be73-09a4562fb996.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/3ee127fd-872f-44ef-a81b-6fc266f91ae0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/c1396b75-49fc-4269-88b7-bd09d611f394.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/截屏2025-05-24 00.41.50.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/3aa78261-c2f9-47c2-be73-09a4562fb996.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/3ee127fd-872f-44ef-a81b-6fc266f91ae0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/c1396b75-49fc-4269-88b7-bd09d611f394.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/0fd4a16c-689b-4eba-be1e-48d835b3b55d/merged_transactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/0fd4a16c-689b-4eba-be1e-48d835b3b55d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/0fd4a16c-689b-4eba-be1e-48d835b3b55d.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
