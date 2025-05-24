@@ -99,7 +99,7 @@ public class MainController implements Initializable {
         }
     }
 
-    // NEW: 语言切换事件处理
+//     NEW: 语言切换事件处理
     @Subscribe
     public void onLocaleChanged(I18nUtil.LocaleChangeEvent event) {
         Platform.runLater(() -> {
@@ -107,7 +107,7 @@ public class MainController implements Initializable {
         });
     }
 
-    // NEW: 重新加载当前页面
+//     NEW: 重新加载当前页面
     private void reloadCurrentPage() {
         if (currentController != null) {
             String currentFxml = getCurrentFxmlName();
@@ -199,6 +199,7 @@ public class MainController implements Initializable {
 
             // 3. 加载并显示
             Parent root = loader.load();
+            currentController = loader.getController();
             mainPane.setCenter(root);
 
         } catch (Exception e) {
@@ -221,7 +222,7 @@ public class MainController implements Initializable {
     }
 
 
-    // NEW: 获取当前FXML文件名（需要根据项目实际实现）
+//     NEW: 获取当前FXML文件名（需要根据项目实际实现）
     private String getCurrentFxmlName() {
         // 示例实现，实际应根据currentController类型返回对应文件名
         if (currentController instanceof LedgerController) {

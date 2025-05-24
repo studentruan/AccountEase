@@ -1369,23 +1369,6 @@
         
   </transaction>
   <transaction>
-        
-    <id>250523234941912</id>
-        
-    <date>2025/05/23</date>
-        
-    <counterparty>1</counterparty>
-        
-    <product>1</product>
-        
-    <type>Expense</type>
-        
-    <amount>1</amount>
-        
-    <class>Dining</class>
-    
-  </transaction>
-  <transaction>
                         
         
     
@@ -3210,55 +3193,30 @@
   
   </transaction>
   <transaction>
-            
+                
     
-    <id>250523234941912</id>
-            
     
-    <date>2025/05/23</date>
-            
+    <id>250525032749478</id>
+                
+    
+    
+    <date>2025/05/25</date>
+                
+    
     
     <counterparty>1</counterparty>
-            
+                
+    
     
     <product>1</product>
-            
+                
+    
     
     <type>Expense</type>
-            
+                
+    
     
     <amount>1</amount>
-            
-    
-    <class>Dining</class>
-        
-  
-  </transaction>
-  <transaction>
-                
-    
-    
-    <id>250523204029595</id>
-                
-    
-    
-    <date>2025/05/23</date>
-                
-    
-    
-    <counterparty>3</counterparty>
-                
-    
-    
-    <product>3</product>
-                
-    
-    
-    <type>Expense</type>
-                
-    
-    
-    <amount>3</amount>
                 
     
     
@@ -3272,22 +3230,22 @@
     
     
     
-    <id>250523204029595</id>
+    <id>250525032622759</id>
                     
     
     
     
-    <date>2025/05/23</date>
+    <date>2025/05/15</date>
                     
     
     
     
-    <counterparty>3</counterparty>
+    <counterparty>1</counterparty>
                     
     
     
     
-    <product>3</product>
+    <product>1</product>
                     
     
     
@@ -3297,7 +3255,7 @@
     
     
     
-    <amount>3</amount>
+    <amount>133</amount>
                     
     
     

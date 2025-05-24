@@ -120,6 +120,7 @@ public class FinanceDataProcessor {
             double spent = expense;
             double remaining = budget - spent;
 
+
             monthlyData.put("月收入", income);
             monthlyData.put("月支出", expense);
             monthlyData.put("月预算", budget);

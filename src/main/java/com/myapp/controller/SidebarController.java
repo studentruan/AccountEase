@@ -57,7 +57,7 @@ public class SidebarController implements Initializable {
 
 
         if (controller instanceof LedgerController ledgerController) {
-            ledgerController.loadLedger(this.ledger);
+            ledgerController.loadLedger(GlobalContext.getInstance().getCurrentLedger());
         }
 
 

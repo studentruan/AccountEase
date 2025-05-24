@@ -5,20 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/secondlevel_json/截屏2025-05-24 00.41.50.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/FinanceDataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/firstlevel_json/ledger_ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/3ee127fd-872f-44ef-a81b-6fc266f91ae0/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/3ee127fd-872f-44ef-a81b-6fc266f91ae0/merged_transactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/7ee227a9-77b9-4a52-88d3-65065522f8e2/merged_transactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/c1396b75-49fc-4269-88b7-bd09d611f394/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/c1396b75-49fc-4269-88b7-bd09d611f394/merged_transactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b/detailed_monthly_statement.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b/merged_transactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/add.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/jinianri.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/jinianri.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/messages_zh.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/messages_zh.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/3aa78261-c2f9-47c2-be73-09a4562fb996.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/3ee127fd-872f-44ef-a81b-6fc266f91ae0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/c1396b75-49fc-4269-88b7-bd09d611f394.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/secondlevel_json/截屏2025-05-24 00.41.50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/3aa78261-c2f9-47c2-be73-09a4562fb996.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/3ee127fd-872f-44ef-a81b-6fc266f91ae0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/7ee227a9-77b9-4a52-88d3-65065522f8e2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/c1396b75-49fc-4269-88b7-bd09d611f394.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/dcc4cb5c-29ef-4ae9-bdd2-e0cb7028fb2b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/MainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" afterDir="false" />
     </list>
@@ -27,16 +49,21 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "git-widget-placeholder": "DJY__branch",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "应用程序.Main.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
@@ -56,5 +83,76 @@
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>1510</line>
+          <properties class="com.myapp.controller.LedgerController" method="cleanUpIndividualFiles">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>1124</line>
+          <properties class="com.myapp.controller.LedgerController" method="handleNextMonth">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>277</line>
+          <properties class="com.myapp.controller.LedgerController" method="showAlert">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>534</line>
+          <properties class="com.myapp.controller.LedgerController" method="initializePictures">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>892</line>
+          <properties class="com.myapp.controller.LedgerController" method="refreshMonthlyCharts">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LanguageSettingsController.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>511</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
+          <line>535</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
