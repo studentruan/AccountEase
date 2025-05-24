@@ -5,38 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/secondlevel_json/截屏2025-05-24 00.41.50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/CsvToXmlConverterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/DailyTransactionProcessorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/TransactionAnalyzerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myapp/controller/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/67bf8e5d-b728-4d20-b720-dc30d8edf35b/merged_transactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fourthlevel_xml/e9dc35d9-bd78-4f8e-9031-12b1d364668e/merged_transactions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/ledger.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/add.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/jinianri.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/jinianri.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/tianjiajinianri.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/67bf8e5d-b728-4d20-b720-dc30d8edf35b.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/thirdlevel_json/e9dc35d9-bd78-4f8e-9031-12b1d364668e.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/LedgerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/myapp/controller/SidebarController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "JUnit.CsvToXmlConverterTest.executor": "Run",
+    "JUnit.CsvToXmlConverterTest.testCompleteRecordConversion.executor": "Run",
+    "JUnit.DailyTransactionProcessorTest.executor": "Run",
+    "JUnit.DailyTransactionProcessorTest.testBoundaryValues.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testDailyIncome.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testExpenseDailySummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlyBreakdown.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlyIncomeSummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlySummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlyExpense.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlySummary.executor": "Run",
+    "git-widget-placeholder": "Testing"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
@@ -53,6 +64,103 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TransactionAnalyzerTest.testDailyIncome" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testDailyIncome" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testExpenseDailySummary" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testExpenseDailySummary" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testYearlyAnalysis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testYearlyAnalysis" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testYearlyExpense" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testYearlyExpense" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testYearlySummary" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testYearlySummary" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testDailyIncome" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testExpenseDailySummary" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyAnalysis" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyExpense" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlySummary" />
+      <item itemvalue="应用程序.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlySummary" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyExpense" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyAnalysis" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testExpenseDailySummary" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testDailyIncome" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <servers />
