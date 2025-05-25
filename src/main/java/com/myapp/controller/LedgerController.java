@@ -658,7 +658,7 @@ public class LedgerController implements Initializable {
         // 获取当前显示模式
 //        updateCalendar();
 
-        refreshCharts(isDailyMode);
+
 
         updateFinancialMetrics(isDailyMode);
         LocalDate today = LocalDate.now();
@@ -666,7 +666,7 @@ public class LedgerController implements Initializable {
         // 更新核心财务指标
 
         // 更新图表数据
-        refreshCharts(isDailyMode);
+
 
         // 加载智能建议
         loadAiAdvice(adviceList);
@@ -734,6 +734,7 @@ public class LedgerController implements Initializable {
         }
 
         showDateDetails(today);
+        refreshCharts(isDailyMode);
 
 
 }
@@ -1473,30 +1474,30 @@ public class LedgerController implements Initializable {
 
             // 获取 LedgerController 并传递账本
 
-//            ledger = GlobalContext.getInstance().getCurrentLedger();
-//            MainController.getInstance().loadPage("ledger.fxml");
-//            Object controller = MainController.getInstance().getCurrentController();
-//
-//
-//
-//            if (controller instanceof LedgerController ledgerController) {
-//                ledgerController.loadLedger(this.ledger);
-//            }
+            ledger = GlobalContext.getInstance().getCurrentLedger();
+            MainController.getInstance().loadPage("ledger.fxml");
+            Object controller = MainController.getInstance().getCurrentController();
 
-//        try {
-//            financeData.loadFinanceData(ledger.getId());
-//
-//
-//            if (isDailyMode) {
-//                // 日模式图表
-//                refreshDailyCharts(selectedDate);
-//            } else {
-//                // 月模式图表
-//                refreshMonthlyCharts();
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+
+
+            if (controller instanceof LedgerController ledgerController) {
+                ledgerController.loadLedger(this.ledger);
+            }
+
+        try {
+            financeData.loadFinanceData(ledger.getId());
+
+
+            if (isDailyMode) {
+                // 日模式图表
+                refreshDailyCharts(selectedDate);
+            } else {
+                // 月模式图表
+                refreshMonthlyCharts();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         updateDashboard();
 
 

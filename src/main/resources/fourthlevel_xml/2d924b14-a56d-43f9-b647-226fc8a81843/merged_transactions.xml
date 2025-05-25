@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250524122553544</id>
+        
+    <date>2025/05/24</date>
+        
+    <counterparty>1</counterparty>
+        
+    <product>1</product>
+        
+    <type>Expense</type>
+        
+    <amount>1</amount>
+        
+    <class>Dining</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250524122553544</id>
+            
+    
+    <date>2025/05/24</date>
+            
+    
+    <counterparty>1</counterparty>
+            
+    
+    <product>1</product>
+            
+    
+    <type>Expense</type>
+            
+    
+    <amount>1</amount>
+            
+    
+    <class>Dining</class>
+        
+  
+  </transaction>
+  <transaction>
+                
+    
+    
+    <id>250524122540078</id>
+                
+    
+    
+    <date>2025/05/24</date>
+                
+    
+    
+    <counterparty>Bugers</counterparty>
+                
+    
+    
+    <product>buger</product>
+                
+    
+    
+    <type>Expense</type>
+                
+    
+    
+    <amount>11</amount>
+                
+    
+    
+    <class>Grooming</class>
+            
+  
+  
+  </transaction>
+  <transaction>
+                    
+    
+    
+    
+    <id>250524122540078</id>
+                    
+    
+    
+    
+    <date>2025/05/24</date>
+                    
+    
+    
+    
+    <counterparty>Bugers</counterparty>
+                    
+    
+    
+    
+    <product>buger</product>
+                    
+    
+    
+    
+    <type>Expense</type>
+                    
+    
+    
+    
+    <amount>11</amount>
+                    
+    
+    
+    
+    <class>Grooming</class>
+                
+  
+  
+  
+  </transaction>
+  <transaction>
+                            
+    
+    
+    
+    
+    
+    <id>250524122455379</id>
+                            
+    
+    
+    
+    
+    
+    <date>2025/05/24</date>
+                            
+    
+    
+    
+    
+    
+    <counterparty>Buguers</counterparty>
+                            
+    
+    
+    
+    
+    
+    <product>chips</product>
+                            
+    
+    
+    
+    
+    
+    <type>Expense</type>
+                            
+    
+    
+    
+    
+    
+    <amount>77</amount>
+                            
+    
+    
+    
+    
+    
+    <class>Grooming</class>
+                        
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                        
+    
+    
+    
+    
+    <id>250524122455379</id>
+                        
+    
+    
+    
+    
+    <date>2025/05/24</date>
+                        
+    
+    
+    
+    
+    <counterparty>Buguers</counterparty>
+                        
+    
+    
+    
+    
+    <product>chips</product>
+                        
+    
+    
+    
+    
+    <type>Expense</type>
+                        
+    
+    
+    
+    
+    <amount>77</amount>
+                        
+    
+    
+    
+    
+    <class>Grooming</class>
+                    
+  
+  
+  
+  
+  </transaction>
+</transactions>

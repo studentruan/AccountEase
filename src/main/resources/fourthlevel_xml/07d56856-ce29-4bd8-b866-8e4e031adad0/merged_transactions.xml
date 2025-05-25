@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250524123958593</id>
+        
+    <date>2025/05/24</date>
+        
+    <counterparty>Bugers</counterparty>
+        
+    <product>buger</product>
+        
+    <type>Expense</type>
+        
+    <amount>44</amount>
+        
+    <class>Grooming</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250524123958593</id>
+            
+    
+    <date>2025/05/24</date>
+            
+    
+    <counterparty>Bugers</counterparty>
+            
+    
+    <product>buger</product>
+            
+    
+    <type>Expense</type>
+            
+    
+    <amount>44</amount>
+            
+    
+    <class>Grooming</class>
+        
+  
+  </transaction>
+</transactions>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250524122911313</id>
+        
+    <date>2025/05/24</date>
+        
+    <counterparty>1</counterparty>
+        
+    <product>1</product>
+        
+    <type>Expense</type>
+        
+    <amount>1</amount>
+        
+    <class>Dining</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250524122911313</id>
+            
+    
+    <date>2025/05/24</date>
+            
+    
+    <counterparty>1</counterparty>
+            
+    
+    <product>1</product>
+            
+    
+    <type>Expense</type>
+            
+    
+    <amount>1</amount>
+            
+    
+    <class>Dining</class>
+        
+  
+  </transaction>
+  <transaction>
+                
+    
+    
+    <id>250524122759535</id>
+                
+    
+    
+    <date>2025/05/24</date>
+                
+    
+    
+    <counterparty>Bugers</counterparty>
+                
+    
+    
+    <product>buger</product>
+                
+    
+    
+    <type>Expense</type>
+                
+    
+    
+    <amount>12</amount>
+                
+    
+    
+    <class>Grooming</class>
+            
+  
+  
+  </transaction>
+  <transaction>
+                    
+    
+    
+    
+    <id>250524122759535</id>
+                    
+    
+    
+    
+    <date>2025/05/24</date>
+                    
+    
+    
+    
+    <counterparty>Bugers</counterparty>
+                    
+    
+    
+    
+    <product>buger</product>
+                    
+    
+    
+    
+    <type>Expense</type>
+                    
+    
+    
+    
+    <amount>12</amount>
+                    
+    
+    
+    
+    <class>Grooming</class>
+                
+  
+  
+  
+  </transaction>
+</transactions>

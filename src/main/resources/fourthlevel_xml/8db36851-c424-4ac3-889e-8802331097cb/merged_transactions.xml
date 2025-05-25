@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250524123649981</id>
+        
+    <date>2025/05/24</date>
+        
+    <counterparty>we</counterparty>
+        
+    <product>ewq</product>
+        
+    <type>Expense</type>
+        
+    <amount>3412</amount>
+        
+    <class>Investment</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250524123649981</id>
+            
+    
+    <date>2025/05/24</date>
+            
+    
+    <counterparty>we</counterparty>
+            
+    
+    <product>ewq</product>
+            
+    
+    <type>Expense</type>
+            
+    
+    <amount>3412</amount>
+            
+    
+    <class>Investment</class>
+        
+  
+  </transaction>
+  <transaction>
+                        
+    
+    
+    
+    
+    <id>250524123144392</id>
+                        
+    
+    
+    
+    
+    <date>2025/05/24</date>
+                        
+    
+    
+    
+    
+    <counterparty>1</counterparty>
+                        
+    
+    
+    
+    
+    <product>1</product>
+                        
+    
+    
+    
+    
+    <type>Expense</type>
+                        
+    
+    
+    
+    
+    <amount>2</amount>
+                        
+    
+    
+    
+    
+    <class>Dining</class>
+                    
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                            
+    
+    
+    
+    
+    
+    <id>250524123144392</id>
+                            
+    
+    
+    
+    
+    
+    <date>2025/05/24</date>
+                            
+    
+    
+    
+    
+    
+    <counterparty>1</counterparty>
+                            
+    
+    
+    
+    
+    
+    <product>1</product>
+                            
+    
+    
+    
+    
+    
+    <type>Expense</type>
+                            
+    
+    
+    
+    
+    
+    <amount>2</amount>
+                            
+    
+    
+    
+    
+    
+    <class>Dining</class>
+                        
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <id>250524123020808</id>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <date>2025/05/24</date>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <counterparty>1</counterparty>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <product>1</product>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <type>Expense</type>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <amount>1</amount>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <class>Dining</class>
+                                
+  
+  
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                
+    
+    
+    
+    
+    
+    
+    <id>250524123020808</id>
+                                
+    
+    
+    
+    
+    
+    
+    <date>2025/05/24</date>
+                                
+    
+    
+    
+    
+    
+    
+    <counterparty>1</counterparty>
+                                
+    
+    
+    
+    
+    
+    
+    <product>1</product>
+                                
+    
+    
+    
+    
+    
+    
+    <type>Expense</type>
+                                
+    
+    
+    
+    
+    
+    
+    <amount>1</amount>
+                                
+    
+    
+    
+    
+    
+    
+    <class>Dining</class>
+                            
+  
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                    
+    
+    
+    
+    <id>250524123337712</id>
+                    
+    
+    
+    
+    <date>2025/05/24</date>
+                    
+    
+    
+    
+    <counterparty>sport</counterparty>
+                    
+    
+    
+    
+    <product>sport</product>
+                    
+    
+    
+    
+    <type>Expense</type>
+                    
+    
+    
+    
+    <amount>3</amount>
+                    
+    
+    
+    
+    <class>Education</class>
+                
+  
+  
+  
+  </transaction>
+  <transaction>
+                
+    
+    
+    <id>250524123337712</id>
+                
+    
+    
+    <date>2025/05/24</date>
+                
+    
+    
+    <counterparty>sport</counterparty>
+                
+    
+    
+    <product>sport</product>
+                
+    
+    
+    <type>Expense</type>
+                
+    
+    
+    <amount>3</amount>
+                
+    
+    
+    <class>Education</class>
+            
+  
+  
+  </transaction>
+</transactions>
