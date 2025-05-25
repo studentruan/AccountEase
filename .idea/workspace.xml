@@ -4,25 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="" />
+    <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/CsvToXmlConverterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/DailyTransactionProcessorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/TransactionAnalyzerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.Unnamed.executor": "Run",
-    "git-widget-placeholder": "48c21c20",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "应用程序.Main.executor": "Run"
+    "JUnit.CsvToXmlConverterTest.executor": "Run",
+    "JUnit.CsvToXmlConverterTest.testCompleteRecordConversion.executor": "Run",
+    "JUnit.DailyTransactionProcessorTest.executor": "Run",
+    "JUnit.DailyTransactionProcessorTest.testBoundaryValues.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testDailyIncome.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testExpenseDailySummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlyBreakdown.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlyIncomeSummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlySummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlyExpense.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlySummary.executor": "Run",
+    "git-widget-placeholder": "Testing"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -41,79 +64,105 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TransactionAnalyzerTest.testDailyIncome" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testDailyIncome" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testExpenseDailySummary" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testExpenseDailySummary" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testYearlyAnalysis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testYearlyAnalysis" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testYearlyExpense" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testYearlyExpense" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionAnalyzerTest.testYearlySummary" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DataProcessor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DataProcessor" />
+      <option name="MAIN_CLASS_NAME" value="DataProcessor.TransactionAnalyzerTest" />
+      <option name="METHOD_NAME" value="testYearlySummary" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testDailyIncome" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testExpenseDailySummary" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyAnalysis" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyExpense" />
+      <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlySummary" />
+      <item itemvalue="应用程序.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlySummary" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyExpense" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyAnalysis" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testExpenseDailySummary" />
+        <item itemvalue="JUnit.TransactionAnalyzerTest.testDailyIncome" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>1510</line>
-          <properties class="com.myapp.controller.LedgerController" method="cleanUpIndividualFiles">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>1124</line>
-          <properties class="com.myapp.controller.LedgerController" method="handleNextMonth">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>277</line>
-          <properties class="com.myapp.controller.LedgerController" method="showAlert">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>534</line>
-          <properties class="com.myapp.controller.LedgerController" method="initializePictures">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>892</line>
-          <properties class="com.myapp.controller.LedgerController" method="refreshMonthlyCharts">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/InputSettingsController.java</url>
-          <line>149</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LanguageSettingsController.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>511</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/myapp/controller/LedgerController.java</url>
-          <line>535</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
