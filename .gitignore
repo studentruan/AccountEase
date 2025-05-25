@@ -46,3 +46,4 @@ build/
 ### onnx_model ###
 src/main/resources/bert_transaction_categorization.onnx
 
+.idea/
