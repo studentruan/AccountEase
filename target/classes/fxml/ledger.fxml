@@ -31,11 +31,11 @@
                         <ImageView fx:id="image_Back_to_main" fitWidth="30" fitHeight="30"/>
                     </graphic>
                 </Button>
-                <Label fx:id="image_Back_to_main_text" styleClass="back-link" text="Back to main page" onMouseClicked="#back_to_main"/>
+                <Label fx:id="image_Back_to_main_text" styleClass="back-link" text="%Back.to.main.page" onMouseClicked="#back_to_main"/>
                 <Region HBox.hgrow="ALWAYS" />
-                <Label styleClass="title" text="My Daily Routine" />
+                <Label styleClass="title" text="%My.Daily.Routine" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Label styleClass="ledger-type" text="Ledger Type: Default Ledger" />
+                <Label styleClass="ledger-type" text="%Ledger.Type.Default.Ledger" />
             </children>
         </HBox>
     </top>
@@ -59,10 +59,10 @@
                                                     <Image url="@/images/expense.png" />
                                                 </image>
                                             </ImageView>
-                                            <Label fx:id="expenseLabel" text="Expense $0" styleClass="text-financial-card"/>
+                                            <Label fx:id="expenseLabel"  styleClass="text-financial-card"/>
                                         </HBox>
-                                        <Label fx:id="incomeLabel" text="Income $0" styleClass="text-financial-card"/>
-                                        <Label fx:id="balanceLabel" text="Balance $0" styleClass="text-financial-card"/>
+                                        <Label fx:id="incomeLabel"  styleClass="text-financial-card"/>
+                                        <Label fx:id="balanceLabel"  styleClass="text-financial-card"/>
                                     </children>
                                 </VBox>
                                 <!-- Card 2 -->
@@ -74,10 +74,10 @@
                                                     <Image url="@/images/budget.png" />
                                                 </image>
                                             </ImageView>
-                                            <Label fx:id="budgetLabel" text="Budget $0" styleClass="text-financial-card"/>
+                                            <Label fx:id="budgetLabel"  styleClass="text-financial-card"/>
                                         </HBox>
-                                        <Label fx:id="remainLabel" text="Remaining $0" styleClass="text-financial-card"/>
-                                        <Label fx:id="spentLabel" text="Spent $0" styleClass="text-financial-card"/>
+                                        <Label fx:id="remainLabel" styleClass="text-financial-card"/>
+                                        <Label fx:id="spentLabel"  styleClass="text-financial-card"/>
                                     </children>
                                 </VBox>
                                 <!-- Card 3 -->
@@ -89,10 +89,10 @@
                                                     <Image url="@/images/pending.png" />
                                                 </image>
                                             </ImageView>
-                                            <Label fx:id="pendingLabel" text="Pending $0" styleClass="text-financial-card"/>
+                                            <Label fx:id="pendingLabel" text="%Pending" styleClass="text-financial-card"/>
                                         </HBox>
-                                        <Label fx:id="claimedLabel" text="Claimed $0" styleClass="text-financial-card"/>
-                                        <Label fx:id="reimburLabel" text="Reimbursement $0" styleClass="text-financial-card"/>
+                                        <Label fx:id="claimedLabel" text="%Claimed" styleClass="text-financial-card"/>
+                                        <Label fx:id="reimburLabel" text="%Reimbursement" styleClass="text-financial-card"/>
                                     </children>
                                 </VBox>
                                 <!-- Card 4 -->
@@ -104,10 +104,10 @@
                                                     <Image url="@/images/assets.png" />
                                                 </image>
                                             </ImageView>
-                                            <Label fx:id="netAssetsLabel" text="Net $0" styleClass="text-financial-card"/>
+                                            <Label fx:id="netAssetsLabel"  styleClass="text-financial-card"/>
                                         </HBox>
-                                        <Label fx:id="totalsLabel" text="Total $0" styleClass="text-financial-card"/>
-                                        <Label fx:id="debtsLabel" text="Debts $0" styleClass="text-financial-card"/>
+                                        <Label fx:id="totalsLabel"  styleClass="text-financial-card"/>
+                                        <Label fx:id="debtsLabel"  styleClass="text-financial-card"/>
                                     </children>
                                 </VBox>
                             </children>
@@ -121,7 +121,7 @@
                                         <!-- Statistics Chart -->
                                         <VBox prefWidth="425" prefHeight="275" styleClass="chart-box">
                                             <children>
-                                                <Label styleClass="chart-title" text="Expense Statistics" />
+                                                <Label styleClass="chart-title" text="%Expense.Statistics" />
                                                 <LineChart fx:id="lineChart">
                                                     <xAxis>
                                                         <CategoryAxis fx:id="xAxis" />
@@ -135,7 +135,7 @@
                                         <!-- AI Advice Area -->
                                         <VBox fx:id="adviceBox" prefWidth="425" prefHeight="245" styleClass="advice-box">
                                             <children>
-                                                <Label styleClass="advice-title" text="AI Recommendations" />
+                                                <Label styleClass="advice-title" text="%AI.Recommendations" />
                                                 <!-- Labels will be added dynamically -->
                                             </children>
                                         </VBox>
@@ -144,10 +144,14 @@
                                 <!-- Right Column: Pie Chart -->
                                 <VBox prefWidth="425" prefHeight="470" styleClass="chart-box">
                                     <children>
-                                        <Label styleClass="chart-title" text="Expense Categories" />
-                                        <PieChart fx:id="expenseCategoriesChart" />
+                                        <Label styleClass="chart-title" text="%Expense.Categories" />
+                                        <StackPane>
+                                            <PieChart fx:id="expenseCategoriesChart" />
+                                            <Label fx:id="noDataLabel" text="%No.Data" visible="false"
+                                                   styleClass="no-data-label" />
+                                        </StackPane>
                                         <HBox spacing="10" alignment="CENTER">
-                                            <Label text="Top 4 Highest Expense Categories" styleClass="text-pie" />
+                                            <Label text="%Top.4.Highest.Expense.Categories" styleClass="text-pie" />
                                         </HBox>
                                     </children>
                                 </VBox>
@@ -166,7 +170,7 @@
                                                 <Image url="@/images/search.png" />
                                             </image>
                                         </ImageView>
-                                        <Label fx:id="searchLabel" text="Search" styleClass="text-search-card"/>
+                                        <Label fx:id="searchLabel" text="%Search" styleClass="text-search-card"/>
                                     </HBox>
                                 </children>
                             </VBox>
@@ -186,13 +190,13 @@
                                     <!-- Weekday Headers -->
                                     <HBox spacing="4" alignment="CENTER" styleClass="calendar-week-header">
                                         <children>
-                                            <Label text="Sun" styleClass="week-day" />
-                                            <Label text="Mon" styleClass="week-day" />
-                                            <Label text="Tue" styleClass="week-day" />
-                                            <Label text="Wed" styleClass="week-day" />
-                                            <Label text="Thu" styleClass="week-day" />
-                                            <Label text="Fri" styleClass="week-day" />
-                                            <Label text="Sat" styleClass="week-day" />
+                                            <Label text="%Sun" styleClass="week-day" />
+                                            <Label text="%Mon" styleClass="week-day" />
+                                            <Label text="%Tue" styleClass="week-day" />
+                                            <Label text="%Wed" styleClass="week-day" />
+                                            <Label text="%Thu" styleClass="week-day" />
+                                            <Label text="%Fri" styleClass="week-day" />
+                                            <Label text="%Sat" styleClass="week-day" />
                                         </children>
                                     </HBox>
                                     <HBox spacing="4" alignment="CENTER" styleClass="calendar-week-header">
@@ -217,7 +221,7 @@
                             <!-- Date Details Container -->
                             <VBox fx:id="dateDetailsContainer" spacing="10" alignment="CENTER" styleClass="date-details-container">
                                 <children>
-                                    <Label fx:id="selectedDateLabel" text="Select a date to view details" styleClass="date-details-title" />
+                                    <Label fx:id="selectedDateLabel" text="%Select.date.to.view.details" styleClass="date-details-title" />
                                     <ScrollPane fitToWidth="true" styleClass="scroll-pane">
                                         <content>
                                             <VBox fx:id="expenseItemsContainer" spacing="5" alignment="CENTER" styleClass="expense-items-container">

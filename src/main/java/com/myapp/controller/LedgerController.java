@@ -2,7 +2,7 @@ package com.myapp.controller;
 
 import AIUtilities.classification.TransactionClassifier;
 import AIUtilities.prediction.ARIMAModel;
-
+import com.myapp.util.I18nUtil;
 import Backend.*;
 
 import DataProcessor.DailyTransactionProcessor;
@@ -37,6 +37,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import javafx.scene.layout.GridPane;
@@ -117,6 +118,8 @@ public class LedgerController implements Initializable {
     @FXML
     private PieChart expenseCategoriesChart;
 
+    @FXML private Label noDataLabel;
+
     // 按钮
     @FXML
     private Button expenseButton;
@@ -184,6 +187,7 @@ public class LedgerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         budgetVBox.setOnMouseClicked(event -> {
             showBudgetSettingDialog();
         });
@@ -192,8 +196,8 @@ public class LedgerController implements Initializable {
         // 设置界面基础视图（不依赖账本数据）
 
 
+        ledger = GlobalContext.getInstance().getCurrentLedger();
 
-        Ledger ledger = this.ledger;
 
         if (ledger != null) {
 
@@ -201,15 +205,15 @@ public class LedgerController implements Initializable {
             this.financeData = new FinanceData();  // 正确初始化
             try {
                 financeData.loadFinanceData(ledger.getId());
+                updateFinancialMetrics(isDailyMode);
 
-
-                if (isDailyMode) {
-                    // 日模式图表
-                    refreshDailyCharts(selectedDate);
-                } else {
-                    // 月模式图表
-                    refreshMonthlyCharts();
-                }
+//                if (isDailyMode) {
+//                    // 日模式图表
+//                    refreshDailyCharts(selectedDate);
+//                } else {
+//                    // 月模式图表
+//                    refreshMonthlyCharts();
+//                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -228,7 +232,8 @@ public class LedgerController implements Initializable {
 
 
         loadAiAdvice(adviceList);
-        expenseCategoriesChart.getData().clear();
+        refreshCharts(isDailyMode);
+//        expenseCategoriesChart.getData().clear();
 
 
 
@@ -252,22 +257,21 @@ public class LedgerController implements Initializable {
             List<String> anniversaries = getAllAnniversaries();
 
             if (anniversaries.isEmpty()) {
-                showAlert("Tip", "No Anniversary Data");
+                showAlert(I18nUtil.get("alert.tip"), I18nUtil.get("anniversary.no.data"));
                 return;
             }
 
-            // 将列表转换为换行显示的字符串
             String content = String.join("\n", anniversaries);
 
-            // 创建弹窗展示
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("All Anniversaries");
+            alert.setTitle(I18nUtil.get("anniversary.all.title"));
             alert.setHeaderText(null);
             alert.setContentText(content);
             alert.showAndWait();
 
         } catch (IOException e) {
-            showAlert("Wrong", "Fail to load Anniversaries: " + e.getMessage());
+            showAlert(I18nUtil.get("alert.error"),
+                    I18nUtil.get("anniversary.load.fail") + ": " + e.getMessage());
         }
     }
 
@@ -281,63 +285,54 @@ public class LedgerController implements Initializable {
 
     @FXML
     private void handleAddMemorialDay() {
-        // 创建输入对话框
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Add Anniversaries");
-        dialog.setHeaderText("Input Anniversary(MM-dd format)");
-        dialog.setContentText("Data:");
+        dialog.setTitle(I18nUtil.get("anniversary.add.title"));
+        dialog.setHeaderText(I18nUtil.get("anniversary.add.header"));
+        dialog.setContentText(I18nUtil.get("anniversary.add.content"));
 
-        // 显示对话框并获取结果
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(dateStr -> {
             try {
-                // Validate date format
                 if (!dateStr.matches("(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])")) {
-                    throw new IllegalArgumentException("Invalid date format. Please use MM-dd format");
+                    throw new IllegalArgumentException(I18nUtil.get("anniversary.invalid.format"));
                 }
 
-                // Read JSON file
                 String jsonFilePath = "src/main/resources/thirdlevel_json/" + ledgerId + ".json";
                 JSONObject rootObject;
                 try (FileReader reader = new FileReader(jsonFilePath)) {
                     rootObject = new JSONObject(new JSONTokener(reader));
                 }
 
-                // Get or create memorial days array
                 JSONArray memorialDays = rootObject.optJSONArray("所有的纪念日");
                 if (memorialDays == null) {
                     memorialDays = new JSONArray();
                     rootObject.put("anniversaries", memorialDays);
                 }
 
-                // Check if already exists
                 if (memorialDays.toList().contains(dateStr)) {
-                    throw new IllegalArgumentException("This anniversary already exists");
+                    throw new IllegalArgumentException(I18nUtil.get("anniversary.exists"));
                 }
 
-                // Add new anniversary
                 memorialDays.put(dateStr);
 
-                // Write back to file
                 try (FileWriter writer = new FileWriter(jsonFilePath)) {
                     writer.write(rootObject.toString(4));
                 }
 
-                // Show success message
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success");
+                    alert.setTitle(I18nUtil.get("alert.success"));
                     alert.setHeaderText(null);
-                    alert.setContentText("Anniversary added successfully: " + dateStr);
+                    alert.setContentText(I18nUtil.get("anniversary.add.success") + ": " + dateStr);
                     alert.showAndWait();
                 });
 
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Failed to add anniversary");
+                    alert.setTitle(I18nUtil.get("alert.error"));
+                    alert.setHeaderText(I18nUtil.get("anniversary.add.fail"));
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
                 });
@@ -345,37 +340,30 @@ public class LedgerController implements Initializable {
         });
     }
 
-
-
-
     private void showBudgetSettingDialog() {
-        // 创建对话框
         Dialog<Pair<Double, Double>> dialog = new Dialog<>();
-        dialog.setTitle("设置预算");
-        dialog.setHeaderText("请输入预算信息");
+        dialog.setTitle(I18nUtil.get("budget.set.title"));
+        dialog.setHeaderText(I18nUtil.get("budget.set.header"));
 
-        // 设置按钮类型
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        // 创建表单
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
         TextField budgetField = new TextField();
-        budgetField.setPromptText("日预算");
+        budgetField.setPromptText(I18nUtil.get("budget.daily"));
         TextField spentField = new TextField();
-        spentField.setPromptText("已花预算");
+        spentField.setPromptText(I18nUtil.get("budget.spent"));
 
-        grid.add(new Label("日预算:"), 0, 0);
+        grid.add(new Label(I18nUtil.get("budget.daily") + ":"), 0, 0);
         grid.add(budgetField, 1, 0);
-        grid.add(new Label("已花预算:"), 0, 1);
+        grid.add(new Label(I18nUtil.get("budget.spent") + ":"), 0, 1);
         grid.add(spentField, 1, 1);
 
         dialog.getDialogPane().setContent(grid);
 
-        // 设置结果转换器
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == ButtonType.OK) {
                 try {
@@ -389,7 +377,6 @@ public class LedgerController implements Initializable {
             return null;
         });
 
-        // 显示对话框并处理结果
         Optional<Pair<Double, Double>> result = dialog.showAndWait();
 
         result.ifPresent(budgetData -> {
@@ -397,18 +384,13 @@ public class LedgerController implements Initializable {
             double spent = budgetData.getValue();
             double remain = budget - spent;
 
-            // 更新UI
-            budgetLabel.setText(String.format("Budget $%.2f", budget));
-            remainLabel.setText(String.format("Remain $%.2f", remain));
-            spentLabel.setText(String.format("Spent $%.2f", spent));
+            budgetLabel.setText(String.format(I18nUtil.get("budget.format"), budget));
+            remainLabel.setText(String.format(I18nUtil.get("budget.remain.format"), remain));
+            spentLabel.setText(String.format(I18nUtil.get("budget.spent.format"), spent));
 
-            // 更新JSON数据
             updateJsonData(budget, spent, remain);
         });
     }
-
-
-
 
     private void updateJsonData(double budget, double spent, double remain) {
         if (selectedDate == null) {
@@ -425,13 +407,23 @@ public class LedgerController implements Initializable {
             }
 
             String dateKey = selectedDate.toString();
+            String monthKey = selectedDate.getYear() + "-" + selectedDate.getMonthValue();
+            String monthKeyShort = selectedDate.getYear() + "-" + selectedDate.getMonthValue(); // 简写格式如"2025-5"
 
             // 获取或创建日数据对象
             JSONObject dayData = rootObject.optJSONObject(dateKey);
             if (dayData == null) {
                 dayData = new JSONObject();
+                // 初始化所有日级字段
+                dayData.put("日预算", 0);
+                dayData.put("日已花预算", 0);
+                dayData.put("日剩余预算", 0);
                 dayData.put("日支出", 0);
                 dayData.put("日收入", 0);
+                dayData.put("日报销", 0);
+                dayData.put("日已报销", 0);
+                dayData.put("日未报销", 0);
+                dayData.put("前四个支出类别", new JSONArray());
             }
 
             // 保存旧值用于计算差值
@@ -444,25 +436,52 @@ public class LedgerController implements Initializable {
             dayData.put("日剩余预算", remain);
             rootObject.put(dateKey, dayData);
 
-            // 更新月数据
-            String monthKey = selectedDate.getYear() + "-" + selectedDate.getMonthValue();
+            // 更新月数据（完整月份格式如"2025-03"）
             JSONObject monthData = rootObject.optJSONObject(monthKey);
             if (monthData == null) {
                 monthData = new JSONObject();
+                // 初始化所有月级字段
+                monthData.put("月预算", 0);
+                monthData.put("月已花预算", 0);
+                monthData.put("月剩余预算", 0);
                 monthData.put("月收入", 0);
                 monthData.put("月支出", 0);
+                monthData.put("月报销", 0);
+                monthData.put("月已报销", 0);
+                monthData.put("月未报销", 0);
+                monthData.put("前四个支出类别", new JSONArray());
             }
 
-            double monthBudget = monthData.optDouble("月预算", 0);
-            double monthSpent = monthData.optDouble("月已花预算", 0);
+            // 更新月数据（简写月份格式如"2025-5"）
+            JSONObject monthDataShort = rootObject.optJSONObject(monthKeyShort);
+            if (monthDataShort == null) {
+                monthDataShort = new JSONObject();
+                monthDataShort.put("月预算", 0);
+                monthDataShort.put("月已花预算", 0);
+                monthDataShort.put("月剩余预算", 0);
+            }
 
-            // 计算差值并更新
-            monthData.put("月预算", monthBudget + (budget - oldBudget));
-            monthData.put("月已花预算", monthSpent + (spent - oldSpent));
+            // 计算差值并更新完整月份数据
+            monthData.put("月预算", monthData.optDouble("月预算", 0) + (budget - oldBudget));
+            monthData.put("月已花预算", monthData.optDouble("月已花预算", 0) + (spent - oldSpent));
             monthData.put("月剩余预算",
                     monthData.getDouble("月预算") - monthData.getDouble("月已花预算"));
-
             rootObject.put(monthKey, monthData);
+
+            // 更新简写月份数据
+            monthDataShort.put("月预算", monthDataShort.optDouble("月预算", 0) + (budget - oldBudget));
+            monthDataShort.put("月已花预算", monthDataShort.optDouble("月已花预算", 0) + (spent - oldSpent));
+            monthDataShort.put("月剩余预算",
+                    monthDataShort.getDouble("月预算") - monthDataShort.getDouble("月已花预算"));
+            rootObject.put(monthKeyShort, monthDataShort);
+
+            // 更新根级别的月汇总数据（如果存在）
+            if (rootObject.has("月预算")) {
+                rootObject.put("月预算", rootObject.optDouble("月预算", 0) + (budget - oldBudget));
+                rootObject.put("月已花预算", rootObject.optDouble("月已花预算", 0) + (spent - oldSpent));
+                rootObject.put("月剩余预算",
+                        rootObject.getDouble("月预算") - rootObject.getDouble("月已花预算"));
+            }
 
             // 写回文件
             try (FileWriter writer = new FileWriter(jsonFilePath)) {
@@ -480,6 +499,9 @@ public class LedgerController implements Initializable {
             });
         }
     }
+
+
+
 
 
 
@@ -518,189 +540,9 @@ public class LedgerController implements Initializable {
         BackButton.setOnAction(event -> back_to_main());
 
     }
-
-    private void initializeCharts() {
-        // 初始化折线图
-        xAxis.setLabel("Time");
-        yAxis.setLabel("Value");
-
-        //获取一段时间的每日交易数据
-        DailyTransactionProcessor processor = new DailyTransactionProcessor();
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-
-        series.setName("Expense Statistics");
-        LocalDate startDate = LocalDate.of(2025, 3, 23);
-        LocalDate endDate = LocalDate.of(2025, 3, 31);
-
-        double[] expense_history = new double[31-23+1];
-        int index = 0;
-
-        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
-            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
-            series.getData().add(new XYChart.Data<>(dateStr, processor.getTotalExpenses("2025/" + dateStr)));
-            expense_history[index] = processor.getTotalExpenses("2025/" + dateStr);
-            index++;
-        }
-
-
-        System.out.println(expense_history.length);
-
-        lineChart.getData().add(series);
-
-        ARIMAModel model = new ARIMAModel(expense_history, 1, 4, 5);
-
-        // 3. 预测未来3天
-        int steps = 3;
-        int[] forecasts = model.predict(steps);
-
-        for(int i = 0;i<steps;i++){
-            System.out.println(forecasts[i]);
-        }
-
-        XYChart.Series<String, Number> forecastSeries = new XYChart.Series<>();
-        forecastSeries.setName("ARIMA Forecast (Next 3 Days)");
-
-        // 生成预测日期的标签
-        LocalDate lastHistoryDate = endDate;
-        for (int i = 0; i < steps; i++) {
-            lastHistoryDate = lastHistoryDate.plusDays(1);
-            String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
-            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i],0)));
-        }
-
-        lineChart.getData().add(forecastSeries);
-
-        // 4. 设置预测系列的样式（红色虚线）
-        forecastSeries.getNode().setStyle(
-                "-fx-stroke: #ff0000; " +          // 红色线条
-                        "-fx-stroke-dash-array: 5 5; " +   // 虚线样式
-                        "-fx-stroke-width: 2px;"
-        );
-
-//        // 初始化饼图，所有比例都设置为0
-//        PieChart.Data slice1 = new PieChart.Data("Shop", 71);
-//        PieChart.Data slice2 = new PieChart.Data("Dress", 10);
-//        PieChart.Data slice3 = new PieChart.Data("Car", 14);
-//        PieChart.Data slice4 = new PieChart.Data("Pet", 5);
-//
-//        expenseCategoriesChart.getData().addAll(slice1, slice2, slice3, slice4);
-    }
-
-
-//    public void updateDashboard() {
-//
-//        // 更新支出
-//        expenseLabel.setText("Expense $" + financeData.getExpense());
-//
-//        // 更新收入
-//        incomeLabel.setText("Income $" + financeData.getIncome());
-//
-//        // 更新余额
-//        balanceLabel.setText("Balance $" + financeData.getBalance());
-//
-//        // 更新预算
-//        budgetLabel.setText("Budget $" + financeData.getBudget());
-//        remainLabel.setText("Remain $" + (financeData.getBudget() - financeData.getExpense()));
-//        spentLabel.setText("Spent $" + financeData.getExpense());
-//
-//        // 更新待处理
-//        pendingLabel.setText("Pending $" + financeData.getPending());
-//        claimedLabel.setText("Claimed $" + financeData.getClaimed());
-//        reimburLabel.setText("Reimbur $" + financeData.getReimbursement());
-//
-//        // 更新净资产
-//        netAssetsLabel.setText("Net $" + financeData.getnNetAssets());
-//        totalsLabel.setText("Total $" + financeData.getTotals());
-//        debtsLabel.setText("Debts $" + financeData.getDebts());
-//
-//        ObservableList<XYChart.Series<String, Number>> chartData = lineChart.getData();
-//        loadAiAdvice(adviceList);
-//
-//// 确保 chartData 不为空并且包含至少一个 Series
-////        if (chartData != null && !chartData.isEmpty()) {
-////            XYChart.Series<String, Number> series = chartData.get(0);
-////
-////            // 只在 monthlyExpenses 不为空时清除并更新数据
-////            Map<String, Double> monthlyExpenses = financeData.getMonthlyExpenses();  // 例如：{"Jan": 1000, "Feb": 1200, ...}
-////            if (monthlyExpenses != null && !monthlyExpenses.isEmpty()) {
-////                series.getData().clear();  // 清除现有数据
-////                for (Map.Entry<String, Double> entry : monthlyExpenses.entrySet()) {
-////                    series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-////                }
-////            }
-////
-////            // 只在 expenseCategories 不为空时清除并更新数据
-////            ObservableList<PieChart.Data> pieChartData = expenseCategoriesChart.getData();
-////            Map<String, Double> expenseCategories = financeData.getExpenseCategories();  // 例如：{"Shop": 500, "Dress": 200, ...}
-////            if (expenseCategories != null && !expenseCategories.isEmpty()) {
-////                pieChartData.clear();  // 清除现有数据
-////                for (Map.Entry<String, Double> entry : expenseCategories.entrySet()) {
-////                    pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
-////                }
-////            }
-////        } else {
-////            System.out.println("Line chart data is empty or not properly initialized.");
-////        }
-//
-//
-//        // 刷新UI
-//
-//        // 可以在这里更新其他UI元素，例如建议框
-//
-//
-//    }
     public void updateDashboard() {
+        dateTransactions.clear(); // 清空整个 Map
         TransactionLoader loader = new TransactionLoader();
-
-
-        isDailyMode = selectedDate != null;
-        // 获取当前显示模式
-//        updateCalendar();
-
-
-
-        updateFinancialMetrics(isDailyMode);
-        LocalDate today = LocalDate.now();
-        showDateDetails(today);
-        // 更新核心财务指标
-
-        // 更新图表数据
-
-
-        // 加载智能建议
-        loadAiAdvice(adviceList);
-
-
-        String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
-
-        // 步骤2：验证ID有效性
-        if (ledgerId == null || ledgerId.trim().isEmpty()) {
-            throw new IllegalStateException("未找到有效的账本ID，请先选择账本");
-        }
-
-//        // 加载 XML 文件中的数据
-//        String resourcePath = "fourthlevel_xml/" + ledgerId;
-//        URL resourceUrl = getClass().getClassLoader().getResource(resourcePath);
-//
-//        if (resourceUrl == null) {
-//            System.err.println("目录不存在：" + resourcePath);
-//            return;
-//        }
-//
-//        File folder = new File(resourceUrl.getFile());
-//        File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
-//
-//        if (files == null || files.length == 0) {
-//            System.out.println("未找到XML文件");
-//            return;
-//        }
-//
-//        for (File file : files) {
-//            String filePath = file.getAbsolutePath();
-//            loader.loadTransactionsFromXml(filePath);
-//        }
-        // 定义XML文件的根目录（根据实际情况调整或从配置获取）
         String baseDir = "src/main/resources/";
         String resourcePath = baseDir + "fourthlevel_xml/" + ledgerId;
         File folder = new File(resourcePath);
@@ -733,39 +575,297 @@ public class LedgerController implements Initializable {
             dateTransactions.computeIfAbsent(date, k -> new ArrayList<>()).add(t);
         }
 
-        showDateDetails(today);
+
+
+
+        try {
+            financeData.loadFinanceData(ledger.getId());
+
+
+//                if (isDailyMode) {
+//                    // 日模式图表
+//                    refreshDailyCharts(selectedDate);
+//                } else {
+//                    // 月模式图表
+//                    refreshMonthlyCharts();
+//                }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+//        isDailyMode = selectedDate != null;
+        // 获取当前显示模式
+//        updateCalendar();
+
         refreshCharts(isDailyMode);
 
+        updateFinancialMetrics(isDailyMode);
+//        LocalDate today = LocalDate.now();
+//        showDateDetails(today);
+        // 更新核心财务指标
 
-}
+        // 更新图表数据
+        refreshCharts(isDailyMode);
+
+        // 加载智能建议
+        loadAiAdvice(adviceList);
+        initializeCharts();
+
+        String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
+
+        // 步骤2：验证ID有效性
+        if (ledgerId == null || ledgerId.trim().isEmpty()) {
+            throw new IllegalStateException("未找到有效的账本ID，请先选择账本");
+        }
+
+//        // 加载 XML 文件中的数据
+//        String resourcePath = "fourthlevel_xml/" + ledgerId;
+//        URL resourceUrl = getClass().getClassLoader().getResource(resourcePath);
+//
+//        if (resourceUrl == null) {
+//            System.err.println("目录不存在：" + resourcePath);
+//            return;
+//        }
+//
+//        File folder = new File(resourceUrl.getFile());
+//        File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
+//
+//        if (files == null || files.length == 0) {
+//            System.out.println("未找到XML文件");
+//            return;
+//        }
+//
+//        for (File file : files) {
+//            String filePath = file.getAbsolutePath();
+//            loader.loadTransactionsFromXml(filePath);
+//        }
+        // 定义XML文件的根目录（根据实际情况调整或从配置获取）
+        LocalDate today = LocalDate.now();
+
+        if(selectedDate != null) {showDateDetails(selectedDate);}
+        else {showDateDetails(today);}
+
+
+
+    }
+    private void initializeCharts() {
+        lineChart.getData().clear();
+        // Initialize line chart
+        xAxis.setLabel(I18nUtil.get("chart.time.label"));
+        yAxis.setLabel(I18nUtil.get("chart.value.label"));
+
+        // Get daily transaction data for a period
+        DailyTransactionProcessor processor = new DailyTransactionProcessor();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName(I18nUtil.get("chart.series.expense"));
+
+        // Set date range dynamically
+        LocalDate startDate;
+        LocalDate endDate;
+
+        if (selectedDate != null) {
+            startDate = selectedDate;
+            endDate = startDate.plusDays(7); // Default show 7 days data
+        } else {
+            startDate = LocalDate.of(2025, 3, 23);
+            endDate = LocalDate.of(2025, 3, 31);
+        }
+
+        // Prepare historical data array
+        int daysBetween = (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
+        double[] expense_history = new double[daysBetween];
+        int index = 0;
+
+        // Fill historical data (including budget)
+        XYChart.Series<String, Number> historicalBudgetSeries = new XYChart.Series<>();
+        historicalBudgetSeries.setName(I18nUtil.get("chart.series.historical.budget"));
+
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
+            double expense = processor.getTotalExpenses("2025/" + dateStr);
+
+            // Add expense data
+            series.getData().add(new XYChart.Data<>(dateStr, expense));
+            expense_history[index] = expense;
+
+            // Add historical budget data
+            FinanceData.DailyData dailyData = financeData.getDailyData(date);
+            double dailyBudget = (dailyData != null) ? dailyData.budget : 0;
+            historicalBudgetSeries.getData().add(new XYChart.Data<>(dateStr, dailyBudget));
+
+            index++;
+        }
+
+        // Add historical data series to chart
+        lineChart.getData().add(series);
+        lineChart.getData().add(historicalBudgetSeries);
+
+        // Create ARIMA model and make predictions
+        ARIMAModel model = new ARIMAModel(expense_history, 1, 4, 5);
+        int steps = 3; // Predict 3 days
+        int[] forecasts = model.predict(steps);
+
+        // Create forecast series
+        XYChart.Series<String, Number> forecastSeries = new XYChart.Series<>();
+        forecastSeries.setName(I18nUtil.get("chart.series.forecast"));
+
+        // Create forecast period budget series
+        XYChart.Series<String, Number> forecastBudgetSeries = new XYChart.Series<>();
+        forecastBudgetSeries.setName(I18nUtil.get("chart.series.forecast.budget"));
+
+        // Add forecast data points and budget data
+        LocalDate lastHistoryDate = endDate;
+        for (int i = 0; i < steps; i++) {
+            lastHistoryDate = lastHistoryDate.plusDays(1);
+            String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
+
+            // Add forecast data
+            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i], 0)));
+
+            // Add forecast period budget data
+            FinanceData.DailyData dailyData = financeData.getDailyData(lastHistoryDate);
+            double dailyBudget = (dailyData != null) ? dailyData.budget : 0;
+            forecastBudgetSeries.getData().add(new XYChart.Data<>(forecastDate, dailyBudget));
+        }
+
+        // Add series to chart
+        lineChart.getData().add(forecastSeries);
+        lineChart.getData().add(forecastBudgetSeries);
+
+        // Set series styles
+        series.getNode().setStyle("-fx-stroke: #1e90ff; -fx-stroke-width: 2px;"); // Blue solid line - historical expense
+        historicalBudgetSeries.getNode().setStyle("-fx-stroke: #32cd32; -fx-stroke-width: 2px;"); // Green solid line - historical budget
+
+        forecastSeries.getNode().setStyle(
+                "-fx-stroke: #ff0000; " +          // Red dashed line - forecast expense
+                        "-fx-stroke-dash-array: 5 5; " +
+                        "-fx-stroke-width: 2px;"
+        );
+
+        forecastBudgetSeries.getNode().setStyle(
+                "-fx-stroke: #228b22; " +         // Dark green dashed line - forecast budget
+                        "-fx-stroke-dash-array: 5 5; " +
+                        "-fx-stroke-width: 2px;"
+        );
+
+        // Add legend
+        lineChart.setLegendVisible(true);
+        lineChart.setCreateSymbols(true);
+    }
 
     private void updateFinancialMetrics(boolean isDailyMode) {
-        // 获取对应数据
-        FinanceData.DailyData dailyData = isDailyMode ?
-                financeData.getDailyData(selectedDate) : null;
+        // Get corresponding data
+        FinanceData.DailyData dailyData = isDailyMode ? financeData.getDailyData(selectedDate) : null;
         FinanceData.MonthlyData monthlyData = financeData.getMonthlyData();
 
-        // 更新基础指标
-        if(dailyData!=null) {
-            expenseLabel.setText(formatAmount(isDailyMode ? dailyData.expense : monthlyData.expense, isDailyMode));
-            incomeLabel.setText(formatAmount(isDailyMode ? dailyData.income : monthlyData.income, isDailyMode));
+        // Common format strings
+        final String LABEL_FORMAT = I18nUtil.get("financial.label.format");
+        final String NA_LABEL = I18nUtil.get("financial.na.value");
+
+        // Update basic income/expense metrics
+        if (isDailyMode) {
+            // Daily mode display
+            if (dailyData != null) {
+                // Income/expense info
+                expenseLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.expense"),
+                        formatAmount(dailyData.expense, true)));
+                incomeLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.income"),
+                        formatAmount(dailyData.income, true)));
+                double balance = dailyData.income - dailyData.expense;
+                balanceLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.balance"),
+                        formatAmount(balance, false)));
+
+                // Budget info (daily mode)
+                budgetLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.budget"),
+                        formatAmount(dailyData.budget, true)));
+                remainLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.remaining"),
+                        formatAmount(dailyData.remainingBudget, true)));
+                spentLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.spent"),
+                        formatAmount(dailyData.spentBudget, true)));
+            } else {
+                expenseLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.expense"), NA_LABEL));
+                incomeLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.income"), NA_LABEL));
+                balanceLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.balance"), NA_LABEL));
+
+                budgetLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.budget"), NA_LABEL));
+                remainLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.remaining"), NA_LABEL));
+                spentLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.daily.spent"), NA_LABEL));
+            }
+        } else {
+            // Monthly mode display
+            if (monthlyData != null) {
+                // Income/expense info
+                expenseLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.expense"),
+                        formatAmount(monthlyData.expense, true)));
+                incomeLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.income"),
+                        formatAmount(monthlyData.income, true)));
+                double balance = monthlyData.income - monthlyData.expense;
+                balanceLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.balance"),
+                        formatAmount(balance, false)));
+
+                // Budget info (monthly mode)
+                budgetLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.budget"),
+                        formatAmount(monthlyData.budget, true)));
+                remainLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.remaining"),
+                        formatAmount(monthlyData.remainingBudget, true)));
+                spentLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.spent"),
+                        formatAmount(monthlyData.spentBudget, true)));
+            } else {
+                expenseLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.expense"), NA_LABEL));
+                incomeLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.income"), NA_LABEL));
+                balanceLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.balance"), NA_LABEL));
+
+                budgetLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.budget"), NA_LABEL));
+                remainLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.remaining"), NA_LABEL));
+                spentLabel.setText(String.format(LABEL_FORMAT,
+                        I18nUtil.get("financial.monthly.spent"), NA_LABEL));
+            }
         }
 
-        if(monthlyData != null) {
-            balanceLabel.setText(formatAmount(monthlyData.budget - monthlyData.spentBudget, false));
-
-            // 预算相关（仅月模式）
-            budgetLabel.setText(isDailyMode ? "Budget N/A" : "Budget：" + formatAmount(monthlyData.budget, false));
-            remainLabel.setText(isDailyMode ? "RemainingBudget N/A" : "RemainingBudget：" + formatAmount(monthlyData.remainingBudget, false));
-            spentLabel.setText(isDailyMode ? "SpentBudget N/A" : "SpentBudget：" + formatAmount(monthlyData.spentBudget, false));
-
-            // 资产概况（始终使用月数据）
-            netAssetsLabel.setText("net：" + formatAmount(monthlyData.income - monthlyData.expense, false));
-            totalsLabel.setText("totals：" + formatAmount(monthlyData.income, false));
-            debtsLabel.setText("debts：" + formatAmount(monthlyData.expense, false));
-
+        // Update asset overview (always uses monthly data)
+        if (monthlyData != null) {
+            netAssetsLabel.setText(String.format(LABEL_FORMAT,
+                    I18nUtil.get("financial.net.assets"),
+                    formatAmount(monthlyData.income - monthlyData.expense, true)));
+            totalsLabel.setText(String.format(LABEL_FORMAT,
+                    I18nUtil.get("financial.total.assets"),
+                    formatAmount(monthlyData.income, true)));
+            debtsLabel.setText(String.format(LABEL_FORMAT,
+                    I18nUtil.get("financial.debts"),
+                    formatAmount(monthlyData.expense, true)));
+        } else {
+            netAssetsLabel.setText(String.format(LABEL_FORMAT,
+                    I18nUtil.get("financial.net.assets"), NA_LABEL));
+            totalsLabel.setText(String.format(LABEL_FORMAT,
+                    I18nUtil.get("financial.total.assets"), NA_LABEL));
+            debtsLabel.setText(String.format(LABEL_FORMAT,
+                    I18nUtil.get("financial.debts"), NA_LABEL));
         }
-
     }
 
     private String formatAmount(double value, boolean showDecimal) {
@@ -781,11 +881,11 @@ public class LedgerController implements Initializable {
         if (isDailyMode) {
             // 日模式图表
             refreshDailyCharts(selectedDate);
-            initializeCharts();
+//            initializeCharts();
         } else {
             // 月模式图表
             refreshMonthlyCharts();
-            initializeCharts();
+//            initializeCharts();
         }
     }
 
@@ -793,7 +893,7 @@ public class LedgerController implements Initializable {
     private void refreshMonthlyCharts() {
         expenseCategoriesChart.getData().clear();
 
-        // 隐藏饼图扇区上的文字标签
+        // Hide text labels on pie chart sectors
         expenseCategoriesChart.setLabelsVisible(false);
 
         List<Map.Entry<String, Double>> categories = financeData.getMonthlyData().topCategories;
@@ -803,15 +903,15 @@ public class LedgerController implements Initializable {
                     .sum();
 
             categories.forEach(entry -> {
-                // 仅保留分类名称用于图例，隐藏扇区文字
+                // Keep category name for legend, hide sector text
                 PieChart.Data data = new PieChart.Data(
-                        entry.getKey(),  // 分类名称用于图例
+                        entry.getKey(),  // Category name for legend
                         entry.getValue()
                 );
 
-                // 可选：添加提示信息（鼠标悬停时显示详情）
+                // Optional: Add tooltip (shows details on hover)
                 Tooltip.install(data.getNode(), new Tooltip(
-                        String.format("%s\n金额：%.2f\n占比：%.1f%%",
+                        String.format(I18nUtil.get("chart.tooltip.format"),
                                 entry.getKey(),
                                 entry.getValue(),
                                 (entry.getValue() / total) * 100)
@@ -820,12 +920,19 @@ public class LedgerController implements Initializable {
                 expenseCategoriesChart.getData().add(data);
             });
         }
+        else {
+            PieChart.Data noData = new PieChart.Data(I18nUtil.get("chart.no.data.monthly"), 1);
+            expenseCategoriesChart.getData().add(noData);
+
+            // Set special style
+            noData.getNode().setStyle("-fx-pie-color: #e0e0e0;"); // Light gray
+        }
     }
 
     private void refreshDailyCharts(LocalDate date) {
         expenseCategoriesChart.getData().clear();
 
-        // 隐藏饼图扇区上的文字标签
+        // Hide text labels on pie chart sectors
         expenseCategoriesChart.setLabelsVisible(false);
 
         FinanceData.DailyData dailyData = financeData.getDailyData(date);
@@ -835,15 +942,15 @@ public class LedgerController implements Initializable {
                     .sum();
 
             dailyData.topCategories.forEach(entry -> {
-                // 仅保留分类名称用于图例
+                // Keep category name for legend
                 PieChart.Data data = new PieChart.Data(
-                        entry.getKey(),  // 分类名称用于图例
+                        entry.getKey(),  // Category name for legend
                         entry.getValue()
                 );
 
-                // 添加提示信息
+                // Add tooltip
                 Tooltip.install(data.getNode(), new Tooltip(
-                        String.format("%s\n金额：%.2f\n占比：%.1f%%",
+                        String.format(I18nUtil.get("chart.tooltip.format"),
                                 entry.getKey(),
                                 entry.getValue(),
                                 (entry.getValue() / total) * 100)
@@ -851,6 +958,13 @@ public class LedgerController implements Initializable {
 
                 expenseCategoriesChart.getData().add(data);
             });
+        }
+        else {
+            PieChart.Data noData = new PieChart.Data(I18nUtil.get("chart.no.data.daily"), 1);
+            expenseCategoriesChart.getData().add(noData);
+
+            // Set special style
+            noData.getNode().setStyle("-fx-pie-color: #e0e0e0;"); // Light gray
         }
     }
 
@@ -873,87 +987,69 @@ public class LedgerController implements Initializable {
  * IOException 如果目录不存在或读取文件出错
  */
     public List<String> getAllAnniversaries() throws IOException {
-        // 1. 获取当前账本ID和目录路径
+        // 1. Get current ledger ID and directory path
         String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
         String jsonDir = "src/main/resources/thirdlevel_json";
 
-        // 2. 准备结果集合
+        // 2. Prepare result collection
         List<String> anniversaries = new ArrayList<>();
 
-        // 3. 检查目录是否存在
+        // 3. Check if directory exists
         Path dirPath = Paths.get(jsonDir);
         if (!Files.exists(dirPath)) {
-            throw new IOException("纪念日目录不存在: " + jsonDir);
+            throw new IOException(I18nUtil.get("anniversary.dir.missing") + ": " + jsonDir);
         }
 
-        // 4. 遍历目录中的所有JSON文件
+        // 4. Iterate through all JSON files in directory
         Files.list(dirPath)
                 .filter(path -> path.toString().endsWith(ledgerId + ".json"))
                 .forEach(jsonFile -> {
                     try (FileReader reader = new FileReader(jsonFile.toFile())) {
-                        // 5. 解析JSON文件
+                        // 5. Parse JSON file
                         JSONObject json = new JSONObject(new JSONTokener(reader));
 
-                        // 6. 检查并获取纪念日数组
-                        if (json.has("所有的纪念日")) {
-                            JSONArray dates = json.getJSONArray("所有的纪念日");
+                        // 6. Check and get anniversary array
+                        if (json.has(I18nUtil.get("anniversary.json.key"))) {
+                            JSONArray dates = json.getJSONArray(I18nUtil.get("anniversary.json.key"));
 
-                            // 7. 添加到结果集合
+                            // 7. Add to result collection
                             for (int i = 0; i < dates.length(); i++) {
                                 anniversaries.add(dates.getString(i));
                             }
                         }
                     } catch (IOException e) {
-                        throw new RuntimeException("读取文件失败: " + jsonFile, e);
+                        throw new RuntimeException(I18nUtil.get("anniversary.file.read.error") + ": " + jsonFile, e);
                     }
                 });
 
-        // 8. 返回结果
+        // 8. Return results
         return anniversaries;
     }
+
     @FXML
     public void loadAiAdvice(List<String> adviceList) {
         try {
-
             adviceList.clear();
             allAnniversaries = getAllAnniversaries();
             System.out.println(allAnniversaries);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // 加载 XML 文件中的数据
+            // Load data from XML files
             String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
-//
-
-            // 定义XML文件的根目录（根据实际情况调整或从配置获取）
             String baseDir = "src/main/resources/";
             String resourcePath = baseDir + "Transactions_Record_XML/" + ledgerId;
             File folder = new File(resourcePath);
 
-// 检查目录是否存在且为文件夹
+            // Check if directory exists and is a folder
             if (!folder.exists() || !folder.isDirectory()) {
-                System.err.println("目录不存在：" + resourcePath);
+                System.err.println(I18nUtil.get("xml.dir.missing") + ": " + resourcePath);
                 return;
             }
 
-// 获取所有XML文件
+            // Get all XML files
             File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
 
             if (files == null || files.length == 0) {
-                System.out.println("未找到XML文件");
+                System.out.println(I18nUtil.get("xml.files.not.found"));
                 return;
             }
 
@@ -962,52 +1058,47 @@ public class LedgerController implements Initializable {
                 System.out.println(filePath);
                 TransactionAnalyzer analyzer = new TransactionAnalyzer(filePath);
                 Map<String, Double> anomalies = detectAnomalies(analyzer, allAnniversaries);
-                // 可选：输出异常的日期和金额
-                System.out.println("Abnormally high spending dates:");
+
+                // Optional: Output abnormal dates and amounts
+                System.out.println(I18nUtil.get("ai.abnormal.spending.dates"));
                 anomalies.forEach((date, amount) -> System.out.printf(date + ": %.2f%n", amount));
 
-                // 清空原始建议列表，避免重复
-
-
-                // 将异常信息转换为 List<String> 格式
+                // Convert anomalies to List<String> format
                 anomalies.forEach((date, amount) -> {
-                    adviceList.add("Abnormal spending detected on " + date + " confidence coefficient: " + String.format("%.2f", amount));
+                    adviceList.add(String.format(I18nUtil.get("ai.advice.format"),
+                            date,
+                            String.format("%.2f", amount)));
                 });
 
-                // 确保 UI 更新发生在 JavaFX 应用线程上
+                // Ensure UI updates happen on JavaFX thread
                 Platform.runLater(() -> {
-                    adviceBox.getChildren().clear(); // 清除现有内容
+                    adviceBox.getChildren().clear(); // Clear existing content
 
-                    // 重新添加标题标签
-                    Label titleLabel = new Label("Advice From AI");
+                    // Re-add title label
+                    Label titleLabel = new Label(I18nUtil.get("ai.advice.title"));
                     titleLabel.getStyleClass().add("advice-title");
                     adviceBox.getChildren().add(titleLabel);
 
-                    // 将新的 adviceList 内容加载到 UI
+                    // Load new adviceList content to UI
                     int i = 1;
                     for (String advice : adviceList) {
                         Label label = new Label(i + ". " + advice);
-                        label.setWrapText(true);           // 启用自动换行
-                        label.setMaxWidth(400);            // 可选：设置最大宽度（根据需要调整）
+                        label.setWrapText(true);           // Enable text wrapping
+                        label.setMaxWidth(400);            // Optional: Set max width
                         label.getStyleClass().remove("label");
                         label.getStyleClass().add("text-advice");
                         adviceBox.getChildren().add(label);
 
-                        System.out.println("Label added: " + label.getText());
-                        System.out.println("Label style class: " + label.getStyleClass());
+                        System.out.println(I18nUtil.get("ai.label.added") + ": " + label.getText());
+                        System.out.println(I18nUtil.get("ai.label.style") + ": " + label.getStyleClass());
                         i++;
                     }
                 });
-
             }
-
-
-
-
         } catch (Exception e) {
-            // 捕获其他异常并打印
+            // Catch other exceptions and print
             e.printStackTrace();
-            System.err.println("加载 AI 建议时发生错误");
+            System.err.println(I18nUtil.get("ai.advice.load.error"));
         }
     }
 
@@ -1082,9 +1173,10 @@ public class LedgerController implements Initializable {
 
             // 添加点击事件
             dayLabel.setOnMouseClicked(event -> {
+
                 // 移除之前选中日期的特效
                 if (selectedDate != null) {
-                    isDailyMode = !isDailyMode;
+
                     updateFinancialMetrics(isDailyMode);
 
 
@@ -1098,6 +1190,8 @@ public class LedgerController implements Initializable {
                 // 应用选中日期的特效
                 dayLabel.getStyleClass().add("selected-day");
                 selectedDate = date;
+                isDailyMode = true;
+                updateDashboard();
 
                 // 显示选中日期的详细信息
                 showDateDetails(date);
@@ -1175,78 +1269,28 @@ public class LedgerController implements Initializable {
         return null;
     }
 
-    private void showDateDetails(LocalDate date) {
-        // 更新选中日期的标签
-        selectedDateLabel.setText(
-                date.format(
-                        DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.US)
-                )
-        );
-
-        // 清空之前的收支项目
-        expenseItemsContainer.getChildren().clear();
-
-        // 检查是否有标记
-        if (dateTransactions.containsKey(date)) {
-            // 添加收支项目
-            for (Transactions transaction : dateTransactions.get(date)) {
-                HBox itemBox = new HBox(10);
-                itemBox.setPadding(new Insets(10));
-                itemBox.setStyle(transaction.getAmount() > 0 ? "-fx-background-color: #e8f5e9;" : "-fx-background-color: #f5f5f5;");
-                itemBox.setPrefWidth(350);
-                itemBox.setPrefHeight(50);
-                itemBox.setStyle(transaction.getAmount() > 0
-                        ? "-fx-background-color: #e8f5e9; -fx-background-radius: 8;"
-                        : "-fx-background-color: #f5f5f5; -fx-background-radius: 8;");
-
-                ImageView imageView = new ImageView();
-                imageView.setFitWidth(24);
-                imageView.setFitHeight(24);
-                // 使用 getClass().getResource() 确保图像资源被正确加载
-                String imagePath = transaction.getAmount() > 0 ? "/images/expense.png" : "/images/expense.png";
-                imageView.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
-
-                Label itemName = new Label(transaction.getDescription());
-                itemName.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
-                itemName.setPrefWidth(200);
-
-                Label itemAmount = new Label(transaction.getAmount() > 0 ? "+" + transaction.getAmount() + "$" : "" + transaction.getAmount() + "$");
-                itemAmount.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
-                HBox.setHgrow(itemAmount, Priority.ALWAYS);
-
-                itemBox.getChildren().addAll(imageView, itemName, itemAmount);
-                expenseItemsContainer.getChildren().add(itemBox);
-            }
-        } else {
-            // 没有标记时显示提示信息
-            Label noDataLabel = new Label("No records for this date");
-            noDataLabel.setStyle("-fx-text-fill: #999999;");
-            expenseItemsContainer.getChildren().add(noDataLabel);
-        }
-    }
-
     String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
+
     // 添加成员变量
 
 
-    @FXML
-    private void handleAddTransaction() {
-        showTransactionDialog();
-    }
+
 
     private void showTransactionDialog() {
         Dialog<TransactionData> dialog = new Dialog<>();
-        dialog.setTitle("New transaction");
+        dialog.setTitle(I18nUtil.get("transaction.dialog.title"));
 
-        // 创建表单组件
+        // Create form components
         TextField counterpartyField = new TextField();
         TextField productField = new TextField();
         ComboBox<String> typeCombo = new ComboBox<>(FXCollections.observableArrayList(
-                "Income", "Expense", "Transfer"
+                I18nUtil.get("transaction.type.income"),
+                I18nUtil.get("transaction.type.expense"),
+                I18nUtil.get("transaction.type.transfer")
         ));
         TextField amountField = new TextField();
 
-        // 金额输入验证
+        // Amount input validation
         amountField.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!newVal.matches("\\d*(\\.\\d*)?")) {
                 amountField.setText(oldVal);
@@ -1256,15 +1300,15 @@ public class LedgerController implements Initializable {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.addRow(0, new Label("Counterparty:"), counterpartyField);
-        grid.addRow(1, new Label("Product:"), productField);
-        grid.addRow(2, new Label("type:"), typeCombo);
-        grid.addRow(3, new Label("amount:"), amountField);
+        grid.addRow(0, new Label(I18nUtil.get("transaction.label.counterparty") + ":"), counterpartyField);
+        grid.addRow(1, new Label(I18nUtil.get("transaction.label.product") + ":"), productField);
+        grid.addRow(2, new Label(I18nUtil.get("transaction.label.type") + ":"), typeCombo);
+        grid.addRow(3, new Label(I18nUtil.get("transaction.label.amount") + ":"), amountField);
 
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        // 转换结果
+        // Convert result
         dialog.setResultConverter(buttonType -> {
             if (buttonType == ButtonType.OK) {
                 return new TransactionData(
@@ -1281,76 +1325,96 @@ public class LedgerController implements Initializable {
         result.ifPresent(this::processTransaction);
     }
 
+    @FXML
+    private void handleAddTransaction() {
+        showTransactionDialog();
+    }
+
+    private void showDateDetails(LocalDate date) {
+        // Update selected date label with localized format
+        selectedDateLabel.setText(
+                date.format(
+                        DateTimeFormatter.ofPattern(I18nUtil.get("date.format.long"), Locale.getDefault())
+                )
+        );
+
+        // Clear previous transaction items
+        expenseItemsContainer.getChildren().clear();
+
+        // Check if date has transactions
+        if (dateTransactions.containsKey(date)) {
+            // Add transaction items
+            for (Transactions transaction : dateTransactions.get(date)) {
+                HBox itemBox = new HBox(10);
+                itemBox.setPadding(new Insets(10));
+                itemBox.setStyle(transaction.getAmount() > 0 ? "-fx-background-color: #e8f5e9;" : "-fx-background-color: #f5f5f5;");
+                itemBox.setPrefWidth(350);
+                itemBox.setPrefHeight(50);
+                itemBox.setStyle(transaction.getAmount() > 0
+                        ? "-fx-background-color: #e8f5e9; -fx-background-radius: 8;"
+                        : "-fx-background-color: #f5f5f5; -fx-background-radius: 8;");
+
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(24);
+                imageView.setFitHeight(24);
+                // Using same image for both income/expense as in original
+                String imagePath = transaction.getAmount() > 0 ? "/images/expense.png" : "/images/expense.png";
+                imageView.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
+
+                Label itemName = new Label(transaction.getDescription());
+                itemName.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
+                itemName.setPrefWidth(200);
+
+                // Format amount with localized currency symbol if needed
+                String amountText = transaction.getAmount() > 0 ?
+                        "+" + transaction.getAmount() + I18nUtil.get("currency.symbol") :
+                        "" + transaction.getAmount() + I18nUtil.get("currency.symbol");
+                Label itemAmount = new Label(amountText);
+                itemAmount.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
+                HBox.setHgrow(itemAmount, Priority.ALWAYS);
+
+                itemBox.getChildren().addAll(imageView, itemName, itemAmount);
+                expenseItemsContainer.getChildren().add(itemBox);
+            }
+        } else {
+            // Show no data message
+            Label noDataLabel = new Label(I18nUtil.get("transaction.no.data"));
+            noDataLabel.setStyle("-fx-text-fill: #999999;");
+            expenseItemsContainer.getChildren().add(noDataLabel);
+        }
+    }
+
     private void processTransaction(TransactionData data) {
         try {
-            // 生成交易ID
+            // Generate transaction ID
             String id = generateTransactionId();
 
-            // 自动生成日期
-            String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            // Auto-generate date with localized format
+            String date;
+            if (selectedDate != null) {
+                date = selectedDate.format(DateTimeFormatter.ofPattern(I18nUtil.get("date.format.short")));
+            } else {
+                date = LocalDate.now().format(DateTimeFormatter.ofPattern(I18nUtil.get("date.format.short")));
+            }
 
-            // AI分类
+            // AI classification
             Map<String,String> back_category = classifyTransaction(data.product(), data.counterparty());
             String category = back_category.values().iterator().next();
 
-            // 生成XML
+            // Generate XML
             Document doc = createTransactionXml(id, date, data, category);
 
-            // 保存文件
+            // Save file
             saveTransactionFile(doc, id);
 
-
-
-            TransactionDataLoader dataLoader = new TransactionDataLoader();
-            dataLoader.loadFromXML(doc.getDocumentURI());
-            Map<String, Transaction_FZ> transactions_FZ = dataLoader.getTransactionData();
-
-
-
-
-            FinanceDataProcessor processor = new FinanceDataProcessor(ledgerId,transactions_FZ);
-            processor.process();
-
-
-
-            // 10.4 保存到三级目录
-
-            try {
-                processor.saveToThirdLevel(THIRD_DIR);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            System.out.println("财务数据已保存至：" +
-                    Paths.get(THIRD_DIR, ledgerId + ".json"));
-
-
-            // 合并文件
+            // Merge files
             mergeTransactionFiles();
-//
-//            TransactionDataLoader dataLoader = new TransactionDataLoader();
-//            dataLoader.loadFromXML(fourthLevelXmlFile.getAbsolutePath());
-//            Map<String, Transaction_FZ> transactions_FZ = dataLoader.getTransactionData();
-//
-//
-//
-//
-//            FinanceDataProcessor processor = new FinanceDataProcessor(ledgerId,transactions_FZ);
-//            processor.process();
 
-
-
-            // 10.4 保存到三级目录
-
-//            X
-
-
-
-            // 刷新UI
+            // Refresh UI
             refreshUI();
 
         } catch (Exception e) {
-            showErrorAlert("交易处理失败", e.getMessage());
+            showErrorAlert(I18nUtil.get("transaction.process.error"), e.getMessage());
         }
     }
 
@@ -1413,9 +1477,9 @@ public class LedgerController implements Initializable {
     private void mergeTransactionFiles() throws Exception {
         String inputDir = "src/main/resources/fourthlevel_xml/" + ledgerId + "/";
         String outputFile = inputDir + "merged_transactions.xml";
+        String FF  = TransactionXmlMerger.mergeTransactionXmlFiles(inputDir, outputFile);
+        if (FF != null) {
 
-        if (TransactionXmlMerger.mergeTransactionXmlFiles(inputDir, outputFile) != null) {
-            String FF  = TransactionXmlMerger.mergeTransactionXmlFiles(inputDir, outputFile);
 
             TransactionDataLoader dataLoader = new TransactionDataLoader();
             dataLoader.loadFromXML(FF);
@@ -1429,7 +1493,7 @@ public class LedgerController implements Initializable {
 
 
 
-            // 10.4 保存到三级目录
+//             10.4 保存到三级目录
 
             try {
                 processor.saveToThirdLevel(THIRD_DIR);
@@ -1474,30 +1538,31 @@ public class LedgerController implements Initializable {
 
             // 获取 LedgerController 并传递账本
 
-            ledger = GlobalContext.getInstance().getCurrentLedger();
-            MainController.getInstance().loadPage("ledger.fxml");
-            Object controller = MainController.getInstance().getCurrentController();
-
-
-
-            if (controller instanceof LedgerController ledgerController) {
-                ledgerController.loadLedger(this.ledger);
-            }
-
-        try {
-            financeData.loadFinanceData(ledger.getId());
-
-
-            if (isDailyMode) {
-                // 日模式图表
-                refreshDailyCharts(selectedDate);
-            } else {
-                // 月模式图表
-                refreshMonthlyCharts();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//            ledger = GlobalContext.getInstance().getCurrentLedger();
+//            MainController.getInstance().loadPage("ledger.fxml");
+//            Object controller = MainController.getInstance().getCurrentController();
+//
+//
+//
+//
+//            if (controller instanceof LedgerController ledgerController) {
+//                ledgerController.loadLedger(this.ledger);
+//            }
+//
+//        try {
+//            financeData.loadFinanceData(ledger.getId());
+//
+//
+//            if (isDailyMode) {
+//                // 日模式图表
+//                refreshDailyCharts(selectedDate);
+//            } else {
+//                // 月模式图表
+//                refreshMonthlyCharts();
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         updateDashboard();
 
 

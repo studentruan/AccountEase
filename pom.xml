@@ -137,6 +137,12 @@
             <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- Google EventBus (推荐) -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version> <!-- 使用最新稳定版 -->
+        </dependency>
 
         <dependency>
             <groupId>org.json</groupId>
@@ -175,7 +181,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.myapp.Main</mainClass> <!-- 替换为你的主类全限定名 -->
+                            <mainClass>com.example.Main</mainClass> <!-- 替换为你的主类全限定名 -->
                         </manifest>
                     </archive>
                 </configuration>
