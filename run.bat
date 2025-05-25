@@ -7,6 +7,7 @@ setlocal enabledelayedexpansion
 set JAVAFX_VERSION=21.0.7
 set MAIN_CLASS=com.myapp.Main
 set MODEL_URL=https://huggingface.co/softfish666/bert_transaction_classifer/resolve/main/bert_transaction_categorization.onnx
+set MIRROR_URL=https://hf-mirror.com/softfish666/bert_transaction_classifer/resolve/main/bert_transaction_categorization.onnx
 set MODEL_DIR=src\main\resources
 set MODEL_FILE=%MODEL_DIR%\bert_transaction_categorization.onnx
 
@@ -17,16 +18,20 @@ echo [INFO] Checking model file...
 if not exist "%MODEL_FILE%" (
     echo [INFO] Downloading model from Hugging Face...
 
-    if not exist "%MODEL_DIR%" mkdir "%MODEL_DIR%"
+    if not exist "%MODEL_DIR%" (
+        echo [ERROR] The program is damaged. Please download it again.
+        pause
+        exit /b 1
+    )
 
     :: Try using curl (Windows 10+ built-in)
     where curl >nul 2>&1
     if !errorlevel! equ 0 (
-        curl -L --retry 3 --retry-delay 5 "%MODEL_URL%" -o "%MODEL_FILE%"
+        curl -L --retry 2 --retry-delay 5 "%MODEL_URL%" -o "%MODEL_FILE%"
         if !errorlevel! neq 0 (
             echo [WARN] Primary download failed, trying mirror site...
-            set "MIRROR_URL=%MODEL_URL:huggingface.co=hf-mirror.com%"
-            curl -L --retry 3 --retry-delay 5 "%MIRROR_URL%" -o "%MODEL_FILE%"
+            echo Using mirror URL: %MIRROR_URL%
+            curl -L --retry 2 --retry-delay 5 "%MIRROR_URL%" -o "%MODEL_FILE%"
             if !errorlevel! neq 0 (
                 echo [ERROR] All download attempts failed!
                 echo Possible solutions:
@@ -57,6 +62,7 @@ if not exist "%MODEL_FILE%" (
                 echo    Original: %MODEL_URL%
                 echo    Mirror: %MIRROR_URL%
                 del "%MODEL_FILE%" 2>nul
+                pause
                 exit /b 1
             ) else (
                 echo [INFO] Mirror site download succeeded
@@ -68,6 +74,7 @@ if not exist "%MODEL_FILE%" (
         echo [SUCCESS] Model saved to: %MODEL_FILE%
     ) else (
         echo [ERROR] Model file not found after download!
+        pause
         exit /b 1
     )
 ) else (
