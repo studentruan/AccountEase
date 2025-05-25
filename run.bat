@@ -52,7 +52,7 @@ if not exist "%MODEL_FILE%" (
 :: 2. Install JavaFX
 :: ==============================================
 set JAVAFX_URL=https://download2.gluonhq.com/openjfx/%JAVAFX_VERSION%/openjfx-%JAVAFX_VERSION%_windows-x64_bin-sdk.zip
-set INSTALL_DIR=%ProgramFiles%\javafx-sdk-%JAVAFX_VERSION%
+set INSTALL_DIR=%~dp0javafx-sdk-%JAVAFX_VERSION%
 
 if not exist "%INSTALL_DIR%" (
     echo [INFO] JavaFX SDK not found. Installing...
@@ -106,3 +106,5 @@ java --module-path "%INSTALL_DIR%\lib" ^
 
 echo [INFO] Application exited
 endlocal
+
+pause
