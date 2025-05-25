@@ -22,19 +22,44 @@ if not exist "%MODEL_FILE%" (
     :: Try using curl (Windows 10+ built-in)
     where curl >nul 2>&1
     if !errorlevel! equ 0 (
-        curl -L "%MODEL_URL%" -o "%MODEL_FILE%"
+        curl -L --retry 3 --retry-delay 5 "%MODEL_URL%" -o "%MODEL_FILE%"
         if !errorlevel! neq 0 (
-            echo [ERROR] Model download failed!
-            del "%MODEL_FILE%" 2>nul
-            exit /b 1
+            echo [WARN] Primary download failed, trying mirror site...
+            set "MIRROR_URL=%MODEL_URL:huggingface.co=hf-mirror.com%"
+            curl -L --retry 3 --retry-delay 5 "%MIRROR_URL%" -o "%MODEL_FILE%"
+            if !errorlevel! neq 0 (
+                echo [ERROR] All download attempts failed!
+                echo Possible solutions:
+                echo 1. Check your internet connection
+                echo 2. Manually download from:
+                echo    Original: %MODEL_URL%
+                echo    Mirror: %MIRROR_URL%
+                del "%MODEL_FILE%" 2>nul
+                exit /b 1
+            ) else (
+                echo [INFO] Successfully downloaded via mirror site
+            )
         )
     ) else (
         :: Fallback to bitsadmin (older Windows)
+        echo [INFO] Using bitsadmin as fallback...
         bitsadmin /transfer downloadModel /download /priority normal "%MODEL_URL%" "%MODEL_FILE%"
         if !errorlevel! neq 0 (
-            echo [ERROR] Model download failed! Install curl or use better internet connection.
-            del "%MODEL_FILE%" 2>nul
-            exit /b 1
+            echo [WARN] Primary download failed, trying mirror site...
+            set "MIRROR_URL=%MODEL_URL:huggingface.co=hf-mirror.com%"
+            bitsadmin /transfer downloadModel /download /priority normal "%MIRROR_URL%" "%MODEL_FILE%"
+            if !errorlevel! neq 0 (
+                echo [ERROR] All download attempts failed!
+                echo Try:
+                echo 1. Install curl from https://curl.se/windows/
+                echo 2. Manually download from:
+                echo    Original: %MODEL_URL%
+                echo    Mirror: %MIRROR_URL%
+                del "%MODEL_FILE%" 2>nul
+                exit /b 1
+            ) else (
+                echo [INFO] Mirror site download succeeded
+            )
         )
     )
 
@@ -77,16 +102,20 @@ if not exist "%INSTALL_DIR%" (
 )
 
 :: ==============================================
-:: 3. Check Build Status
+:: 3. Auto Build (新增的自动编译逻辑)
 :: ==============================================
+echo [INFO] Checking build status...
 if not exist "target\classes" (
-    echo [ERROR] Compiled classes not found! Run first:
-    echo   mvn clean compile
-    exit /b 1
+    echo [INFO] Compiled classes not found, running 'mvn clean compile'...
+    mvn clean compile
+    if !errorlevel! neq 0 (
+        echo [ERROR] Compilation failed!
+        exit /b 1
+    )
 )
 
 if not exist "target\dependency" (
-    echo [INFO] Preparing dependencies...
+    echo [INFO] Dependencies not found, preparing them...
     mvn dependency:copy-dependencies -DoutputDirectory=target\dependency
     if !errorlevel! neq 0 (
         echo [ERROR] Failed to prepare dependencies!
