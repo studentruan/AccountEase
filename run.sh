@@ -41,12 +41,12 @@ if [ ! -f "$MODEL_FILE" ]; then
             exit 1
         fi
     elif command -v curl &> /dev/null; then
-        if ! curl -# -L --retry 3 --retry-delay 5 "$MODEL_URL" -o "$MODEL_FILE"; then
+        if ! curl -# -L "$MODEL_URL" -o "$MODEL_FILE"; then
             echo "[WARN] Primary download failed, trying mirror site..."
 
             MIRROR_URL="${MODEL_URL/huggingface.co/hf-mirror.com}"
 
-            if ! curl -# -L --retry 3 --retry-delay 5 "$MIRROR_URL" -o "$MODEL_FILE"; then
+            if ! curl -# -L "$MIRROR_URL" -o "$MODEL_FILE"; then
                 echo "[ERROR] All download attempts failed!"
                 echo "Possible solutions:"
                 echo "1. Check your internet connection"
