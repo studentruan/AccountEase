@@ -34,8 +34,6 @@ echo "[INFO] Checking model file..."
 if [ ! -f "$MODEL_FILE" ]; then
     echo "[INFO] Downloading model from Hugging Face..."
 
-    mkdir -p "$MODEL_DIR"
-
     if command -v wget &> /dev/null; then
         if ! wget -q --show-progress -O "$MODEL_FILE" "$MODEL_URL"; then
             echo "[ERROR] Model download failed!"
@@ -44,9 +42,22 @@ if [ ! -f "$MODEL_FILE" ]; then
         fi
     elif command -v curl &> /dev/null; then
         if ! curl -# -L "$MODEL_URL" -o "$MODEL_FILE"; then
-            echo "[ERROR] Model download failed!"
-            rm -f "$MODEL_FILE" 2>/dev/null
-            exit 1
+            echo "[WARN] Primary download failed, trying mirror site..."
+
+            MIRROR_URL="${MODEL_URL/huggingface.co/hf-mirror.com}"
+
+            if ! curl -# -L "$MIRROR_URL" -o "$MODEL_FILE"; then
+                echo "[ERROR] All download attempts failed!"
+                echo "Possible solutions:"
+                echo "1. Check your internet connection"
+                echo "2. Manually download from:"
+                echo "   Original: $MODEL_URL"
+                echo "   Mirror: $MIRROR_URL"
+                rm -f "$MODEL_FILE" 2>/dev/null
+                exit 1
+            else
+                echo "[INFO] Successfully downloaded via mirror site"
+            fi
         fi
     else
         echo "[ERROR] Required: wget or curl. Please install one."
@@ -102,15 +113,17 @@ fi
 # 3. Check Build Status
 # ==============================================
 if [ ! -d "target/classes" ]; then
-    echo "[ERROR] Compiled classes not found! Run first:"
-    echo "  mvn clean compile"
-    exit 1
+    echo "[INFO] 检测到未编译项目，正在自动执行编译 (mvn clean compile)..."
+    if ! mvn clean compile; then
+        echo "[ERROR] 编译失败！请检查错误日志。"
+        exit 1
+    fi
 fi
 
 if [ ! -d "target/dependency" ]; then
-    echo "[INFO] Preparing dependencies..."
-    if ! mvn dependency:copy-dependencies -DoutputDirectory=target/dependency; then
-        echo "[ERROR] Failed to prepare dependencies!"
+    echo "[INFO] 检测到依赖未复制，正在自动处理 (mvn dependency:copy-dependencies)..."
+    if ! mvn dependency:copy-dependencies; then
+        echo "[ERROR] 依赖复制失败！"
         exit 1
     fi
 fi
