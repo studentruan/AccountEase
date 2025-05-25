@@ -22,19 +22,45 @@ if not exist "%MODEL_FILE%" (
     :: Try using curl (Windows 10+ built-in)
     where curl >nul 2>&1
     if !errorlevel! equ 0 (
-        curl -L "%MODEL_URL%" -o "%MODEL_FILE%"
+        curl -L --retry 3 --retry-delay 5 "%MODEL_URL%" -o "%MODEL_FILE%"
         if !errorlevel! neq 0 (
-            echo [ERROR] Model download failed!
-            del "%MODEL_FILE%" 2>nul
-            exit /b 1
+            echo [WARN] Primary download failed, trying mirror site...
+            set "MIRROR_URL=%MODEL_URL:huggingface.co=hf-mirror.com%"
+            curl -L --retry 3 --retry-delay 5 "%MIRROR_URL%" -o "%MODEL_FILE%"
+            if !errorlevel! neq 0 (
+                echo [ERROR] All download attempts failed!
+                echo Possible solutions:
+                echo 1. Check your internet connection
+                echo 2. Manually download from:
+                echo    Original: %MODEL_URL%
+                echo    Mirror: %MIRROR_URL%
+                del "%MODEL_FILE%" 2>nul
+                pause
+                exit /b 1
+            ) else (
+                echo [INFO] Successfully downloaded via mirror site
+            )
         )
     ) else (
         :: Fallback to bitsadmin (older Windows)
+        echo [INFO] Using bitsadmin as fallback...
         bitsadmin /transfer downloadModel /download /priority normal "%MODEL_URL%" "%MODEL_FILE%"
         if !errorlevel! neq 0 (
-            echo [ERROR] Model download failed! Install curl or use better internet connection.
-            del "%MODEL_FILE%" 2>nul
-            exit /b 1
+            echo [WARN] Primary download failed, trying mirror site...
+            set "MIRROR_URL=%MODEL_URL:huggingface.co=hf-mirror.com%"
+            bitsadmin /transfer downloadModel /download /priority normal "%MIRROR_URL%" "%MODEL_FILE%"
+            if !errorlevel! neq 0 (
+                echo [ERROR] All download attempts failed!
+                echo Try:
+                echo 1. Install curl from https://curl.se/windows/
+                echo 2. Manually download from:
+                echo    Original: %MODEL_URL%
+                echo    Mirror: %MIRROR_URL%
+                del "%MODEL_FILE%" 2>nul
+                exit /b 1
+            ) else (
+                echo [INFO] Mirror site download succeeded
+            )
         )
     )
 
@@ -47,31 +73,37 @@ if not exist "%MODEL_FILE%" (
 ) else (
     echo [INFO] Model already exists: %MODEL_FILE%
 )
-
 :: ==============================================
 :: 2. Install JavaFX
 :: ==============================================
 set JAVAFX_URL=https://download2.gluonhq.com/openjfx/%JAVAFX_VERSION%/openjfx-%JAVAFX_VERSION%_windows-x64_bin-sdk.zip
 set INSTALL_DIR=%~dp0javafx-sdk-%JAVAFX_VERSION%
 
-if not exist "%INSTALL_DIR%" (
+if not exist "%INSTALL_DIR%\lib" (
     echo [INFO] JavaFX SDK not found. Installing...
 
     echo [INFO] Downloading JavaFX SDK...
     powershell -Command "Invoke-WebRequest -Uri '%JAVAFX_URL%' -OutFile '%TEMP%\javafx-sdk.zip'"
     if !errorlevel! neq 0 (
         echo [ERROR] JavaFX download failed!
+        pause
         exit /b 1
     )
 
     echo [INFO] Installing to %INSTALL_DIR%...
     mkdir "%INSTALL_DIR%" 2>nul
     powershell -Command "Expand-Archive -Path '%TEMP%\javafx-sdk.zip' -DestinationPath '%INSTALL_DIR%'"
-    move "%INSTALL_DIR%\javafx-sdk-%JAVAFX_VERSION%\*" "%INSTALL_DIR%\" >nul 2>&1
+    xcopy /E /I /Y "%INSTALL_DIR%\javafx-sdk-%JAVAFX_VERSION%\*" "%INSTALL_DIR%" >nul 2>&1
     rmdir /s /q "%INSTALL_DIR%\javafx-sdk-%JAVAFX_VERSION%" 2>nul
 
     del "%TEMP%\javafx-sdk.zip"
-    echo [SUCCESS] JavaFX installed to: %INSTALL_DIR%
+    if not exist "%INSTALL_DIR%\lib\javafx.controls.jar" (
+        echo [ERROR] 关键文件缺失，安装失败！
+        pause
+        exit /b 1
+    ) else (
+        echo [SUCCESS] JavaFX installed to: %INSTALL_DIR%
+        )
 ) else (
     echo [INFO] JavaFX already installed: %INSTALL_DIR%
 )
@@ -82,6 +114,7 @@ if not exist "%INSTALL_DIR%" (
 if not exist "target\classes" (
     echo [ERROR] Compiled classes not found! Run first:
     echo   mvn clean compile
+    pause
     exit /b 1
 )
 
@@ -90,6 +123,7 @@ if not exist "target\dependency" (
     mvn dependency:copy-dependencies -DoutputDirectory=target\dependency
     if !errorlevel! neq 0 (
         echo [ERROR] Failed to prepare dependencies!
+        pause
         exit /b 1
     )
 )
@@ -106,5 +140,3 @@ java --module-path "%INSTALL_DIR%\lib" ^
 
 echo [INFO] Application exited
 endlocal
-
-pause
