@@ -147,3 +147,5 @@ java --module-path "%INSTALL_DIR%\lib" ^
 
 echo [INFO] Application exited
 endlocal
+
+pause
