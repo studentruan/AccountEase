@@ -29,26 +29,26 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "JUnit.CsvToXmlConverterTest.executor": "Run",
-    "JUnit.CsvToXmlConverterTest.testCompleteRecordConversion.executor": "Run",
-    "JUnit.DailyTransactionProcessorTest.executor": "Run",
-    "JUnit.DailyTransactionProcessorTest.testBoundaryValues.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testDailyIncome.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testExpenseDailySummary.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testMonthlyBreakdown.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testMonthlyIncomeSummary.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testMonthlySummary.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testYearlyExpense.executor": "Run",
-    "JUnit.TransactionAnalyzerTest.testYearlySummary.executor": "Run",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CsvToXmlConverterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CsvToXmlConverterTest.testCompleteRecordConversion.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DailyTransactionProcessorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DailyTransactionProcessorTest.testBoundaryValues.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testDailyIncome.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testExpenseDailySummary.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testMonthlyBreakdown.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testMonthlyIncomeSummary.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testMonthlySummary.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testYearlyExpense.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransactionAnalyzerTest.testYearlySummary.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
@@ -56,7 +56,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.TransactionAnalyzerTest.testDailyIncome">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.myapp.Main" />
       <module name="AIend" />
@@ -146,12 +146,12 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testDailyIncome" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testExpenseDailySummary" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyAnalysis" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyExpense" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlySummary" />
+      <item itemvalue="应用程序.Main" />
     </list>
     <recent_temporary>
       <list>
