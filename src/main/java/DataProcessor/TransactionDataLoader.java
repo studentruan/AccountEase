@@ -1,4 +1,4 @@
-package Backend;
+package DataProcessor;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
@@ -13,9 +13,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TransactionDataLoader {
-    private Map<String, Transaction_FZ> transactionData = new HashMap<>();
+    private Map<String, Transaction> transactionData = new HashMap<>();
 
-    // Load from xml
+
+
+
+    // Load from XML
     public void loadFromXML(String xmlFilePath) {
         try {
             File file = new File(xmlFilePath);
@@ -36,7 +39,7 @@ public class TransactionDataLoader {
                 String type = elem.getElementsByTagName("type").item(0).getTextContent();
                 double amount = Double.parseDouble(elem.getElementsByTagName("amount").item(0).getTextContent());
 
-                Transaction_FZ transaction = new Transaction_FZ(id, date, counterparty, product, type, amount);
+                Transaction transaction = new Transaction(id, date, counterparty, product, type, amount);
                 transactionData.put(id, transaction);
             }
         } catch (Exception e) {
@@ -54,7 +57,7 @@ public class TransactionDataLoader {
             Element root = doc.createElement("transactions");
             doc.appendChild(root);
 
-            for (Transaction_FZ t : transactionData.values()) {
+            for (Transaction t : transactionData.values()) {
                 Element transactionElem = doc.createElement("transaction");
 
                 Element id = doc.createElement("id");
@@ -104,7 +107,7 @@ public class TransactionDataLoader {
         }
     }
 
-    public Map<String, Transaction_FZ> getTransactionData() {
+    public Map<String, Transaction> getTransactionData() {
         return transactionData;
     }
 }

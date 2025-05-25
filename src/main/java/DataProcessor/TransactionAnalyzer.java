@@ -45,7 +45,7 @@ public class TransactionAnalyzer {
             e.printStackTrace();
         }
     }
-       //每天净收支
+       //
     public Map<LocalDate, BigDecimal> getDailySummary() {
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> t.date,

@@ -1,9 +1,9 @@
-package Backend;
+package DataProcessor;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Transaction_FZ {
+public class Transaction {
     private String id;
     private LocalDate date;
     private String counterparty;
@@ -12,14 +12,13 @@ public class Transaction_FZ {
     private double amount;
     private String classification; // Optional field
 
-    public Transaction_FZ(String id, LocalDate date, String counterparty, String product, String type, double amount) {
+    public Transaction(String id, LocalDate date, String counterparty, String product, String type, double amount) {
         this.id = id;
         this.date = date;
         this.counterparty = counterparty;
         this.product = product;
         this.type = type;
         this.amount = amount;
-
     }
 
     // === Getters and Setters ===
@@ -49,7 +48,7 @@ public class Transaction_FZ {
     public boolean equals(Object obj) {
         if (this == obj) return true; // same object reference
         if (obj == null || getClass() != obj.getClass()) return false;
-        Transaction_FZ that = (Transaction_FZ) obj;
+        Transaction that = (Transaction) obj;
         return Objects.equals(id, that.id); // compare IDs
     }
 
@@ -58,7 +57,7 @@ public class Transaction_FZ {
         return Objects.hash(id); // consistent with equals
     }
 
-    // === toString() for debugging
+    // === toString() for debugging ===
     @Override
     public String toString() {
         return String.format("Transaction[id=%s, date=%s, product=%s, amount=%.2f]",

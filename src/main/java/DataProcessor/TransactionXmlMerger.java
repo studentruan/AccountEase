@@ -1,4 +1,4 @@
-package Backend;
+package DataProcessor;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
@@ -13,12 +13,13 @@ import java.io.File;
  */
 public class TransactionXmlMerger {
 
+
+
     /**
-     * Merges all .xml files in the input folder into one XML file at the specified output path.
-     *
+     * Merges all
      * @param inputFolderPath The folder containing XML files to merge.
      * @param outputFilePath  The full path of the output XML file, e.g., "D:/merged/merged_transactions.xml".
-     * @return The output file path if success, or null if
+     * @return The output file path if success, or null if failed.
      */
     public static String mergeTransactionXmlFiles(String inputFolderPath, String outputFilePath) {
         try {
