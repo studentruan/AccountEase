@@ -11,7 +11,17 @@ Maven
 
 #### Firstly, clone the repository to your local
 ```bash
-git clone https://github.com/studentruan/AccountEase.git
+git clone --depth 1 https://github.com/studentruan/AccountEase.git
+```
+
+However, if clone through https failed, you can use ssh:
+```bash
+git clone --depth 1 https://github.com/studentruan/AccountEase.git
+```
+
+Next, you need to do:
+```bash
+mvn clean compile
 ```
 
 #### Then you can use the script to automatically start the app

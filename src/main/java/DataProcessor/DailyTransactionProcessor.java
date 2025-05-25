@@ -14,10 +14,6 @@ public class DailyTransactionProcessor {
 //    String outputDir = "src/main/resources/Transactions_Record_XML/"+ledgerId+"/";
     String outputDir = "src/main/resources/fourthlevel_xml/"+ledgerId+"/";
 
-
-
-
-
     /*
             * 方法1：根据给定日期获取当天所有交易记录，返回按收入（Income）和支出（Expense）分类的字典列表。
             * 修改为从outputDir目录下读取所有XML文件

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-
+//Designed By Zhou Fang
 public class TransactionAnalyzer {
 
     public List<Transaction> transactions = new ArrayList<>();
@@ -45,7 +45,7 @@ public class TransactionAnalyzer {
             e.printStackTrace();
         }
     }
-       //每天净收支
+       //
     public Map<LocalDate, BigDecimal> getDailySummary() {
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> t.date,
