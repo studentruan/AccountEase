@@ -47,3 +47,5 @@ build/
 src/main/resources/bert_transaction_categorization.onnx
 
 .idea/
+
+!javafx-sdk-21.0.7/bin/*
