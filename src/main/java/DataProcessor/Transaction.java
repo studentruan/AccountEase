@@ -2,7 +2,7 @@ package DataProcessor;
 
 import java.time.LocalDate;
 import java.util.Objects;
-
+//Designed by ZHou Fang
 public class Transaction {
     private String id;
     private LocalDate date;

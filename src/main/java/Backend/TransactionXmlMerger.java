@@ -11,6 +11,7 @@ import java.io.File;
  * Utility class to merge all transaction XML files from a specified folder
  * into a single custom output XML file.
  */
+//Designed by Zhou Fang
 public class TransactionXmlMerger {
 
     /**

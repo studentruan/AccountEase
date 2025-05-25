@@ -2,7 +2,7 @@ package Backend;
 
 import java.time.LocalDate;
 import java.util.Objects;
-
+//Designed by Zhou Fang
 public class Transaction_FZ {
     private String id;
     private LocalDate date;

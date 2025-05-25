@@ -1,7 +1,7 @@
 package Backend;
 
 import java.time.LocalDate;
-
+//Designed by Zhou Fang
 public class Transactions {
     private String id;
     private LocalDate date;

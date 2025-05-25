@@ -11,13 +11,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-
+//Designed By Zhou FAng
 public class TransactionDataLoader {
     private Map<String, Transaction> transactionData = new HashMap<>();
-
-
-
-
     // Load from XML
     public void loadFromXML(String xmlFilePath) {
         try {

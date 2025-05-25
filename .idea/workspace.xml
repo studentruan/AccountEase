@@ -6,10 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/DailyTransactionProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/DailyTransactionProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/TransactionDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/TransactionDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/TransactionXmlMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/TransactionXmlMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/Transaction_FZ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/Transaction_FZ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Backend/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Backend/Transactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/CsvToXmlConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/CsvToXmlConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionXmlMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProcessor/TransactionXmlMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/ledger.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/sidebar.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,41 +34,60 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2xadfCbj7R4SvICX6PiUnconJUL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CsvToXmlConverterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CsvToXmlConverterTest.testCompleteRecordConversion.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DailyTransactionProcessorTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DailyTransactionProcessorTest.testBoundaryValues.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testDailyIncome.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testExpenseDailySummary.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testMonthlyBreakdown.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testMonthlyIncomeSummary.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testMonthlySummary.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testYearlyExpense.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TransactionAnalyzerTest.testYearlySummary.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "JUnit.CsvToXmlConverterTest.executor": "Run",
+    "JUnit.CsvToXmlConverterTest.testCompleteRecordConversion.executor": "Run",
+    "JUnit.DailyTransactionProcessorTest.executor": "Run",
+    "JUnit.DailyTransactionProcessorTest.testBoundaryValues.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testDailyIncome.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testExpenseDailySummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlyBreakdown.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlyIncomeSummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testMonthlySummary.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlyExpense.executor": "Run",
+    "JUnit.TransactionAnalyzerTest.testYearlySummary.executor": "Run",
+    "Maven.AccountEase [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.AccountEase [org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Main.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\IdeaProjects\AccountEase\src\main\resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/secondlevel_json" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TransactionAnalyzerTest.testDailyIncome">
+  <component name="RunManager" selected="应用程序.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.myapp.Main" />
       <module name="AIend" />
-      <option name="VM_PARAMETERS" value="--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-21.0.7/lib --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
+      <option name="VM_PARAMETERS" value="--module-path E:\javafx-sdk-21.0.7\lib --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -163,7 +190,26 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <created>1748180219230</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748180219230</updated>
+      <workItem from="1748180220495" duration="463000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
