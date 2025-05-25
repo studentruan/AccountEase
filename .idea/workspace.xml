@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d252ef-a860-4db4-a6e7-349edb88da36" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/CsvToXmlConverterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/DailyTransactionProcessorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/DataProcessor/TransactionAnalyzerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
@@ -45,7 +46,7 @@
     "JUnit.TransactionAnalyzerTest.testYearlyAnalysis.executor": "Run",
     "JUnit.TransactionAnalyzerTest.testYearlyExpense.executor": "Run",
     "JUnit.TransactionAnalyzerTest.testYearlySummary.executor": "Run",
-    "git-widget-placeholder": "Testing"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -55,7 +56,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.myapp.Main" />
       <module name="AIend" />
@@ -145,12 +146,12 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testDailyIncome" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testExpenseDailySummary" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyAnalysis" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlyExpense" />
       <item itemvalue="JUnit.TransactionAnalyzerTest.testYearlySummary" />
-      <item itemvalue="应用程序.Main" />
     </list>
     <recent_temporary>
       <list>
