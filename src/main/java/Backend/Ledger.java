@@ -26,7 +26,7 @@ public class Ledger {
         }
     }
 
-    // 保存到二级存储
+
     public void save() throws IOException {
         JSONObject json = new JSONObject();
         json.put("账本ID", this.id);
@@ -41,7 +41,7 @@ public class Ledger {
         Files.write(path, json.toString(4).getBytes());
     }
 
-    // 加载账本
+
     public void load(String id) throws IOException {
         Path path = Paths.get(SECONDARY_DIR, id + ".json");
         String content = new String(Files.readAllBytes(path));
@@ -58,7 +58,7 @@ public class Ledger {
                 .toList();
     }
 
-    // 处理封面图片存储
+
     private String saveCoverImage() throws IOException {
         if (this.coverImage == null) return "";
 
