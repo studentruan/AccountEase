@@ -1,55 +1,66 @@
 {
-  "日未报销": 0,
-  "月总资产": 0,
-  "日剩余资产": 0,
-  "月报销": 0,
-  "账本ID": "139531fc-2467-473d-a580-c381e6388bb8",
-  "月已花预算": 0,
-  "月预算": 0,
-  "日总资产": 0,
-  "日已报销": 0,
-  "日支出": 0,
-  "日剩余预算": 0,
-  "_metadata": {
-    "生成时间": "2025-05-25",
-    "交易总数": 1
+  "monthlyRemainingAssets": 0,
+  "monthlyBudget": 0,
+  "dailyReimbursement": 0,
+  "dailyUnreimbursed": 0,
+  "monthlyExpense": 0,
+  "dailyReimbursed": 0,
+  "dailySpentBudget": 0,
+  "monthlySpentBudget": 0,
+  "2025-05-27": {
+    "dailySpentBudget": 1,
+    "dailyBudget": 0,
+    "dailyIncome": 0,
+    "dailyRemainingBudget": -1,
+    "dailyExpense": 1,
+    "topCategories": [{
+      "amount": 1,
+      "category": "Dining"
+    }]
   },
-  "日收入": 0,
-  "所有的纪念日": [
+  "dailyExpense": 0,
+  "monthlyTotalAssets": 0,
+  "monthlyRemainingBudget": 0,
+  "_metadata": {
+    "generationDate": "2025-05-27",
+    "transactionCount": 2
+  },
+  "monthlyTotalLiabilities": 0,
+  "monthlyIncome": 0,
+  "monthlyReimbursed": 0,
+  "dailyRemainingAssets": 0,
+  "2025-05-25": {
+    "dailySpentBudget": 1,
+    "dailyBudget": 0,
+    "dailyIncome": 0,
+    "dailyRemainingBudget": -1,
+    "dailyExpense": 1,
+    "topCategories": [{
+      "amount": 1,
+      "category": "Dining"
+    }]
+  },
+  "dailyRemainingBudget": 0,
+  "2025-05": {
+    "monthlySpentBudget": 2,
+    "monthlyBudget": 0,
+    "monthlyRemainingBudget": -2,
+    "topCategories": [{
+      "amount": 2,
+      "category": "Dining"
+    }],
+    "monthlyExpense": 2,
+    "monthlyIncome": 0
+  },
+  "monthlyUnreimbursed": 0,
+  "dailyTotalAssets": 0,
+  "ledgerId": "139531fc-2467-473d-a580-c381e6388bb8",
+  "monthlyReimbursement": 0,
+  "dailyBudget": 0,
+  "dailyIncome": 0,
+  "dailyTotalLiabilities": 0,
+  "anniversaries": [
     "01-01",
     "10-01"
-  ],
-  "日已花预算": 0,
-  "月已报销": 0,
-  "2025-05-25": {
-    "日已花预算": 1,
-    "前四个支出类别": [{
-      "amount": 1,
-      "category": "Dining"
-    }],
-    "日预算": 0,
-    "日支出": 1,
-    "日剩余预算": -1,
-    "日收入": 0
-  },
-  "2025-05": {
-    "月剩余预算": -1,
-    "前四个支出类别": [{
-      "amount": 1,
-      "category": "Dining"
-    }],
-    "月收入": 0,
-    "月支出": 1,
-    "月已花预算": 1,
-    "月预算": 0
-  },
-  "日预算": 0,
-  "日报销": 0,
-  "月剩余资产": 0,
-  "月剩余预算": 0,
-  "月收入": 0,
-  "月未报销": 0,
-  "月支出": 0,
-  "日总负债": 0,
-  "月总负债": 0
+  ]
 }

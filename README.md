@@ -73,8 +73,8 @@ All required dependencies will be automatically installed during the Maven build
 |   |   |   |   |             Expense predication. By Yu Ruan        
 |   |   |   |   |-- classification
 |   |   |   |   `-- prediction
-|   |   |   |-- Backend        #
-|   |   |   |-- DataProcessor  #
+|   |   |   |-- Backend        # Core business logic - manages ledgers and processes ledger data. By Zhou Fang ,CanYang Yue and Shang Shi.
+|   |   |   |-- DataProcessor  # Data processing utilities. By Zhou Fang and CanYang Yue.
 |   |   |   |-- com            # Implementation of Frontend Java code. By Shang Shi and Jiayi Du
 |   |   |   |   `-- myapp
 |   |   |   |       |-- config
@@ -84,18 +84,18 @@ All required dependencies will be automatically installed during the Maven build
 |   |   |-- output
 |   |   `-- resources
 |   |       |-- Tokenizer      # Bert model use this
-|   |       |-- Transactions_Record_CSV  # 
-|   |       |-- Transactions_Record_XML  #
+|   |       |-- Transactions_Record_CSV  # User-imported CSV billing files
+|   |       |-- Transactions_Record_XML  # XML files converted from user-imported CSV billing files
 |   |       |-- css
-|   |       |-- fourthlevel_xml          #
+|   |       |-- fourthlevel_xml          # Level-4 directory: Stores categorized XML files
 |   |       |-- fxml
 |   |       |-- images
-|   |       |-- lang                     #
-|   |       |-- secondlevel_json         #
+|   |       |-- lang                     # Language configuration files
+|   |       |-- secondlevel_json         # Level-2 directory: Ledger data storage
 |   |       |   `-- images
-|   |       |-- thirdlevel_json          #
+|   |       |-- thirdlevel_json          # Level-3 directory: Financial data storage
 |   |       `-- xml
-|   `-- test
+|   `-- test                   # Unit tests
 |       `-- java
 |           |-- AIUtilities              
 |           |   |-- classification

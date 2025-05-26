@@ -2,9 +2,9 @@
 <transactions>
   <transaction>
         
-    <id>250525213918533</id>
+    <id>250527001901983</id>
         
-    <date>2025/05/25</date>
+    <date>2025/05/27</date>
         
     <counterparty>1</counterparty>
         
@@ -16,5 +16,30 @@
         
     <class>Dining</class>
     
+  </transaction>
+  <transaction>
+            
+    
+    <id>250525213918533</id>
+            
+    
+    <date>2025/05/25</date>
+            
+    
+    <counterparty>1</counterparty>
+            
+    
+    <product>1</product>
+            
+    
+    <type>Expense</type>
+            
+    
+    <amount>1</amount>
+            
+    
+    <class>Dining</class>
+        
+  
   </transaction>
 </transactions>

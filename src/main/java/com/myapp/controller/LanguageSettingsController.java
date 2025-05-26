@@ -10,46 +10,43 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-//public class LanguageSettingsController {
-//    @FXML
-//    private ComboBox<String> languageComboBox;
-//
-//    @FXML
-//    private void initialize() {
-//        // 可以在这里设置默认选择的语言
-//        // 例如根据系统当前设置选择
-//        languageComboBox.getSelectionModel().select(0); // 默认选择第一个
-//    }
-//
-//    @FXML
-//    private void saveLanguageSettings(ActionEvent event) {
-//        String selectedLanguage = languageComboBox.getValue();
-//
-//        // 这里添加实际保存语言设置的逻辑
-//        System.out.println("Selected language: " + selectedLanguage);
-//
-//        // 显示保存成功的提示
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Settings Saved");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Language preference saved: " + selectedLanguage);
-//        alert.showAndWait();
-//    }
-//
-//}
-
+/**
+        * Controller for managing language settings in the application.
+        * <p>
+ * This controller handles the language selection functionality, allowing users to switch
+        * between supported languages (English and Simplified Chinese). It updates the application's
+        * locale settings and provides visual feedback when changes are saved.
+        * </p>
+ *
+ * @author JiaYi Du
+ * @version 2.0
+ * @since March 17, 2023
+        */
 public class LanguageSettingsController extends BaseController {
-    @FXML private ComboBox<String> languageComboBox;
 
+    /** Combo box for language selection */
+    @FXML
+    private ComboBox<String> languageComboBox;
+
+    /**
+            * Initializes the controller after its root element has been processed.
+            *
+            * @param location The location used to resolve relative paths for the root object
+     * @param resources The resources used to localize the root object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-
-        //languageComboBox.getItems().addAll("English", "简体中文");
         languageComboBox.setValue(getCurrentLanguageName());
-
     }
 
+    /**
+            * Saves the selected language setting.
+     * <p>
+     * Updates the application locale based on the user's selection and shows
+            * a success notification. The change takes effect immediately for the UI.
+            * </p>
+            */
     @FXML
     private void saveLanguageSettings() {
         String selected = languageComboBox.getValue();
@@ -60,11 +57,19 @@ public class LanguageSettingsController extends BaseController {
         showSaveSuccess();
     }
 
+    /**
+            * Gets the display name of the current application language.
+     *
+             * @return "English" if current locale is English, otherwise "简体中文"
+            */
     private String getCurrentLanguageName() {
         return I18nUtil.getCurrentLocale().equals(Locale.ENGLISH) ?
                 "English" : "简体中文";
     }
 
+    /**
+            * Shows a success alert when language settings are saved.
+     */
     private void showSaveSuccess() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(I18nUtil.get("alert.success"));
@@ -72,9 +77,15 @@ public class LanguageSettingsController extends BaseController {
         alert.show();
     }
 
+    /**
+            * Updates localized text elements when language changes.
+     * <p>
+     * This method is called automatically when the locale changes to update
+     * all text elements that need to be translated.
+            * </p>
+            */
     @Override
     protected void updateLocalizedText() {
-        // 更新界面动态文本
         languageComboBox.setPromptText(I18nUtil.get("language.select"));
     }
 }

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"AIUtilities"},{"l":"AIUtilities.classification"},{"l":"AIUtilities.prediction"},{"l":"Backend"},{"l":"com.myapp"},{"l":"com.myapp.config"},{"l":"com.myapp.controller"},{"l":"com.myapp.util"},{"l":"DataProcessor"},{"l":"detectorTools"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();

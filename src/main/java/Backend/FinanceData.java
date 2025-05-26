@@ -104,6 +104,7 @@ public class FinanceData {
     private void parseBasicInfo(JSONObject json) {
         this.ledgerId = json.getString("账本ID");
 
+
         try {
             File metaFile = new File(SECONDARY_DIR, ledgerId + ".json");
             JSONObject metaJson = new JSONObject(new String(Files.readAllBytes(metaFile.toPath())));

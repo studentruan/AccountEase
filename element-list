@@ -1,0 +1,10 @@
+AIUtilities
+AIUtilities.classification
+AIUtilities.prediction
+Backend
+com.myapp
+com.myapp.config
+com.myapp.controller
+com.myapp.util
+DataProcessor
+detectorTools

@@ -20,12 +20,39 @@ import java.util.Map;
 import java.util.UUID;
 import static Backend.FinanceData.THIRD_DIR;
 
+/**
+        * Controller for handling file input settings and processing financial transactions.
+        * <p>
+ * This controller manages the file selection, conversion, classification, and processing
+ * of financial transaction data through a series of steps:
+        * <ol>
+ *   <li>File selection via file chooser</li>
+        *   <li>CSV to XML conversion</li>
+        *   <li>Transaction classification using AI</li>
+        *   <li>Data processing and storage</li>
+        * </ol>
+        * </p>
+ *
+ * @author JiaYi Du and Shang Shi
+ * @version 2.0
+ * @since March 17, 2023
+        */
 public class InputSettingsController {
 
+    /** Text field for displaying selected file path */
     @FXML
     private TextField filePathField;
+
+    /** Directory path for third-level JSON output */
     private static final String THIRD_DIR = "src/main/resources/thirdlevel_json/";
 
+    /**
+            * Handles file browsing action.
+            * <p>
+     * Opens a file chooser dialog to select transaction files (CSV, Excel, or XML).
+            * Sets the selected file path in the filePathField.
+            * </p>
+            */
     @FXML
     private void handleBrowseFile() {
         FileChooser fileChooser = new FileChooser();
@@ -43,6 +70,20 @@ public class InputSettingsController {
         }
     }
 
+    /**
+            * Processes and saves the selected file.
+            * <p>
+     * Performs the complete transaction processing pipeline:
+            * <ol>
+     *   <li>Validates file path and ledger ID</li>
+            *   <li>Copies file to transaction records directory</li>
+            *   <li>Converts CSV to XML format</li>
+            *   <li>Classifies transactions using AI</li>
+            *   <li>Merges and processes transaction data</li>
+            *   <li>Saves final financial data</li>
+            * </ol>
+            * </p>
+            */
     @FXML
     private void saveFilePath() {
         String filePath = filePathField.getText();
@@ -144,6 +185,12 @@ public class InputSettingsController {
         }
     }
 
+    /**
+            * Merges individual transaction XML files into a single file.
+     *
+             * @return path to the merged XML file
+     * @throws Exception if merging fails
+     */
     private String mergeTransactionFiles() throws Exception {
         GlobalContext globalContext = GlobalContext.getInstance();
         String ledgerId = globalContext.getCurrentLedgerId();
@@ -156,6 +203,11 @@ public class InputSettingsController {
         return outputFile;
     }
 
+    /**
+            * Cleans up individual transaction files after merging.
+     *
+             * @param dirPath directory containing files to clean up
+     */
     private void cleanUpIndividualFiles(String dirPath) {
         File dir = new File(dirPath);
         File[] files = dir.listFiles((d, name) ->
