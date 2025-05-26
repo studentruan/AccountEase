@@ -198,6 +198,17 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <doclint>none</doclint> <!-- 关闭所有检查 -->
+                    <!-- 或仅关闭 missing -->
+                    <!-- <doclint>-missing</doclint> -->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.5.0</version>
                 <executions>
