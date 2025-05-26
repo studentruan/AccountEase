@@ -16,7 +16,7 @@ git clone --depth 1 https://github.com/studentruan/AccountEase.git
 
 However, if clone through https failed, you can use ssh:
 ```bash
-git clone --depth 1 https://github.com/studentruan/AccountEase.git
+git clone --depth 1 git@github.com:studentruan/AccountEase.git
 ```
 
 Next, you need to do:
