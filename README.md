@@ -16,7 +16,7 @@ git clone --depth 1 https://github.com/studentruan/AccountEase.git
 
 However, if clone through https failed, you can use ssh:
 ```bash
-git clone --depth 1 https://github.com/studentruan/AccountEase.git
+git clone --depth 1 git@github.com:studentruan/AccountEase.git
 ```
 
 Next, you need to do:
@@ -36,6 +36,9 @@ You can just click the **run.bat** file or use command:
 ```powershell
 ./run.bat
 ```
+(If you're in Windows, you may meet an "[ERROR] Failed to prepare dependencies!“ 
+or success but nothing is displayed while you first run this script.
+You can try to run it again and our app is expected to be launched)
 
 This script will:
 - Automatically download JavaFX dependencies

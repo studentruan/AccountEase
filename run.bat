@@ -27,11 +27,11 @@ if not exist "%MODEL_FILE%" (
     :: Try using curl (Windows 10+ built-in)
     where curl >nul 2>&1
     if !errorlevel! equ 0 (
-        curl -L --retry 2 --retry-delay 5 "%MODEL_URL%" -o "%MODEL_FILE%"
+        curl -L "%MODEL_URL%" -o "%MODEL_FILE%"
         if !errorlevel! neq 0 (
             echo [WARN] Primary download failed, trying mirror site...
             echo Using mirror URL: %MIRROR_URL%
-            curl -L --retry 2 --retry-delay 5 "%MIRROR_URL%" -o "%MODEL_FILE%"
+            curl -L "%MIRROR_URL%" -o "%MODEL_FILE%"
             if !errorlevel! neq 0 (
                 echo [ERROR] All download attempts failed!
                 echo Possible solutions:
@@ -128,7 +128,7 @@ if not exist "target\classes" (
 if not exist "target\dependency" (
     echo [INFO] Preparing dependencies...
     mvn dependency:copy-dependencies -DoutputDirectory=target\dependency
-    if !errorlevel! neq 0 (
+    if ERRORLEVEL 1 (
         echo [ERROR] Failed to prepare dependencies!
         pause
         exit /b 1
