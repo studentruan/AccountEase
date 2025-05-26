@@ -1218,9 +1218,10 @@ public class LedgerController implements Initializable {
                 itemName.setPrefWidth(200);
 
                 // Format amount with localized currency symbol if needed
-                String amountText = transaction.getAmount() > 0 ?
+                String amountText = Objects.equals(transaction.getType(), "Income") ?
                         "+" + transaction.getAmount() + I18nUtil.get("currency.symbol") :
-                        "" + transaction.getAmount() + I18nUtil.get("currency.symbol");
+                        "-" + transaction.getAmount() + I18nUtil.get("currency.symbol");
+                System.out.println(amountText);
                 Label itemAmount = new Label(amountText);
                 itemAmount.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
                 HBox.setHgrow(itemAmount, Priority.ALWAYS);
