@@ -171,11 +171,8 @@ public class LedgerController implements Initializable {
 
     @FXML
     private VBox budgetVBox;
-
-
-
-
-
+    private String baseDir;
+    private TransactionLoader transactionLoader;
 
 
 //    @FXML
@@ -345,6 +342,19 @@ public class LedgerController implements Initializable {
         });
     }
 
+<<<<<<< Updated upstream
+=======
+    private void validateMemorialDayFormat(String dateStr) throws IllegalArgumentException {
+        if (!dateStr.matches("(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])")) {
+            throw new IllegalArgumentException(I18nUtil.get("anniversary.invalid.format"));
+        }
+    }
+
+    private void showBudgetSettingDialog() {
+        Dialog<Pair<Double, Double>> dialog = new Dialog<>();
+        dialog.setTitle(I18nUtil.get("budget.set.title"));
+        dialog.setHeaderText(I18nUtil.get("budget.set.header"));
+>>>>>>> Stashed changes
 
 
 
@@ -510,6 +520,10 @@ public class LedgerController implements Initializable {
 //        }
     }
 
+
+
+
+
     private void initializePictures() {
         Image image_Back = new Image(getClass().getResource("/images/home.png").toExternalForm());
         image_Back_to_main.setImage(image_Back);
@@ -519,6 +533,7 @@ public class LedgerController implements Initializable {
 
     }
 
+<<<<<<< Updated upstream
     private void initializeCharts() {
         // 初始化折线图
         xAxis.setLabel("Time");
@@ -650,6 +665,9 @@ public class LedgerController implements Initializable {
 //
 //
 //    }
+=======
+
+>>>>>>> Stashed changes
     public void updateDashboard() {
         TransactionLoader loader = new TransactionLoader();
 
@@ -736,7 +754,188 @@ public class LedgerController implements Initializable {
         showDateDetails(today);
 
 
+<<<<<<< Updated upstream
 }
+=======
+
+        try {
+            financeData.loadFinanceData(ledger.getId());
+
+
+//                if (isDailyMode) {
+//                    // 日模式图表
+//                    refreshDailyCharts(selectedDate);
+//                } else {
+//                    // 月模式图表
+//                    refreshMonthlyCharts();
+//                }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+//        isDailyMode = selectedDate != null;
+        // 获取当前显示模式
+//        updateCalendar();
+
+        refreshCharts(isDailyMode);
+
+        updateFinancialMetrics(isDailyMode);
+//        LocalDate today = LocalDate.now();
+//        showDateDetails(today);
+        // 更新核心财务指标
+
+        // 更新图表数据
+        refreshCharts(isDailyMode);
+
+        // 加载智能建议
+        loadAiAdvice(adviceList);
+        initializeCharts();
+
+        String ledgerId = GlobalContext.getInstance().getCurrentLedgerId();
+
+        // 步骤2：验证ID有效性
+        if (ledgerId == null || ledgerId.trim().isEmpty()) {
+            throw new IllegalStateException("未找到有效的账本ID，请先选择账本");
+        }
+
+//        // 加载 XML 文件中的数据
+//        String resourcePath = "fourthlevel_xml/" + ledgerId;
+//        URL resourceUrl = getClass().getClassLoader().getResource(resourcePath);
+//
+//        if (resourceUrl == null) {
+//            System.err.println("目录不存在：" + resourcePath);
+//            return;
+//        }
+//
+//        File folder = new File(resourceUrl.getFile());
+//        File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
+//
+//        if (files == null || files.length == 0) {
+//            System.out.println("未找到XML文件");
+//            return;
+//        }
+//
+//        for (File file : files) {
+//            String filePath = file.getAbsolutePath();
+//            loader.loadTransactionsFromXml(filePath);
+//        }
+        // 定义XML文件的根目录（根据实际情况调整或从配置获取）
+        LocalDate today = LocalDate.now();
+
+        if(selectedDate != null) {showDateDetails(selectedDate);}
+        else {showDateDetails(today);}
+
+
+
+    }
+
+    private void initializeCharts() {
+        lineChart.getData().clear();
+        // Initialize line chart
+        xAxis.setLabel(I18nUtil.get("chart.time.label"));
+        yAxis.setLabel(I18nUtil.get("chart.value.label"));
+
+        // Get daily transaction data for a period
+        DailyTransactionProcessor processor = new DailyTransactionProcessor();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName(I18nUtil.get("chart.series.expense"));
+
+        // Set date range dynamically
+        LocalDate startDate;
+        LocalDate endDate;
+
+        if (selectedDate != null) {
+            startDate = selectedDate;
+            endDate = startDate.plusDays(7); // Default show 7 days data
+        } else {
+            startDate = LocalDate.of(2025, 3, 23);
+            endDate = LocalDate.of(2025, 3, 31);
+        }
+
+        // Prepare historical data array
+        int daysBetween = (int) ChronoUnit.DAYS.between(startDate, endDate) + 1;
+        double[] expense_history = new double[daysBetween];
+        int index = 0;
+
+        // Fill historical data (including budget)
+        XYChart.Series<String, Number> historicalBudgetSeries = new XYChart.Series<>();
+        historicalBudgetSeries.setName(I18nUtil.get("chart.series.historical.budget"));
+
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            String dateStr = date.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
+            double expense = processor.getTotalExpenses("2025/" + dateStr);
+
+            // Add expense data
+            series.getData().add(new XYChart.Data<>(dateStr, expense));
+            expense_history[index] = expense;
+
+            // Add historical budget data
+            FinanceData.DailyData dailyData = financeData.getDailyData(date);
+            double dailyBudget = (dailyData != null) ? dailyData.budget : 0;
+            historicalBudgetSeries.getData().add(new XYChart.Data<>(dateStr, dailyBudget));
+
+            index++;
+        }
+
+        // Add historical data series to chart
+        lineChart.getData().add(series);
+        lineChart.getData().add(historicalBudgetSeries);
+
+        // Create ARIMA model and make predictions
+        ARIMAModel model = new ARIMAModel(expense_history, 1, 4, 5);
+        int steps = 3; // Predict 3 days
+        int[] forecasts = model.predict(steps);
+
+        // Create forecast series
+        XYChart.Series<String, Number> forecastSeries = new XYChart.Series<>();
+        forecastSeries.setName(I18nUtil.get("chart.series.forecast"));
+
+        // Create forecast period budget series
+        XYChart.Series<String, Number> forecastBudgetSeries = new XYChart.Series<>();
+        forecastBudgetSeries.setName(I18nUtil.get("chart.series.forecast.budget"));
+
+        // Add forecast data points and budget data
+        LocalDate lastHistoryDate = endDate;
+        for (int i = 0; i < steps; i++) {
+            lastHistoryDate = lastHistoryDate.plusDays(1);
+            String forecastDate = lastHistoryDate.format(DateTimeFormatter.ofPattern("MM/dd", Locale.US));
+
+            // Add forecast data
+            forecastSeries.getData().add(new XYChart.Data<>(forecastDate, Math.max(forecasts[i], 0)));
+
+            // Add forecast period budget data
+            FinanceData.DailyData dailyData = financeData.getDailyData(lastHistoryDate);
+            double dailyBudget = (dailyData != null) ? dailyData.budget : 0;
+            forecastBudgetSeries.getData().add(new XYChart.Data<>(forecastDate, dailyBudget));
+        }
+
+        // Add series to chart
+        lineChart.getData().add(forecastSeries);
+        lineChart.getData().add(forecastBudgetSeries);
+
+        // Set series styles
+        series.getNode().setStyle("-fx-stroke: #1e90ff; -fx-stroke-width: 2px;"); // Blue solid line - historical expense
+        historicalBudgetSeries.getNode().setStyle("-fx-stroke: #32cd32; -fx-stroke-width: 2px;"); // Green solid line - historical budget
+
+        forecastSeries.getNode().setStyle(
+                "-fx-stroke: #ff0000; " +          // Red dashed line - forecast expense
+                        "-fx-stroke-dash-array: 5 5; " +
+                        "-fx-stroke-width: 2px;"
+        );
+
+        forecastBudgetSeries.getNode().setStyle(
+                "-fx-stroke: #228b22; " +         // Dark green dashed line - forecast budget
+                        "-fx-stroke-dash-array: 5 5; " +
+                        "-fx-stroke-width: 2px;"
+        );
+
+        // Add legend
+        lineChart.setLegendVisible(true);
+        lineChart.setCreateSymbols(true);
+    }
+>>>>>>> Stashed changes
 
     private void updateFinancialMetrics(boolean isDailyMode) {
         // 获取对应数据
@@ -1280,7 +1479,70 @@ public class LedgerController implements Initializable {
         result.ifPresent(this::processTransaction);
     }
 
+<<<<<<< Updated upstream
     private void processTransaction(TransactionData data) {
+=======
+    @FXML
+    private void handleAddTransaction() {
+        showTransactionDialog();
+    }
+
+    private void showDateDetails(LocalDate date) {
+        // Update selected date label with localized format
+        selectedDateLabel.setText(
+                date.format(
+                        DateTimeFormatter.ofPattern(I18nUtil.get("date.format.long"), Locale.getDefault())
+                )
+        );
+
+        // Clear previous transaction items
+        expenseItemsContainer.getChildren().clear();
+
+        // Check if date has transactions
+        if (dateTransactions.containsKey(date)) {
+            // Add transaction items
+            for (Transactions transaction : dateTransactions.get(date)) {
+                HBox itemBox = new HBox(10);
+                itemBox.setPadding(new Insets(10));
+                itemBox.setStyle(transaction.getAmount() > 0 ? "-fx-background-color: #e8f5e9;" : "-fx-background-color: #f5f5f5;");
+                itemBox.setPrefWidth(350);
+                itemBox.setPrefHeight(50);
+                itemBox.setStyle(transaction.getAmount() > 0
+                        ? "-fx-background-color: #e8f5e9; -fx-background-radius: 8;"
+                        : "-fx-background-color: #f5f5f5; -fx-background-radius: 8;");
+
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(24);
+                imageView.setFitHeight(24);
+                // Using same image for both income/expense as in original
+                String imagePath = transaction.getAmount() > 0 ? "/images/expense.png" : "/images/expense.png";
+                imageView.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
+
+                Label itemName = new Label(transaction.getDescription());
+                itemName.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
+                itemName.setPrefWidth(200);
+
+                // Format amount with localized currency symbol if needed
+                String amountText = transaction.getAmount() > 0 ?
+                        "+" + transaction.getAmount() + I18nUtil.get("currency.symbol") :
+                        "" + transaction.getAmount() + I18nUtil.get("currency.symbol");
+                Label itemAmount = new Label(amountText);
+                itemAmount.setStyle(transaction.getAmount() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #FF5722;");
+                HBox.setHgrow(itemAmount, Priority.ALWAYS);
+
+                itemBox.getChildren().addAll(imageView, itemName, itemAmount);
+                expenseItemsContainer.getChildren().add(itemBox);
+            }
+        } else {
+            // Show no data message
+            Label noDataLabel = new Label(I18nUtil.get("transaction.no.data"));
+            noDataLabel.setStyle("-fx-text-fill: #999999;");
+            expenseItemsContainer.getChildren().add(noDataLabel);
+        }
+    }
+
+    public void processTransaction(TransactionData data) {
+>>>>>>> Stashed changes
         try {
             // 生成交易ID
             String id = generateTransactionId();
@@ -1353,7 +1615,7 @@ public class LedgerController implements Initializable {
         }
     }
 
-    private String generateTransactionId() {
+    public String generateTransactionId() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmssSSS"));
     }
 
@@ -1393,7 +1655,7 @@ public class LedgerController implements Initializable {
         parent.appendChild(elem);
     }
 
-    private void saveTransactionFile(Document doc, String id) throws Exception {
+    public void saveTransactionFile(Document doc, String id) throws Exception {
         String dirPath = "src/main/resources/fourthlevel_xml/" + ledgerId + "/";
         Path outputDir = Paths.get(dirPath);
 
@@ -1409,7 +1671,7 @@ public class LedgerController implements Initializable {
         transformer.transform(new DOMSource(doc), new StreamResult(outputPath.toFile()));
     }
 
-    private void mergeTransactionFiles() throws Exception {
+    public void mergeTransactionFiles() throws Exception {
         String inputDir = "src/main/resources/fourthlevel_xml/" + ledgerId + "/";
         String outputFile = inputDir + "merged_transactions.xml";
 
@@ -1519,12 +1781,23 @@ public class LedgerController implements Initializable {
     }
 
     // 数据记录类
-    private record TransactionData(
+    public record TransactionData(
             String counterparty,
             String product,
             String type,
             String amount
-    ) {}
+    ) {
+        public String getDescription() {
+
+            return type;
+        }
+
+        public String getCounterparty() {
+
+
+            return  counterparty;
+        }
+    }
 
 }
 

@@ -35,7 +35,12 @@ public class InputSettingsController {
 
         // 设置文件过滤器
         FileChooser.ExtensionFilter excelFilter = new FileChooser.ExtensionFilter(
+<<<<<<< Updated upstream
                 "电子表格文件 (*.xlsx, *.csv)", "*.xlsx", "*.csv", "*.xml");
+=======
+                "Spreadsheet Files (*.xlsx, *.csv)",
+                "*.xlsx", "*.csv", "*.xml");
+>>>>>>> Stashed changes
         fileChooser.getExtensionFilters().add(excelFilter);
 
         File selectedFile = fileChooser.showOpenDialog(null);

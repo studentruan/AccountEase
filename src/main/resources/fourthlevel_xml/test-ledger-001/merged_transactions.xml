@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250526140733981</id>
+        
+    <date>2025/05/26</date>
+        
+    <counterparty>txn-001</counterparty>
+        
+    <product>京东</product>
+        
+    <type>手机</type>
+        
+    <amount>3990.00</amount>
+        
+    <class>Utilities</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250526140718560</id>
+            
+    
+    <date>2025/05/26</date>
+            
+    
+    <counterparty>txn-001</counterparty>
+            
+    
+    <product>京东</product>
+            
+    
+    <type>手机</type>
+            
+    
+    <amount>3990.00</amount>
+            
+    
+    <class>Utilities</class>
+        
+  
+  </transaction>
+  <transaction>
+                
+    
+    
+    <id>250526140646963</id>
+                
+    
+    
+    <date>2025/05/26</date>
+                
+    
+    
+    <counterparty>txn-001</counterparty>
+                
+    
+    
+    <product>京东</product>
+                
+    
+    
+    <type>手机</type>
+                
+    
+    
+    <amount>3990.00</amount>
+                
+    
+    
+    <class>Utilities</class>
+            
+  
+  
+  </transaction>
+  <transaction>
+                    
+    
+    
+    
+    <id>250526140616235</id>
+                    
+    
+    
+    
+    <date>2025/05/26</date>
+                    
+    
+    
+    
+    <counterparty>txn-001</counterparty>
+                    
+    
+    
+    
+    <product>京东</product>
+                    
+    
+    
+    
+    <type>手机</type>
+                    
+    
+    
+    
+    <amount>3990.00</amount>
+                    
+    
+    
+    
+    <class>Utilities</class>
+                
+  
+  
+  
+  </transaction>
+  <transaction>
+                        
+    
+    
+    
+    
+    <id>250526140433708</id>
+                        
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                        
+    
+    
+    
+    
+    <counterparty>txn-001</counterparty>
+                        
+    
+    
+    
+    
+    <product>京东</product>
+                        
+    
+    
+    
+    
+    <type>手机</type>
+                        
+    
+    
+    
+    
+    <amount>3990.00</amount>
+                        
+    
+    
+    
+    
+    <class>Utilities</class>
+                    
+  
+  
+  
+  
+  </transaction>
+</transactions>

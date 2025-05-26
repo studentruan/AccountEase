@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transaction>
+    <id>250526022016734</id>
+    <date>2025/05/26</date>
+    <counterparty>笔记本电脑</counterparty>
+    <product>京东商城</product>
+    <type>支出</type>
+    <amount>5999.00</amount>
+    <class>Dining</class>
+</transaction>

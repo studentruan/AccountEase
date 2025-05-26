@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250526022016734</id>
+        
+    <date>2025/05/26</date>
+        
+    <counterparty>笔记本电脑</counterparty>
+        
+    <product>京东商城</product>
+        
+    <type>支出</type>
+        
+    <amount>5999.00</amount>
+        
+    <class>Dining</class>
+    
+  </transaction>
+  <transaction>
+            
+    
+    <id>250526021652867</id>
+            
+    
+    <date>2025/05/26</date>
+            
+    
+    <counterparty>笔记本电脑</counterparty>
+            
+    
+    <product>京东商城</product>
+            
+    
+    <type>支出</type>
+            
+    
+    <amount>5999.00</amount>
+            
+    
+    <class>Dining</class>
+        
+  
+  </transaction>
+  <transaction>
+                
+    
+    
+    <id>250526021410309</id>
+                
+    
+    
+    <date>2025/05/26</date>
+                
+    
+    
+    <counterparty>笔记本电脑</counterparty>
+                
+    
+    
+    <product>京东商城</product>
+                
+    
+    
+    <type>支出</type>
+                
+    
+    
+    <amount>5999.00</amount>
+                
+    
+    
+    <class>Dining</class>
+            
+  
+  
+  </transaction>
+  <transaction>
+                    
+    
+    
+    
+    <id>250526021334342</id>
+                    
+    
+    
+    
+    <date>2025/05/26</date>
+                    
+    
+    
+    
+    <counterparty>笔记本电脑</counterparty>
+                    
+    
+    
+    
+    <product>京东商城</product>
+                    
+    
+    
+    
+    <type>支出</type>
+                    
+    
+    
+    
+    <amount>5999.00</amount>
+                    
+    
+    
+    
+    <class>Dining</class>
+                
+  
+  
+  
+  </transaction>
+  <transaction>
+                        
+    
+    
+    
+    
+    <id>250526021021259</id>
+                        
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                        
+    
+    
+    
+    
+    <counterparty>笔记本电脑</counterparty>
+                        
+    
+    
+    
+    
+    <product>京东商城</product>
+                        
+    
+    
+    
+    
+    <type>支出</type>
+                        
+    
+    
+    
+    
+    <amount>5999.00</amount>
+                        
+    
+    
+    
+    
+    <class>Dining</class>
+                    
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                            
+    
+    
+    
+    
+    
+    <id>250526020642117</id>
+                            
+    
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                            
+    
+    
+    
+    
+    
+    <counterparty>笔记本电脑</counterparty>
+                            
+    
+    
+    
+    
+    
+    <product>京东商城</product>
+                            
+    
+    
+    
+    
+    
+    <type>支出</type>
+                            
+    
+    
+    
+    
+    
+    <amount>5999.00</amount>
+                            
+    
+    
+    
+    
+    
+    <class>Dining</class>
+                        
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                
+    
+    
+    
+    
+    
+    
+    <id>250526015618371</id>
+                                
+    
+    
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                                
+    
+    
+    
+    
+    
+    
+    <counterparty>测试商品</counterparty>
+                                
+    
+    
+    
+    
+    
+    
+    <product>测试商家</product>
+                                
+    
+    
+    
+    
+    
+    
+    <type>支出</type>
+                                
+    
+    
+    
+    
+    
+    
+    <amount>100.00</amount>
+                                
+    
+    
+    
+    
+    
+    
+    <class>Investment</class>
+                            
+  
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <id>250526015555211</id>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <counterparty>测试商品</counterparty>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <product>测试商家</product>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <type>支出</type>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <amount>100.00</amount>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    <class>Investment</class>
+                                
+  
+  
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <id>250526013051194</id>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <counterparty>笔记本电脑</counterparty>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <product>京东商城</product>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <type>支出</type>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <amount>5999.00</amount>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <class>Dining</class>
+                                    
+  
+  
+  
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <id>250526012741091</id>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <counterparty>测试商品</counterparty>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <product>测试商户</product>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <type>支出</type>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <amount>100.00</amount>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <class>Investment</class>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </transaction>
+  <transaction>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <id>250526012440487</id>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <date>2025/05/26</date>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <counterparty>测试商品</counterparty>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <product>测试商户</product>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <type>支出</type>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <amount>100.00</amount>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <class>Investment</class>
+                                            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </transaction>
+</transactions>

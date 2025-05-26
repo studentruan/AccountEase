@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<transactions>
+  <transaction>
+        
+    <id>250526013359812</id>
+        
+    <date>2025/05/26</date>
+        
+    <counterparty>智能手机</counterparty>
+        
+    <product>小米官方旗舰店</product>
+        
+    <type>支出</type>
+        
+    <amount>2999.00</amount>
+        
+    <class>Grooming</class>
+    
+  </transaction>
+</transactions>

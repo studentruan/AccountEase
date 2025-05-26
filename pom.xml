@@ -10,10 +10,14 @@
     <name>AIend</name>
     <url>http://maven.apache.org</url>
 
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <mockito.version>5.3.1</mockito.version>
+        <bytebuddy.version>1.14.6</bytebuddy.version>
     </properties>
 
     <dependencies>
@@ -55,7 +59,7 @@
         <dependency>
             <groupId>com.microsoft.onnxruntime</groupId>
             <artifactId>onnxruntime</artifactId>
-            <version>1.21.0</version> <!-- 选择最新版本 -->
+            <version>1.20.0</version> <!-- 选择最新版本 -->
         </dependency>
 
         <dependency>
@@ -143,6 +147,58 @@
             <artifactId>guava</artifactId>
             <version>31.1-jre</version> <!-- 使用最新稳定版 -->
         </dependency>
+<<<<<<< Updated upstream
+=======
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20231013</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+<!--//test-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${bytebuddy.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- TestFX (用于JavaFX组件测试) -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JavaFX测试支持 -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>jdk-12.0.1+2</version>
+            <scope>test</scope>
+        </dependency>
+
+>>>>>>> Stashed changes
     </dependencies>
 
     <build>
